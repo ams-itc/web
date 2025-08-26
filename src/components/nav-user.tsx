@@ -1,4 +1,4 @@
-import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Settings as SettingsIcon, Sparkles } from "lucide-react";
+import { BadgeCheck, Bell, ChevronsUpDown, LogOut, Settings as SettingsIcon } from "lucide-react";
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "./ui/sidebar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuItem } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
