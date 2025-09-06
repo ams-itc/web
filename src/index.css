@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Playfair+Display&family=Raleway&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -157,4 +157,6 @@
 
 @theme {
   --font-playfair_display: "PlayFair Display", sans-serif; 
+  --font-raleway: "Raleway", sans-serif;
+  --font-inter: "Inter", sans-serif;
 }
