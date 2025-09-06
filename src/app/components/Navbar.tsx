@@ -60,7 +60,7 @@ export default function Navbar() {
                   <>
                     <button
                       onClick={() => toggleDropdown(item.title)}
-                      className="inline-flex items-center px-3  text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-md"
+                      className="inline-flex items-center px-3  text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-md font-raleway"
                     >
                       <span>{item.title}</span>
                       <ChevronDown
@@ -76,7 +76,7 @@ export default function Navbar() {
                             <NavLink
                               key={subItem.title}
                               to={subItem.url}
-                              className="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100"
+                              className="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100 font-raleway"
                               onClick={() => setOpenDropdown(null)}
                             >
                               {subItem.title}
@@ -92,8 +92,8 @@ export default function Navbar() {
                     className={({ isActive }) =>
                       `inline-flex items-center px-3 text-sm font-medium rounded-md ${
                         isActive
-                          ? "text-blue-600 bg-blue-50"
-                          : "text-gray-700 hover:bg-gray-100"
+                          ? "text-blue-600 bg-blue-50 font-raleway"
+                          : "text-gray-700 hover:bg-gray-100 font-raleway"
                       }`
                     }
                   >

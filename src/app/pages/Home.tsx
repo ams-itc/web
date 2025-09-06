@@ -1,9 +1,40 @@
+import Header from "../components/Header";
+
 export default function HomePage() {
   return (
-    <div className="p-6 text-center min-h-screen bg-white">
-      {/* <img src="logo_ams.png" alt="Logo" className="mx-auto mb-4 w-32 h-32" /> */}
-      <h1 className="text-3xl font-bold text-black">ហេវ</h1>
-      <p className="text-gray-700 mt-2 ">អឿក​ មឿក សឿក (អេអឹមអេស) 🚀</p>
+    <div className="min-h-screen bg-white">
+      <Header />
+      <section className="flex flex-col md:flex-row items-center justify-between px-20 py-16 mt-15">
+        {/* Left side: text */}
+        <div className="max-w-xl space-y-6">
+          <h1 className="text-5xl font-bold leading-tight text-gray-900 font-playfair_display">
+            Learning Today, <br /> Leading Tomorrow
+          </h1>
+          <p className="text-lg text-gray-600 font-raleway">
+            Through world-class instruction and hands-on research opportunities, 
+            we prepare students at every level to excel in data-driven fields 
+            and contribute meaningfully to science, technology, and society.
+          </p>
+          <div className="flex space-x-4">
+            <button className="px-6 py-3 bg-[#3A3B5C] text-white font-semibold rounded-md shadow hover:bg-[#62649d] transition font-raleway">
+              Explore Our Programs →
+            </button>
+            <button className="px-6 py-3 border border-[#C41E3A] text-[#C41E3A] font-semibold rounded-md hover:bg-red-50 transition font-raleway">
+              Meet the Faculty
+            </button>
+          </div>
+        </div>
+
+        {/* Right side: image */}
+        <div className="mt-10 md:mt-0 md:ml-12">
+          <img
+            src="/campus.jpg" // put inside public/campus.jpg
+            alt="AMS Building"
+            className="rounded-lg shadow-xl/50 max-w-md"
+          />
+        </div>
+      </section>      
     </div>
+
   );
 }

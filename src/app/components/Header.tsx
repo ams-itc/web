@@ -2,7 +2,7 @@ import Navbar from "./Navbar";
 
 export default function Header() {
   return (
-    <header className="w-full border-b border-gray-200 bg-white h-100px border-b-1 border-gray-300 shadow-sm sticky top-0 z-50">
+    <header className="w-full bg-white h-100px border-b-1 border-gray-300 shadow-sm top-0 z-50">
       <div className="flex items-center justify-between w-full px-6 py-2">
         {/* Left side with Logo + Department Name */}
         <div className="flex items-center space-x-2 w-1/3">
