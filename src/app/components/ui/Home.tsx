@@ -12,10 +12,10 @@ export default function Home() {
           contribute meaningfully to science, technology, and society.
         </p>
         <div className="flex space-x-4">
-          <button className="px-6 py-3 bg-[#3A3B5C] text-white font-semibold rounded-md shadow hover:bg-[#62649d] transition font-raleway">
+          <button className="px-6 py-3 bg-[#3A3B5C] rounded-md shadow hover:bg-[#62649d] transition font-raleway text-white font-semibold">
             Explore Our Programs →
           </button>
-          <button className="px-6 py-3 border border-[#C41E3A] text-[#C41E3A] font-semibold rounded-md hover:bg-red-50 transition font-raleway">
+          <button className="px-6 py-3 border border-[#C41E3A] rounded-md hover:bg-red-50 transition font-raleway text-[#C41E3A] font-semibold">
             Meet the Faculty
           </button>
         </div>

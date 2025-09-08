@@ -1,16 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { ExternalLink } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Pagination from "swiper";
-import Navigation from "swiper";
-import Autoplay from "swiper";
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
-
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const facultyMembers = [
   {
@@ -62,8 +60,9 @@ const facultyMembers = [
 
 export default function FacultySection() {
   const [current, setCurrent] = useState(0);
+  const swiperRef = useRef(null);
 
-  // Auto slide every 4s
+  // Auto slide every 4 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % facultyMembers.length);
@@ -71,12 +70,12 @@ export default function FacultySection() {
     return () => clearInterval(timer);
   }, []);
 
-  const nextSlide = () =>
-    setCurrent((prev) => (prev + 1) % facultyMembers.length);
-  const prevSlide = () =>
-    setCurrent((prev) =>
-      prev === 0 ? facultyMembers.length - 1 : prev - 1
-    );
+  // Update Swiper slide when `current` changes
+  useEffect(() => {
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(current);
+    }
+  }, [current]);
 
   return (
     <section className="bg-gray-50 px-8 md:px-20 py-10">
@@ -86,9 +85,9 @@ export default function FacultySection() {
           Meet Our Faculty Members
         </h2>
         <p className="text-gray-600 text-base font-raleway leading-relaxed">
-          Our faculty are the heart of our department. Get to know the passionate
-          educators and mentors who are committed to guiding you, challenging
-          your thinking, and inspiring your academic journey.
+          Our faculty are the heart of our department. Get to know the
+          passionate educators and mentors who are committed to guiding you,
+          challenging your thinking, and inspiring your academic journey.
         </p>
       </div>
 
