@@ -1,6 +1,7 @@
 import Home from "../components/ui/Home";
 import About from "../components/ui/About";
 import AcademicPrograms from "../components/ui/Academic";
+import FacultySection from "../components/ui/Faculty";
 
 export default function HomePage() {
   return (
@@ -8,6 +9,7 @@ export default function HomePage() {
       <Home />
       <About />
       <AcademicPrograms />
+      <FacultySection />
     </div>
   );
 }
