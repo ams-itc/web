@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 import Layout from "./components/ui/Layout";
 import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/About";
+import About from "./components/ui/About";
 import { useEffect, useState } from "react";
 
 // export default function version
@@ -22,7 +22,7 @@ export default function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </Layout>
         <Toaster richColors />
