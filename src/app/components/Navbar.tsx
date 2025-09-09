@@ -11,7 +11,18 @@ export default function Navbar() {
 
   const navItems = [
     { title: "Home", url: "/", icon: null },
-    { title: "About Us", url: "/about", icon: null },
+    { 
+      title: "About Us", 
+      url: "/about", 
+      icon: null, 
+      items: [
+        { title: "About AMS", url: "/about/aboutams" },
+        { title: "Board of Trustees", url: "/about/boardoftrustees" },
+        { title: "Accreditation", url: "/about/accreditation" },
+        { title: "Industrial Partners", url: "/about/industrialpartners" },
+        { title: "FAQs", url: "/about/faqs" },
+      ]
+    },
     {
       title: "Academics",
       url: "/academics",
