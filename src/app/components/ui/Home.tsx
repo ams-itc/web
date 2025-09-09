@@ -22,11 +22,11 @@ export default function Home() {
       </div>
 
       {/* Right side: image */}
-      <div className="mt-10 md:mt-0">
+      <div className="mt-5 md:mt-0">
         <img
           src="/campus.jpg" // put inside public/campus.jpg
           alt="AMS Building"
-          className="rounded-lg shadow-xl/50 max-w-md"
+          className="rounded-lg shadow-xl/50 w-500 object-cover"
         />
       </div>
     </section>
