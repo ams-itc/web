@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { ExternalLink } from "lucide-react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, type SwiperClass } from "swiper/react";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
 // Import Swiper styles
@@ -60,7 +60,7 @@ const facultyMembers = [
 
 export default function FacultySection() {
   const [current, setCurrent] = useState(0);
-  const swiperRef = useRef(null);
+  const swiperRef = useRef<SwiperClass | null>(null);
 
   // Auto slide every 4 seconds
   useEffect(() => {
