@@ -15,9 +15,13 @@ const Footer: React.FC = () => {
               and research.
             </p>
             <div className="flex space-x-4">
-              <div className="w-6 h-6 bg-gray-400 rounded-full"></div>
-              <div className="w-6 h-6 bg-gray-400 rounded-full"></div>
-              <div className="w-6 h-6 bg-gray-400 rounded-full"></div>
+              <i className="fa-brands fa-square-facebook text-3xl"></i>
+              <i className="fa-brands fa-square-twitter text-3xl"></i>
+              <i className="fa-brands fa-linkedin text-3xl"></i>
+              <i className="fa-brands fa-square-instagram text-3xl"></i>
+              <i className="fa-brands fa-youtube text-3xl"></i>
+              <i className="fa-brands fa-tiktok text-3xl"></i>
+              <i className="fa-brands fa-x-twitter text-3xl"></i>
             </div>
           </div>
 
@@ -111,7 +115,7 @@ const Footer: React.FC = () => {
         {/* Footer Bottom */}
         <div className="border-t border-gray-600 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-base font-normal font-raleway mb-4 md:mb-0">
-            2025 Department of Applied Mathematics and Statistics, Institute of
+            <i className="fa-regular fa-copyright text-lg"></i> 2025 Department of Applied Mathematics and Statistics, Institute of
             Technology of Cambodia. All rights reserved
           </p>
           <div className="flex space-x-6">

@@ -9,15 +9,15 @@ export default function Header() {
           <img
             src="/Institute_of_Technology_of_Cambodia_logo-removebg-preview.png" // place your logo inside the "public" folder
             alt="ITC Logo"
-            className="h-25 w-25 object-contain border-r-1 border-gray-500 m-0 pr-2"
+            className="h-20 w-20 object-contain border-r-1 border-gray-500 m-0 pr-2"
           />
           <img
             src="/ams_logo.JPG" // place your logo inside the "public" folder
             alt="AMS Logo"
-            className=" w-30 object-contain pl-1"
+            className=" w-20 object-contain pl-1"
           />
           <div className="w-3xs">
-            <h2 className="text-lg font-bold text-black font-playfair_display">
+            <h2 className="text-base font-bold text-black font-playfair_display">
               Department of Applied Mathematics and Statistics
             </h2>
           </div>
