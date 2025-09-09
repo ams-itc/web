@@ -53,7 +53,7 @@ export default function Navbar() {
         { title: "Student Life", url: "/students/life" },
       ],
     },
-    { title: "News & Events", url: "/news-events", icon: null },
+    { title: "News & Events", url: "/news-and-events", icon: null },
     { title: "Contact", url: "/contact", icon: null },
   ];
 
