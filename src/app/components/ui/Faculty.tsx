@@ -109,7 +109,7 @@ export default function FacultySection() {
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="rounded-lg shadow-lg w-[320px] h-[380px] object-cover"
+                  className="rounded-lg shadow-lg w-[320px] h-[320px] object-cover"
                 />
               </div>
 

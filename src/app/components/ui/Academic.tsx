@@ -17,7 +17,7 @@ export default function AcademicPrograms() {
       {/* Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Card 1 */}
-        <div className="border-2 border-blue-500 rounded-2xl shadow-md hover:shadow-xl transition p-8 flex flex-col justify-between">
+        <div className="border-2 border-blue-500 rounded-2xl shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 p-8 flex flex-col justify-between">
           <div>
             <h3 className="text-xl font-bold text-gray-900 font-raleway">
               Bachelor of Engineering{" "}
@@ -35,7 +35,7 @@ export default function AcademicPrograms() {
               <li>Research opportunities</li>
             </ul>
           </div>
-          <div className="mt-6 flex items-center justify-between text-sm border-t-1 border-gray-400 pt-2">
+          <div className="mt-6 flex items-center justify-between text-sm border-t border-gray-400 pt-2">
             <span className="text-gray-500">Duration: 5 Years</span>
             <a
               href="#"
@@ -47,7 +47,7 @@ export default function AcademicPrograms() {
         </div>
 
         {/* Card 2 */}
-        <div className="border-2 border-red-500 rounded-2xl shadow-md hover:shadow-xl transition p-8 flex flex-col justify-between">
+        <div className="border-2 border-red-500 rounded-2xl shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 p-8 flex flex-col justify-between">
           <div>
             <h3 className="text-xl font-bold text-gray-900 font-raleway">
               Bachelor of Engineering{" "}
@@ -65,7 +65,7 @@ export default function AcademicPrograms() {
               <li>Research opportunities</li>
             </ul>
           </div>
-          <div className="mt-6 flex items-center justify-between text-sm border-t-1 border-gray-400 pt-2">
+          <div className="mt-6 flex items-center justify-between text-sm border-t border-gray-400 pt-2">
             <span className="text-gray-500">Duration: 5 Years</span>
             <a
               href="#"
@@ -77,7 +77,7 @@ export default function AcademicPrograms() {
         </div>
 
         {/* Card 3 */}
-        <div className="border-2 border-indigo-900 rounded-2xl shadow-md hover:shadow-xl transition p-8 flex flex-col justify-between">
+        <div className="border-2 border-indigo-900 rounded-2xl shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 p-8 flex flex-col justify-between">
           <div>
             <h3 className="text-xl font-bold text-gray-900 font-raleway">
               Master of Engineering{" "}
@@ -95,8 +95,7 @@ export default function AcademicPrograms() {
               <li>Thesis research</li>
             </ul>
           </div>
-          
-          <div className="mt-6 flex items-center justify-between text-sm border-t-1 border-gray-400 pt-2">
+          <div className="mt-6 flex items-center justify-between text-sm border-t border-gray-400 pt-2">
             <span className="text-gray-500">Duration: 1–2 Years</span>
             <a
               href="#"
