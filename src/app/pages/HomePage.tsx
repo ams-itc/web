@@ -3,6 +3,7 @@ import About from "../components/ui/About";
 import AcademicPrograms from "../components/ui/Academic";
 import FacultySection from "../components/ui/Faculty";
 import ResearchClubs from "../components/ui/ReDA";
+import NewsEvents from "../components/ui/NewsandEvents";
 
 export default function HomePage() {
   return (
@@ -12,6 +13,8 @@ export default function HomePage() {
       <AcademicPrograms />
       <FacultySection />
       <ResearchClubs />
+      <NewsEvents />
+
     </div>
   );
 }
