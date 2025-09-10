@@ -30,12 +30,12 @@ export default function Navbar() {
     },
     {
       title: "Faculty & Research",
-      url: "/faculty-research",
+      url: "/faculty-and-research",
       icon: null,
       items: [
-        { title: "Faculty Directory", url: "/faculty-research/directory" },
-        { title: "Research Areas", url: "/faculty-research/areas" },
-        { title: "Publications", url: "/faculty-research/publications" },
+        { title: "Faculty Directory", url: "/faculty-and-research/directory" },
+        { title: "Research Areas", url: "/faculty-and-research/areas" },
+        { title: "Publications", url: "/faculty-and-research/publications" },
       ],
     },
     {
