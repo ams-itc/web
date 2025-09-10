@@ -97,7 +97,7 @@ export default function ResearchClubs() {
             </p>
             <div className="flex justify-center ">
                 <button className="bg-white text-indigo-900 px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition">
-                    <p className="inline-flex font-raleway font-bold">Contact RcDA Lab <span><ArrowRight className="w-10"/></span> </p>
+                    <p className="inline-flex font-raleway font-bold">Contact ReDA Lab <span><ArrowRight className="w-10"/></span> </p>
                 </button>
             </div>
         </div>
