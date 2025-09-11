@@ -143,7 +143,7 @@ export default function NewsEvents() {
             {UpcomingEvents.map((event) => (
             <div 
                 key={event.id}
-                className="space-y-4 hover:shadow-lg transition"
+                className="rounded-2xl space-y-4 shadow hover:shadow-lg transition"
             >
                 <div className="bg-white shadow rounded-2xl p-4 border-1 border-gray-200">
                     <h1 className="text-base text-black mb-5">{event.title}</h1>
