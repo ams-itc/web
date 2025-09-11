@@ -43,9 +43,10 @@ export default function Navbar() {
       url: "/students",
       icon: null,
       items: [
-        { title: "Resources", url: "/students/resources" },
-        { title: "Opportunities", url: "/students/opportunities" },
-        { title: "Student Life", url: "/students/life" },
+        { title: "Student’s Achievement", url: "/students#achievement" },
+        { title: "Student’s Life", url: "/students#activity" },
+        { title: "Student’s Resource", url: "/students#resource" },
+        { title: "Alumni", url: "/students#alumni" },
       ],
     },
     { title: "News & Events", url: "/news-and-events", icon: null },
@@ -80,13 +81,13 @@ export default function Navbar() {
                     <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-200">
                       <div className="py-1">
                         {item.items.map((subItem) => (
-                          <NavLink
+                          <a
                             key={subItem.title}
-                            to={subItem.url}
+                            href={subItem.url}
                             className="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100 font-raleway"
                           >
                             {subItem.title}
-                          </NavLink>
+                          </a>
                         ))}
                       </div>
                     </div>
