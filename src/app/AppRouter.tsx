@@ -8,6 +8,10 @@ import FacultyandResearchPage from "./pages/FacultyandResearchPage";
 import NewsAndEventsPage from "./pages/NewsandEventsPage";
 import StudentsPage from "./pages/StudentsPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import StudentResource from "./components/students/StudentResource";
+import Studentachievements from "./components/students/StudentAchievements";
+import Studentactivity from "./components/students/StudentActivity";
+import Alumini from "./components/students/Alumini";
 
 const AppRouter: React.FC = () => {
   return (
@@ -21,7 +25,13 @@ const AppRouter: React.FC = () => {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faculty-and-research" element={<FacultyandResearchPage />} />
           <Route path="/news-and-events" element={<NewsAndEventsPage />} />
-          <Route path="/students" element={<StudentsPage />} />
+            {/* Parent route for Students */}
+          <Route path="/students" element={<StudentsPage />}>
+            <Route path="achievement" element={<Studentachievements />} />
+            <Route path="activity" element={<Studentactivity />} />
+            <Route path="resource" element={<StudentResource />} />
+            <Route path="alumni" element={<Alumini />} />
+          </Route>
         </Routes>
       </Layout>
     </Router>
