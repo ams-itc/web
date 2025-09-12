@@ -7,13 +7,13 @@ import { FaHandsHelping } from "react-icons/fa";
 export default function AboutAMS() {
   const images = [
     {
-      filepath: "/aboutams.png",
+      filepath: "/aboutams/aboutams.png",
     },
     {
-      filepath: "/aboutams.png",
+      filepath: "/aboutams/aboutams1.jpg",
     },
     {
-      filepath: "/aboutams.png",
+      filepath: "/aboutams/aboutams2.png",
     },
   ];
 
