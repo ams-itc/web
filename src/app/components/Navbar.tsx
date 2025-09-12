@@ -6,17 +6,17 @@ import { ChevronDown } from "lucide-react";
 export default function Navbar() {
   const navItems = [
     { title: "Home", url: "/", icon: null },
-    { 
-      title: "About Us", 
-      url: "/about", 
-      icon: null, 
+    {
+      title: "About Us",
+      url: "/about",
+      icon: null,
       items: [
-        { title: "About AMS", url: "/about/aboutams" },
-        { title: "Board of Trustees", url: "/about/boardoftrustees" },
-        { title: "Accreditation", url: "/about/accreditation" },
-        { title: "Industrial Partners", url: "/about/industrialpartners" },
-        { title: "FAQs", url: "/about/faqs" },
-      ]
+        { title: "About AMS", url: "/about/#aboutAMS" },
+        { title: "Board of Trustees", url: "/about/#boardoftrustees" },
+        { title: "Accreditation", url: "/about/#accreditation" },
+        { title: "Industrial Partners", url: "/about/#industrialpartners" },
+        { title: "FAQs", url: "/about/#faqs" },
+      ],
     },
     {
       title: "Academics",
@@ -43,10 +43,10 @@ export default function Navbar() {
       url: "/students",
       icon: null,
       items: [
-        { title: "Student’s Achievement", url: "/students#achievement" },
-        { title: "Student’s Life", url: "/students#activity" },
-        { title: "Student’s Resource", url: "/students#resource" },
-        { title: "Alumni", url: "/students#alumni" },
+        { title: "Student’s Achievement", url: "/students/#achievement" },
+        { title: "Student’s Life", url: "/students/#activity" },
+        { title: "Student’s Resource", url: "/students/#resource" },
+        { title: "Alumni", url: "/students/#alumni" },
       ],
     },
     { title: "News & Events", url: "/news-and-events", icon: null },
