@@ -21,7 +21,7 @@ const AppRouter: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/academic" element={<AcademicPage />} />
+          <Route path="/academics" element={<AcademicPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faculty-and-research" element={<FacultyandResearchPage />} />
           <Route path="/news-and-events" element={<NewsAndEventsPage />} />
