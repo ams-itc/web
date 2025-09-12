@@ -1,68 +1,89 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import FAQs from "../components/about/FAQs";
 import AboutAMS from "../components/about/AboutAMS";
 import Accreditation from "../components/about/Accreditation";
 import BoardOfTrustees from "../components/about/BoardofTrustees";
 import IndustrialPartners from "../components/about/IndustrialPartners";
 import InitialImage from "../components/ui/InitialImage";
+import ScrollSpySidebar from "../components/ScrollSpySidebar";
+
+const sections = [
+  { id: "aboutAMS", label: "About AMS" },
+  { id: "boardoftrustees", label: "Board of Trustees" },
+  { id: "accreditation", label: "Accreditation" },
+  { id: "industrialpartners", label: "Industrial Partners" },
+  { id: "faqs", label: "FAQs" },
+];
 
 export default function AboutPage() {
+  const [activeSection, setActiveSection] = useState<string>("aboutAMS");
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
-    return (
-        <div className="min-h-screen bg-white">
-            {/* Initial Image Section */}
-            <InitialImage imagePath="/image.png" text="About Us" />
+  useEffect(() => {
+    const handleObserve = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
 
-            <div className="w-full grid grid-cols-5 gap-x-2">
-                {/* Sidebar Navigation */}
-                <nav className="col-span-1 px-10 py-3 sticky top-0 h-screen overflow-y-auto">
-                    <div className="py-8 border-b border-gray-300">
-                        <a href="/about/#aboutAMS" className="text-base text-black font-raleway">
-                        About AMS
-                        </a>
-                    </div>
-                    <div className="py-8 border-b border-gray-300">
-                        <a href="/about/#boardoftrustees" className="text-base text-black font-raleway">
-                        Board of Trustees
-                        </a>
-                    </div>
-                    <div className="py-8 border-b border-gray-300">
-                        <a href="/about/#accreditation" className="text-base text-black font-raleway">
-                        Accreditation
-                        </a>
-                    </div>
-                    <div className="py-8 border-b border-gray-300">
-                        <a href="/about/#industrialpartners" className="text-base text-black font-raleway">
-                        Industrial Partners
-                        </a>
-                    </div>
-                    <div className="py-8">
-                        <a href="/about/#faqs" className="text-base text-black font-raleway">
-                        FAQs
-                        </a>
-                    </div>
-                </nav>
+    const observer = new window.IntersectionObserver(handleObserve, {
+      root: null,
+      rootMargin: "0px 0px -60% 0px", // triggers when section is 40% from top
+      threshold: 0.1,
+    });
 
-                {/* Content Sections */}
-                <section className="col-span-4 px-10 py-8">
-                    <div id="aboutAMS">
-                        <AboutAMS />
-                    </div>
-                    <div id="boardoftrustees">
-                        <BoardOfTrustees />
-                    </div>
-                    <div id="accreditation">
-                        <Accreditation />
-                    </div>
-                    <div id="industrialpartners">
-                        <IndustrialPartners />
-                    </div>
-                    <div id="faqs">
-                        <FAQs />
-                    </div>
-                </section>
-            </div>
-        </div>
-    )
+    sections.forEach((section) => {
+      const el = document.getElementById(section.id);
+      if (el) {
+        sectionRefs.current[section.id] = el;
+        observer.observe(el);
+      }
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        const el = sectionRefs.current[section.id];
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Initial Image Section */}
+      <InitialImage imagePath="/image.png" text="About Us" />
+
+      <div className="w-full grid grid-cols-5 gap-x-2">
+        {/* Sidebar Navigation */}
+        <ScrollSpySidebar
+          sections={sections}
+          activeSection={activeSection}
+          className="hidden lg:block col-span-1 border-r border-gray-300"
+        />
+
+        {/* Content Sections */}
+        <section className="col-span-4 px-10 py-8">
+          <div id="aboutAMS">
+            <AboutAMS />
+          </div>
+          <div id="boardoftrustees">
+            <BoardOfTrustees />
+          </div>
+          <div id="accreditation">
+            <Accreditation />
+          </div>
+          <div id="industrialpartners">
+            <IndustrialPartners />
+          </div>
+          <div id="faqs">
+            <FAQs />
+          </div>
+        </section>
+      </div>
+    </div>
+  );
 }
