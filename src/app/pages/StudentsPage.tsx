@@ -36,8 +36,6 @@ export default function StudenttsPage() {
                     <div id="alumini"><Alumini /> </div>
                 </section>
             </div>
-
-
         </div>
     )
 }
