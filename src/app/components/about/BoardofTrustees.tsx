@@ -57,13 +57,13 @@ export default function BoardOfTrustees() {
                   index % 2 === 1 ?  "text-left items-start": "text-right items-end"
                 } flex flex-col`}
               >
-                <h3 className="text-3xl font-bold text-gray-900 mb-3">{trustee.name}</h3>
-                <p className="text-gray-600 mb-6 text-xl">{trustee.title}</p>
+                <h3 className="text-3xl font-semibold text-gray-900 mb-3 font-raleway">{trustee.name}</h3>
+                <p className="text-[#2E2E2E] mb-6 text-lg font-semibold font-raleway">{trustee.title}</p>
                 <div className="relative">
                   <FaQuoteLeft
                     className={`text-red-600 absolute text-xl "-left-6 top-0" `}
                   /><br/>
-                  <p className={`text-gray-700 leading-relaxed ${
+                  <p className={`text-[#2E2E2E] text-base/7 font-reddit_sans leading-relaxed ${
                     index % 2 === 1 ? "pr-30 pl-10" : "pl-30 pr-10"
                   }`}>{trustee.quote}</p><br />
                   <FaQuoteRight
