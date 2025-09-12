@@ -9,9 +9,14 @@ export default function Accreditation() {
             description: "My name is Joofy. When I'm free, I like to fight my owner."
         },
         {
-            imagepath: "/accreditations/success_pet.png",
+            imagepath: "/accreditations/success_pet_1.png",
             title: "Certification Title",
-            description: "My name is Joofy. When I'm free, I like to fight my owner."
+            description: "My name is Ah Peal. When I'm free, I like to fight my owner."
+        },
+        {
+            imagepath: "/accreditations/success_pet_2.png",
+            title: "Certification Title",
+            description: "My name is Mister Keav. When I'm free, I like to fight my owner."
         },
         {
             imagepath: "/accreditations/success_pet.png",
@@ -19,19 +24,14 @@ export default function Accreditation() {
             description: "My name is Joofy. When I'm free, I like to fight my owner."
         },
         {
-            imagepath: "/accreditations/success_pet.png",
+            imagepath: "/accreditations/success_pet_1.png",
             title: "Certification Title",
-            description: "My name is Joofy. When I'm free, I like to fight my owner."
+            description: "My name is Ah Peal. When I'm free, I like to fight my owner."
         },
         {
-            imagepath: "/accreditations/success_pet.png",
+            imagepath: "/accreditations/success_pet_2.png",
             title: "Certification Title",
-            description: "My name is Joofy. When I'm free, I like to fight my owner."
-        },
-        {
-            imagepath: "/accreditations/success_pet.png",
-            title: "Certification Title",
-            description: "My name is Joofy. When I'm free, I like to fight my owner."
+            description: "My name is Mister Keav. When I'm free, I like to fight my owner."
         },
     ]
 
@@ -50,11 +50,14 @@ export default function Accreditation() {
                             key={index}
                             className="col-span-1"
                         >
-                            <img 
-                                src = {accreditation.imagepath}
-                                alt = {(index+1) + "Image"}
-                                className = "rounded-lg w-full"
-                            />
+                            <div className="min-h-[510px]">
+                                <img 
+                                        src = {accreditation.imagepath}
+                                        alt = {(index+1) + "Image"}
+                                        className = "rounded-lg w-full"
+                                    />
+                            </div>
+ 
                             <h1 className="text-lg text-black font-raleway font-semibold pt-3">
                                 {accreditation.title}
                             </h1>
