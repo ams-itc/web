@@ -15,7 +15,6 @@ export default function Navbar() {
         { title: "Board of Trustees", url: "/about/#boardoftrustees" },
         { title: "Accreditation", url: "/about/#accreditation" },
         { title: "Industrial Partners", url: "/about/#industrialpartners" },
-        { title: "FAQs", url: "/about/#faqs" },
       ],
     },
     {
