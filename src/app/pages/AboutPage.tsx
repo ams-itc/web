@@ -1,6 +1,5 @@
 "use client";
 
-import FAQs from "../components/about/FAQs";
 import AboutAMS from "../components/about/AboutAMS";
 import Accreditation from "../components/about/Accreditation";
 import BoardOfTrustees from "../components/about/BoardofTrustees";
@@ -37,11 +36,6 @@ export default function AboutPage() {
                         Industrial Partners
                         </a>
                     </div>
-                    <div className="py-8">
-                        <a href="/about/#faqs" className="text-base text-black font-raleway">
-                        FAQs
-                        </a>
-                    </div>
                 </nav>
 
                 {/* Content Sections */}
@@ -57,9 +51,6 @@ export default function AboutPage() {
                     </div>
                     <div id="industrialpartners">
                         <IndustrialPartners />
-                    </div>
-                    <div id="faqs">
-                        <FAQs />
                     </div>
                 </section>
             </div>

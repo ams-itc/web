@@ -3,6 +3,7 @@
 import BachelorDegree from "../components/academics/BachelorDegree";
 import HowtoApply from "../components/academics/HowtoApply";
 import MasterDegree from "../components/academics/MasterDegree";
+import Scholarships from "../components/academics/Scholarships";
 import InitialImage from "../components/ui/InitialImage";
 
 export default function AcademictPage() {
@@ -54,7 +55,7 @@ export default function AcademictPage() {
                         <HowtoApply />
                     </div>
                     <div id="scholarship">
-                        
+                        <Scholarships />
                     </div>
                     <div id="academic-calendar">
                         
