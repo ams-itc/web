@@ -1,10 +1,6 @@
 "use client";
 
-<<<<<<< HEAD
-=======
 import { useEffect, useRef, useState } from "react";
-import FAQs from "../components/about/FAQs";
->>>>>>> origin/main
 import AboutAMS from "../components/about/AboutAMS";
 import Accreditation from "../components/about/Accreditation";
 import BoardOfTrustees from "../components/about/BoardofTrustees";
@@ -17,7 +13,6 @@ const sections = [
   { id: "boardoftrustees", label: "Board of Trustees" },
   { id: "accreditation", label: "Accreditation" },
   { id: "industrialpartners", label: "Industrial Partners" },
-  { id: "faqs", label: "FAQs" },
 ];
 
 export default function AboutPage() {
@@ -33,51 +28,6 @@ export default function AboutPage() {
       });
     };
 
-<<<<<<< HEAD
-            <div className="w-full grid grid-cols-5 gap-x-2">
-                {/* Sidebar Navigation */}
-                <nav className="col-span-1 px-10 py-3 sticky top-0 h-screen overflow-y-auto">
-                    <div className="py-8 border-b border-gray-300">
-                        <a href="/about/#aboutAMS" className="text-base text-black font-raleway">
-                        About AMS
-                        </a>
-                    </div>
-                    <div className="py-8 border-b border-gray-300">
-                        <a href="/about/#boardoftrustees" className="text-base text-black font-raleway">
-                        Board of Trustees
-                        </a>
-                    </div>
-                    <div className="py-8 border-b border-gray-300">
-                        <a href="/about/#accreditation" className="text-base text-black font-raleway">
-                        Accreditation
-                        </a>
-                    </div>
-                    <div className="py-8 border-b border-gray-300">
-                        <a href="/about/#industrialpartners" className="text-base text-black font-raleway">
-                        Industrial Partners
-                        </a>
-                    </div>
-                </nav>
-
-                {/* Content Sections */}
-                <section className="col-span-4 px-10 py-8">
-                    <div id="aboutAMS">
-                        <AboutAMS />
-                    </div>
-                    <div id="boardoftrustees">
-                        <BoardOfTrustees />
-                    </div>
-                    <div id="accreditation">
-                        <Accreditation />
-                    </div>
-                    <div id="industrialpartners">
-                        <IndustrialPartners />
-                    </div>
-                </section>
-            </div>
-        </div>
-    )
-=======
     const observer = new window.IntersectionObserver(handleObserve, {
       root: null,
       rootMargin: "0px 0px -60% 0px", // triggers when section is 40% from top
@@ -127,12 +77,8 @@ export default function AboutPage() {
           <div id="industrialpartners">
             <IndustrialPartners />
           </div>
-          <div id="faqs">
-            <FAQs />
-          </div>
         </section>
       </div>
     </div>
   );
->>>>>>> origin/main
 }
