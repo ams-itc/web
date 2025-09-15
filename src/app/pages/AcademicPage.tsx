@@ -57,9 +57,6 @@ export default function AcademictPage() {
                     <div id="scholarship">
                         <Scholarships />
                     </div>
-                    <div id="academic-calendar">
-                        
-                    </div>
                 </section>
             </div>
         </div>
