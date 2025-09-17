@@ -411,8 +411,8 @@ export default function BachelorDegree() {
           <button
             className={`col-span-1 py-3 text-left font-medium px-3 text-xl ${
               selected === "dataScience"
-                ? "bg-[#D9D9D9] text-black"
-                : "bg-gray-100 text-black"
+                ? "bg-[#3A3B5C]/20 text-[#3A3B5C]"
+                : "bg-[#D9D9D9]/50 text-[#3A3B5C]"
             }`}
             onClick={() => setSelected("dataScience")}
           >
@@ -421,8 +421,8 @@ export default function BachelorDegree() {
           <button
             className={`col-span-1 py-3 text-left font-medium px-3 text-xl ${
               selected === "financialEngineering"
-                ? "bg-[#D9D9D9] text-black"
-                : "bg-gray-200 text-black"
+                ? "bg-[#3A3B5C]/20 text-[#3A3B5C]"
+                : "bg-[#D9D9D9]/50 text-[#3A3B5C]"
             }`}
             onClick={() => setSelected("financialEngineering")}
           >
