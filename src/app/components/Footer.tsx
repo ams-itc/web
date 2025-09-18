@@ -1,33 +1,58 @@
 import React from "react";
+import { MapPinnedIcon, Phone, Mail } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-slate-700 text-white overflow-hidden py-12">
+    <footer className="w-full bg-[#3A3B5C] text-[#FFFFFF] font-raleway overflow-hidden py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Department Info */}
           <div className="col-span-1 md:col-span-1">
-            <h3 className="text-xl font-medium font-raleway mb-4">
+            <h3 className="text-xl font-medium mb-4">
               Department of Applied Mathematics and Statistics
             </h3>
-            <p className="text-base font-normal font-raleway mb-6">
+            <p className="text-base font-normal mb-6">
               Advancing mathematical sciences through excellence in education
               and research.
             </p>
             <div className="flex space-x-4">
-              <i className="fa-brands fa-square-facebook text-3xl"></i>
-              <i className="fa-brands fa-square-twitter text-3xl"></i>
-              <i className="fa-brands fa-linkedin text-3xl"></i>
-              <i className="fa-brands fa-square-instagram text-3xl"></i>
-              <i className="fa-brands fa-youtube text-3xl"></i>
-              <i className="fa-brands fa-tiktok text-3xl"></i>
-              <i className="fa-brands fa-x-twitter text-3xl"></i>
+              {/* facebook */}
+              <a 
+                href="https://www.facebook.com/ams.itc.edu.kh"
+                className="hover:text-gray-400 transition-colors duration-200"
+              >
+                <i className="fa-brands fa-square-facebook text-3xl"></i>
+              </a>
+
+              {/* linkedin */}
+              <a 
+                href=""
+                className="hover:text-gray-400 transition-colors duration-200"
+              >
+                <i className="fa-brands fa-linkedin text-3xl"></i>
+              </a>
+              
+              {/* instagram */}
+              <a 
+                href=""
+                className="hover:text-gray-400 transition-colors duration-200"
+              >
+                <i className="fa-brands fa-square-instagram text-3xl"></i>
+              </a>
+
+              {/* tiktok */}
+              <a 
+                href=""
+                className="hover:text-gray-400 transition-colors duration-200"
+              >
+                <i className="fa-brands fa-tiktok text-3xl"></i>
+              </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div className="col-span-1">
-            <h3 className="text-xl font-medium font-raleway mb-4">
+            <h3 className="text-xl font-medium mb-4">
               Quick Links
             </h3>
             <ul className="space-y-2">
@@ -56,7 +81,7 @@ const Footer: React.FC = () => {
 
           {/* Academic Resources */}
           <div className="col-span-1">
-            <h3 className="text-xl font-medium font-raleway mb-4">
+            <h3 className="text-xl font-medium mb-4">
               Academic Resources
             </h3>
             <ul className="space-y-2">
@@ -85,28 +110,40 @@ const Footer: React.FC = () => {
 
           {/* Contact Info */}
           <div className="col-span-1">
-            <h3 className="text-xl font-medium font-raleway mb-4">
+            <h3 className="text-xl font-medium mb-4">
               Contact Info
             </h3>
             <div className="space-y-4">
               <div className="flex items-start">
-                <div className="w-5 h-5 bg-gray-400 mr-3 mt-1 flex-shrink-0"></div>
-                <p className="text-sm">
+                <div className="w-5 h-5 mr-3 mt-1 flex-shrink-0"><MapPinnedIcon /></div>
+                <a 
+                  href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.6309290619924!2d104.89793907627153!3d11.570933688615233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31095135c2ad598d%3A0xb2d48d6f11032091!2sDepartment%20of%20Applied%20Mathematics%20and%20Statistics%20(AMS)!5e0!3m2!1sen!2skh!4v1733729142000!5m2!1sen!2skh"
+                  className="text-sm hover:underline"
+                >
                   Room F103, Building F, Russian Blvd Phnom Penh, Cambodia 855,
                   Phnom Penh, Cambodia
-                </p>
+                </a>
               </div>
               <div className="flex items-center">
-                <div className="w-5 h-5 bg-gray-400 mr-3 flex-shrink-0"></div>
+                <div className="w-5 h-5 mr-3 flex-shrink-0"><Phone /></div>
                 <p className="text-sm">(+855) 12 999 310</p>
               </div>
               <div className="flex items-start">
-                <div className="w-5 h-5 bg-gray-400 mr-3 mt-1 flex-shrink-0"></div>
-                <p className="text-sm font-medium">
-                  ams@itc.edu.kh
-                  <br />
-                  phauk.sokkhey@itc.edu.kh
-                </p>
+                <div className="w-5 h-5 mr-3 mt-2 flex-shrink-0"><Mail /></div>
+                <div className="flex flex-col text-sm">
+                  <a 
+                    href="mailto:ams@itc.edu.kh"
+                    className="hover:underline"
+                  >
+                    ams@itc.edu.kh
+                  </a>
+                  <a 
+                    href="mailto:phauk.sokkhey@itc.edu.kh"
+                    className="hover:underline"
+                  >
+                    phauk.sokkhey@itc.edu.kh
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -114,18 +151,10 @@ const Footer: React.FC = () => {
 
         {/* Footer Bottom */}
         <div className="border-t border-gray-600 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-base font-normal font-raleway mb-4 md:mb-0">
+          <p className="text-base font-normal mb-4 md:mb-0">
             <i className="fa-regular fa-copyright text-lg"></i> 2025 Department of Applied Mathematics and Statistics, Institute of
             Technology of Cambodia. All rights reserved
           </p>
-          <div className="flex space-x-6">
-            <a href="#" className="text-base font-bold hover:underline">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-base font-bold hover:underline">
-              Term of Use
-            </a>
-          </div>
         </div>
       </div>
     </footer>

@@ -200,15 +200,15 @@ export default function AcademicSupportStaffSection() {
             // },
         ],
     };
-  const handleOpenModal = (staff: Staff) => {
-    setSelectedStaff(staff);
-    setIsModalOpen(true);
-  };
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    // Remove the staff from DOM after the closing animation (300ms)
-    setTimeout(() => setSelectedStaff(null), 0);
-  };
+    const handleOpenModal = (staff: Staff) => {
+        setSelectedStaff(staff);
+        setTimeout(() => setIsModalOpen(true), 10); // trigger animation
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setTimeout(() => setSelectedStaff(null), 300); // wait for animation to finish
+    };
 
     return (
 
@@ -229,84 +229,36 @@ export default function AcademicSupportStaffSection() {
                     {/* Administrator  */}
                     <div className="flex flex-row justify-around items-center">
                         {/* Head of department */}
-                        <div className="rounded-2xl border-4 border-gray-200 bg-white shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
+                        <div className="rounded-xl bg-white shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
                         {staffData.head && (
                             <StaffCard staff={staffData.head} onClick={() => handleOpenModal(staffData.head)} />
                         )}
                         </div>
                         {/* Acting Head of department */}
-                        <div className="rounded-2xl border-4 border-gray-200 bg-white shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
+                        <div className="rounded-xl bg-white shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
                             {staffData.actingHead && (
-                            <>
-                            {/* Image */}
-                            <img
-                                src={staffData.actingHead.image}
-                                alt={staffData.actingHead.name}
-                                className="w-full h-48 object-cover rounded-t-xl"
-                            />
-
-                            {/* Content */}
-                            <div className="text-center px-4 pb-6 pt-4 font-raleway space-y-2">
-                                <h3 className="text-lg font-bold text-[#3A3B5C]">{staffData.actingHead.title + ". " + staffData.actingHead.name}</h3>
-                                <p className="text-sm text-[#C41E3A] font-semibold">{staffData.actingHead.position}</p>
-                                <div className="px-2 border bg-[#C41E3A]/20 rounded-full w-fit mx-auto">
-                                    <p className="text-xs text-[#C41E3A] font-semibold">{staffData.actingHead.degrees}</p>
-                                </div>
-                                <p className="text-xs text-black mt-2 font-inter">{staffData.actingHead.expert}</p>
-                            </div>
-                            </>
+                                <StaffCard staff={staffData.actingHead} onClick={() => handleOpenModal(staffData.actingHead)} />
                             )}
                         </div>
                         {/* Assistant of department */}
-                        <div className="rounded-2xl border-4 border-gray-200 bg-white shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
-                            {staffData.assistants.map((assistant, index) => (
-                            <>
-                            <div key={index}>
-                                {/* Image */}
-                                <img
-                                    src={assistant.image}
-                                    alt={assistant.name}
-                                    className="w-full h-48 object-cover rounded-t-xl"
-                                />
-
-                                {/* Content */}
-                                <div className="text-center px-4 pb-6 pt-4 font-raleway space-y-2">
-                                    <h3 className="text-lg font-bold text-[#3A3B5C]">{assistant.title + ". " + assistant.name}</h3>
-                                    <p className="text-sm text-[#C41E3A] font-semibold">{assistant.position}</p>
-                                    <div className="px-2 border bg-[#C41E3A]/20 rounded-full w-fit mx-auto">
-                                        <p className="text-xs text-[#C41E3A] font-semibold">{assistant.degrees}</p>
-                                    </div>
-                                    <p className="text-xs text-black font-inter">{assistant.expert}</p>
-                                </div>
-                            </div>
-                            </>
-                            ))}
+                        <div className="rounded-xl bg-white shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
+                        {staffData.assistants?.map((assistant, index) => (
+                            <StaffCard
+                            key={index}
+                            staff={assistant}
+                            onClick={() => handleOpenModal(assistant)}
+                            />
+                        ))}
                         </div>
                     </div>
                     {/* Professors */}
                     <div className="grid grid-cols-4 gap-x-10">
-                        {staffData.professors.map((professor, index) => (
-                            <div 
+                        {staffData.professors?.map((professor, index) => (
+                            <StaffCard
                                 key={index}
-                                className="rounded-2xl border-4 border-gray-200 bg-white shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]"
-                            >
-                                {/* Image */}
-                                <img
-                                    src={professor.image}
-                                    alt={professor.name}
-                                    className="w-full h-48 object-cover rounded-t-xl"
-                                />
-
-                                {/* Content */}
-                                <div className="text-center px-4 pb-6 pt-4 font-raleway space-y-2">
-                                    <h3 className="text-lg font-bold text-[#3A3B5C]">{professor.title + ". " + professor.name}</h3>
-                                    <p className="text-sm text-[#C41E3A] font-semibold">{professor.position}</p>
-                                    <div className="px-2 border bg-[#C41E3A]/20 rounded-full w-fit mx-auto">
-                                        <p className="text-xs text-[#C41E3A] font-semibold">{professor.degrees}</p>
-                                    </div>
-                                    <p className="text-xs text-black font-inter">{professor.expert}</p>
-                                </div>
-                            </div>
+                                staff={professor}
+                                onClick={() => handleOpenModal(professor)}
+                            />
                         ))}
                     </div>
                 </div>
@@ -320,83 +272,85 @@ export default function AcademicSupportStaffSection() {
                     ></div>
 
                     {/* Modal Content */}
-                    <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full min-h-[500px] min-w-1/2 z-10 transform transition-all duration-300 scale-100 opacity-100">
-                    {/* Close Button */}
-                    <button
-                        className="absolute top-4 right-8 z-20 text-white hover:text-[#C41E3A] font-bold text-xl"
-                        onClick={handleCloseModal}
+                    <div 
+                        className={`relative bg-white rounded-2xl shadow-2xl max-w-lg w-full min-h-[500px] min-w-1/2 z-10 transform transition-all duration-300 ${isModalOpen ? "scale-100 opacity-100" : "scale-90 opacity-0"}`}
                     >
-                        <X />
+                        {/* Close Button */}
+                        <button
+                            className="absolute top-4 right-8 z-20 text-gray-200 hover:text-[#C41E3A] font-bold text-xl group"
+                            onClick={handleCloseModal}
+                        >
+                            <X />
+                            {/* Tooltip */}
+                            <span className="absolute -top-8 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 transition-transform bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                                Exit the page
+                            </span>
+                        </button>
 
-                    <span className="absolute -right-24 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                        Exit the page
-                    </span>
-                    </button>
+                        {/* Staff Info */}
+                        <div className="max-h-[800px] overflow-y-auto rounded-2xl bg-white shadow-lg scrollbar-hidden">
+                            <div>
+                                <div className="relative py-8 rounded-t-2xl">
+                                    {/* Background image */}
+                                    <img
+                                        src="/staff/background.png"
+                                        alt="background"
+                                        className="absolute inset-0 w-full h-full object-cover rounded-t-2xl"
+                                    />
 
-                    {/* Staff Info */}
-                    <div className="max-h-[800px] overflow-y-auto rounded-2xl bg-white shadow-lg scrollbar-hidden">
-                        <div>
-                            <div className="relative py-8 rounded-t-2xl">
-                                {/* Background image */}
-                                <img
-                                    src="/staff/background.png"
-                                    alt="background"
-                                    className="absolute inset-0 w-full h-full object-cover rounded-t-2xl"
-                                />
+                                {/* Overlay for dimming (optional) */}
+                                <div className="absolute inset-0 bg-black/30 rounded-t-2xl"></div>
 
-                            {/* Overlay for dimming (optional) */}
-                            <div className="absolute inset-0 bg-black/30 rounded-t-2xl"></div>
-
-                                {/* Foreground profile image */}
-                                <img
-                                    src={selectedStaff.image}
-                                    alt={selectedStaff.name}
-                                    className="relative z-10 w-50 h-50 object-cover rounded-full mx-auto shadow-lg"
-                                />
-                            </div>
-                            <div className="p-5 space-y-2">
-                                <h2 className="text-2xl font-bold text-[#3A3B5C]">{selectedStaff.title + ". " + selectedStaff.name}</h2>
-                                <p className="text-[#C41E3A] font-semibold">{selectedStaff.position}</p>
-                                <p className="text-[#767676] text-xs">{selectedStaff.division}</p>
-                                <p className="text-black text-sm">{selectedStaff.description}</p>
-                                <p className="text-[#3A3B5C] text-sm font-semibold pt-3">EDUCATION & QUALIFICATIONS</p>
-                                <ul>
-                                    {selectedStaff.education?.map((edu, idx) => (
-                                        <li key={idx} className="text-black text-sm list-disc list-inside font-medium">{edu}</li>
-                                    ))}
-                                </ul>
-                                <div className="mt-2 flex flex-row space-x-2">
-                                    {selectedStaff.tags?.map((tag, idx) => (
-                                        <div className="px-2 py-1 border bg-[#C41E3A]/20 rounded-full w-fit" key={idx}>
-                                            <p key={idx} className="text-xs text-[#C41E3A] font-medium">{tag}</p>
-                                        </div>
-                                    ))}
+                                    {/* Foreground profile image */}
+                                    <img
+                                        src={selectedStaff.image}
+                                        alt={selectedStaff.name}
+                                        className="relative z-10 w-50 h-50 object-cover rounded-full mx-auto shadow-lg"
+                                    />
                                 </div>
-                                <div className="border w-full h-auto px-5 py-3 rounded-lg mt-4 bg-[#767676]/10">
-                                    <h3 className="text-[#3A3B5C] font-bold text-sm">RESEARCH INTEREST</h3>
-                                    <p className="text-xs text-black pt-3">{selectedStaff.research}</p>
-                                </div>
-                                <div className="w-full h-auto p-5 rounded-lg mt-4 bg-[#767676]/10">
-                                    <div className="grid grid-cols-10 gap-x-4 gap-y-2">
-                                        <p className="col-span-2 text-[#3A3B5C] font-semibold text-sm">EMAIL:</p>
-                                        <p className="col-span-8 text-[#3A3B5C] font-medium text-sm">{selectedStaff.email}</p>
-
-                                        <p className="col-span-2 text-[#3A3B5C] font-semibold text-sm">PHONE:</p>
-                                        <p className="col-span-8 text-[#3A3B5C] font-medium text-sm">{selectedStaff.phone}</p>
-
-                                        <p className="col-span-2 text-[#3A3B5C] font-semibold text-sm">OFFICE:</p>
-                                        <p className="col-span-8 text-[#3A3B5C] font-medium text-sm">{selectedStaff.office}</p>
+                                <div className="p-5 space-y-2">
+                                    <h2 className="text-2xl font-bold text-[#3A3B5C]">{selectedStaff.title + ". " + selectedStaff.name}</h2>
+                                    <p className="text-[#C41E3A] font-semibold">{selectedStaff.position}</p>
+                                    <p className="text-[#767676] text-xs">{selectedStaff.division}</p>
+                                    <p className="text-black text-sm">{selectedStaff.description}</p>
+                                    <p className="text-[#3A3B5C] text-sm font-semibold pt-3">EDUCATION & QUALIFICATIONS</p>
+                                    <ul>
+                                        {selectedStaff.education?.map((edu, idx) => (
+                                            <li key={idx} className="text-black text-sm list-disc list-inside font-medium">{edu}</li>
+                                        ))}
+                                    </ul>
+                                    <div className="mt-2 flex flex-row space-x-2">
+                                        {selectedStaff.tags?.map((tag, idx) => (
+                                            <div className="px-2 py-1 border bg-[#C41E3A]/20 rounded-full w-fit" key={idx}>
+                                                <p key={idx} className="text-xs text-[#C41E3A] font-medium">{tag}</p>
+                                            </div>
+                                        ))}
                                     </div>
-                                </div>
-                                <div className="border w-full h-auto p-5 rounded-lg mt-4 bg-[#767676]/10">
-                                    <h3 className="text-[#3A3B5C] font-bold text-sm">OFFICE HOUR:</h3>
-                                    {selectedStaff.officeHour?.map((hour, idx) => (
-                                        <p key={idx} className="text-xs text-black pt-1">{hour}</p>
-                                    ))}
+                                    <div className="border w-full h-auto px-5 py-3 rounded-lg mt-4 bg-[#767676]/10">
+                                        <h3 className="text-[#3A3B5C] font-bold text-sm">RESEARCH INTEREST</h3>
+                                        <p className="text-xs text-black pt-3">{selectedStaff.research}</p>
+                                    </div>
+                                    <div className="w-full h-auto p-5 rounded-lg mt-4 bg-[#767676]/10">
+                                        <div className="grid grid-cols-10 gap-x-4 gap-y-2">
+                                            <p className="col-span-2 text-[#3A3B5C] font-semibold text-sm">EMAIL:</p>
+                                            <p className="col-span-8 text-[#3A3B5C] font-medium text-sm">{selectedStaff.email}</p>
+
+                                            <p className="col-span-2 text-[#3A3B5C] font-semibold text-sm">PHONE:</p>
+                                            <p className="col-span-8 text-[#3A3B5C] font-medium text-sm">{selectedStaff.phone}</p>
+
+                                            <p className="col-span-2 text-[#3A3B5C] font-semibold text-sm">OFFICE:</p>
+                                            <p className="col-span-8 text-[#3A3B5C] font-medium text-sm">{selectedStaff.office}</p>
+                                        </div>
+                                    </div>
+                                    <div className="border w-full h-auto p-5 rounded-lg mt-4 bg-[#767676]/10">
+                                        <h3 className="text-[#3A3B5C] font-bold text-sm">OFFICE HOUR:</h3>
+                                        {selectedStaff.officeHour?.map((hour, idx) => (
+                                            <p key={idx} className="text-xs text-black pt-1">{hour}</p>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 </div>
                 )}
@@ -414,7 +368,7 @@ interface StaffCardProps {
 function StaffCard({ staff, onClick }: StaffCardProps) {
   return (
     <div
-      className="rounded-2xl border-4 border-gray-200 bg-white shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] cursor-pointer"
+      className="rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] cursor-pointer"
       onClick={onClick}
     >
       <img
