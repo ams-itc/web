@@ -200,15 +200,15 @@ export default function AcademicSupportStaffSection() {
             // },
         ],
     };
-  const handleOpenModal = (staff: Staff) => {
-    setSelectedStaff(staff);
-    setIsModalOpen(true);
-  };
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    // Remove the staff from DOM after the closing animation (300ms)
-    setTimeout(() => setSelectedStaff(null), 0);
-  };
+    const handleOpenModal = (staff: Staff) => {
+        setSelectedStaff(staff);
+        setTimeout(() => setIsModalOpen(true), 10); // trigger animation
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setTimeout(() => setSelectedStaff(null), 300); // wait for animation to finish
+    };
 
     return (
 
@@ -272,7 +272,9 @@ export default function AcademicSupportStaffSection() {
                     ></div>
 
                     {/* Modal Content */}
-                    <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full min-h-[500px] min-w-1/2 z-10 transform transition-all duration-300 scale-100 opacity-100">
+                    <div 
+                        className={`relative bg-white rounded-2xl shadow-2xl max-w-lg w-full min-h-[500px] min-w-1/2 z-10 transform transition-all duration-300 ${isModalOpen ? "scale-100 opacity-100" : "scale-90 opacity-0"}`}
+                    >
                         {/* Close Button */}
                         <button
                             className="absolute top-4 right-8 z-20 text-gray-200 hover:text-[#C41E3A] font-bold text-xl group"
