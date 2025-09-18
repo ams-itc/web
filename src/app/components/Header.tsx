@@ -1,7 +1,7 @@
 "use client";
 
 import Navbar from "./Navbar";
-import { useLanguage } from "../LanguageContext";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 export default function Header() {
   const { language } = useLanguage();

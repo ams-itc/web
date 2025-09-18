@@ -2,7 +2,7 @@
 
 import { NavLink } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
-import { useLanguage } from "../LanguageContext";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 export default function Navbar() {
   const { language, setLanguage } = useLanguage();
@@ -36,10 +36,19 @@ export default function Navbar() {
         url: "/faculty-and-research",
         icon: null,
         items: [
-          { title: "Academic Support Staff", url: "/faculty-and-research#academic-support-staff" },
+          {
+            title: "Academic Support Staff",
+            url: "/faculty-and-research#academic-support-staff",
+          },
           { title: "ReDa Lab", url: "/faculty-and-research#redalab" },
-          { title: "Previous Collaborations", url: "/faculty-and-research#previous-collaborations" },
-          { title: "Ongoing Projects", url: "/faculty-and-research#ongoing-projects" },
+          {
+            title: "Previous Collaborations",
+            url: "/faculty-and-research#previous-collaborations",
+          },
+          {
+            title: "Ongoing Projects",
+            url: "/faculty-and-research#ongoing-projects",
+          },
         ],
       },
       {
@@ -84,9 +93,15 @@ export default function Navbar() {
         url: "/faculty-and-research",
         icon: null,
         items: [
-          { title: "បុគ្គលិកអប់រំ", url: "/faculty-and-research#academic-support-staff" },
+          {
+            title: "បុគ្គលិកអប់រំ",
+            url: "/faculty-and-research#academic-support-staff",
+          },
           { title: "ReDa Lab", url: "/faculty-and-research#redalab" },
-          { title: "ការសហការ", url: "/faculty-and-research#previous-collaborations" },
+          {
+            title: "ការសហការ",
+            url: "/faculty-and-research#previous-collaborations",
+          },
           { title: "គម្រោង", url: "/faculty-and-research#ongoing-projects" },
         ],
       },
@@ -103,13 +118,15 @@ export default function Navbar() {
       },
       { title: "ព័ត៌មាន", url: "/news-and-events", icon: null },
       { title: "ទំនាក់ទំនង", url: "/contact", icon: null },
-    ]
+    ],
   };
 
   const currentNav = navItems[language];
 
+  console.log(language);
+
   return (
-    <nav className="hidden md:flex space-x-2">
+    <nav className={`hidden md:flex space-x-2`}>
       {currentNav.map((item) => (
         <div key={item.title} className="relative group">
           {item.items ? (
@@ -119,12 +136,18 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   `inline-flex items-center px-3 text-sm font-medium rounded-md transition ${
                     isActive
-                      ? "text-blue-600 bg-blue-50 font-raleway"
-                      : "text-gray-700 hover:bg-gray-100 font-raleway"
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-gray-700 hover:bg-gray-100"
                   }`
                 }
               >
-                {item.title}
+                <span
+                  className={
+                    language === "kh" ? "font-siemreap" : "font-raleway"
+                  }
+                >
+                  {item.title}
+                </span>
                 <ChevronDown className="ml-1 h-4 w-4" />
               </NavLink>
 
@@ -133,9 +156,15 @@ export default function Navbar() {
                   <a
                     key={subItem.title}
                     href={subItem.url}
-                    className="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100 font-raleway"
+                    className="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100"
                   >
-                    {subItem.title}
+                    <span
+                      className={
+                        language === "kh" ? "font-siemreap" : "font-raleway"
+                      }
+                    >
+                      {subItem.title}
+                    </span>
                   </a>
                 ))}
               </div>
@@ -146,12 +175,16 @@ export default function Navbar() {
               className={({ isActive }) =>
                 `inline-flex items-center px-3 text-sm font-medium rounded-md ${
                   isActive
-                    ? "text-blue-600 bg-blue-50 font-raleway"
-                    : "text-gray-700 hover:bg-gray-100 font-raleway"
+                    ? "text-blue-600 bg-blue-50"
+                    : "text-gray-700 hover:bg-gray-100"
                 }`
               }
             >
-              {item.title}
+              <span
+                className={language === "kh" ? "font-siemreap" : "font-raleway"}
+              >
+                {item.title}
+              </span>
             </NavLink>
           )}
         </div>
