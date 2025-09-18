@@ -52,7 +52,7 @@ export default function StudentsPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Initial Image Section */}
-      <InitialImage imagePath="/image.png" text="Students" />
+      <InitialImage imagePath="/image.png" textEn="Students" textKh="សិស្ស"/>
 
       <div className="w-full grid grid-cols-5 gap-x-2">
         {/* Sidebar Navigation */}

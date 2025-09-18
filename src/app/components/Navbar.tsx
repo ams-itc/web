@@ -2,17 +2,10 @@
 
 import { NavLink } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
+import { useLanguage } from "../LanguageContext";
 
-interface NavbarProps {
-  language: "en" | "kh";
-  setLanguage: (lang: "en" | "kh") => void;
-}
-
-export default function Navbar({ language, setLanguage }: NavbarProps) {
-
-  const changeLanguage = (lang: "en" | "kh") => {
-    setLanguage(lang);
-  };
+export default function Navbar() {
+  const { language, setLanguage } = useLanguage();
 
   const navItems = {
     en: [
@@ -116,86 +109,76 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
   const currentNav = navItems[language];
 
   return (
-    <header className="bg-white border-b sticky top-0 z-50">
-      <div className="flex flex-row justify-between items-center max-w-7xl mx-auto h-16 px-4">
-        {/* Nav Links */}
-        <nav className="hidden md:flex space-x-2">
-          {currentNav.map((item) => (
-            <div key={item.title} className="relative group">
-              {item.items ? (
-                <>
-                  <NavLink
-                    to={item.url}
-                    className={({ isActive }) =>
-                      `inline-flex items-center px-3 font-medium rounded-md transition ${
-                        isActive
-                          ? "text-blue-600 bg-blue-50"
-                          : "text-gray-700 hover:bg-gray-100"
-                      } ${language === "kh" ? "font-kantumruy_pro text-base" : "font-raleway text-sm "}`
-                    }
+    <nav className="hidden md:flex space-x-2">
+      {currentNav.map((item) => (
+        <div key={item.title} className="relative group">
+          {item.items ? (
+            <>
+              <NavLink
+                to={item.url}
+                className={({ isActive }) =>
+                  `inline-flex items-center px-3 text-sm font-medium rounded-md transition ${
+                    isActive
+                      ? "text-blue-600 bg-blue-50 font-raleway"
+                      : "text-gray-700 hover:bg-gray-100 font-raleway"
+                  }`
+                }
+              >
+                {item.title}
+                <ChevronDown className="ml-1 h-4 w-4" />
+              </NavLink>
+
+              <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-200">
+                {item.items.map((subItem) => (
+                  <a
+                    key={subItem.title}
+                    href={subItem.url}
+                    className="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100 font-raleway"
                   >
-                    <span>{item.title}</span>
-                    <ChevronDown className="ml-1 h-4 w-4" />
-                  </NavLink>
-
-                  {/* Dropdown menu */}
-                  <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-200">
-                    <div className="py-1">
-                      {item.items.map((subItem) => (
-                        <a
-                          key={subItem.title}
-                          href={subItem.url}
-                          className={`block px-4 py-2  text-gray-700 hover:bg-gray-100 ${
-                            language === "kh" ? "font-kantumruy_pro text-sm" : "font-raleway text-xs"
-                          }`}
-                        >
-                          {subItem.title}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <NavLink
-                  to={item.url}
-                  className={({ isActive }) =>
-                    `inline-flex items-center px-3 font-medium rounded-md ${
-                      isActive
-                        ? "text-blue-600 bg-blue-50"
-                        : "text-gray-700 hover:bg-gray-100"
-                    } ${language === "kh" ? "font-kantumruy_pro text-base" : "font-raleway text-sm"}`
-                  }
-                >
-                  {item.title}
-                </NavLink>
-              )}
-            </div>
-          ))}
-        </nav>
-
-        {/* Language Switcher */}
-        <div className="flex items-center space-x-2 pl-1">
-          <button
-            onClick={() => changeLanguage("kh")}
-            className={`transition-transform duration-200 hover:scale-110 ${
-              language === "kh" ? "ring-2 ring-blue-200 rounded" : ""
-            }`}
-          >
-            <img src="Cambodia.png" alt="Khmer" className="w-8 rounded-xs" />
-          </button>
-
-          <span className="border border-black h-7"></span>
-
-          <button
-            onClick={() => changeLanguage("en")}
-            className={`transition-transform duration-200 hover:scale-110 ${
-              language === "en" ? "ring-2 ring-blue-200 rounded" : ""
-            }`}
-          >
-            <img src="England.png" alt="English" className="w-8 rounded-xs" />
-          </button>
+                    {subItem.title}
+                  </a>
+                ))}
+              </div>
+            </>
+          ) : (
+            <NavLink
+              to={item.url}
+              className={({ isActive }) =>
+                `inline-flex items-center px-3 text-sm font-medium rounded-md ${
+                  isActive
+                    ? "text-blue-600 bg-blue-50 font-raleway"
+                    : "text-gray-700 hover:bg-gray-100 font-raleway"
+                }`
+              }
+            >
+              {item.title}
+            </NavLink>
+          )}
         </div>
+      ))}
+
+      {/* Language Switcher */}
+      <div className="flex items-center space-x-2 pl-1">
+        <button
+          onClick={() => setLanguage("kh")}
+          className={`transition-transform duration-200 hover:scale-110 ${
+            language === "kh" ? "ring-2 ring-blue-200 rounded" : ""
+          }`}
+        >
+          <img src="Cambodia.png" alt="Khmer" className="w-8 rounded-xs" />
+        </button>
+
+        <span className="border border-black h-7"></span>
+
+        <button
+          onClick={() => setLanguage("en")}
+          className={`transition-transform duration-200 hover:scale-110 ${
+            language === "en" ? "ring-2 ring-blue-200 rounded" : ""
+          }`}
+        >
+          <img src="England.png" alt="English" className="w-8 rounded-xs" />
+        </button>
       </div>
-    </header>
+    </nav>
   );
 }

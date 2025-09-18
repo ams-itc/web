@@ -54,7 +54,7 @@ export default function FacultyandResearchPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Initial Image Section */}
-      <InitialImage imagePath="/image.png" text="Faculty and Research" />
+      <InitialImage imagePath="/image.png" textEn="Faculty and Research" textKh="គ្រូបង្រៀន និងការស្រាវជ្រាវ"/>
 
       <div className="w-full grid grid-cols-5 gap-x-2">
         {/* Sidebar Navigation */}
