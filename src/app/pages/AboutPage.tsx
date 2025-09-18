@@ -53,7 +53,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Initial Image Section */}
-      <InitialImage imagePath="/image.png" text="About Us" />
+      <InitialImage imagePath="/image.png" textEn="About Us" textKh="អំពីយើង"/>
 
       <div className="w-full grid grid-cols-5 gap-x-2">
         {/* Sidebar Navigation */}
