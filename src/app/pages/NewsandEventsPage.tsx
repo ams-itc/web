@@ -420,7 +420,7 @@ export default function NewsAndEventsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Initial Image Section */}
-      <InitialImage imagePath="./src/assets/image.png" text="News & Events" />
+      <InitialImage imagePath="./src/assets/image.png" textEn="News & Events" textKh="ព័ត៌មាន"/>
 
       {/* Spacer */}
       <div className="py-8"></div>

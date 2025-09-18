@@ -55,7 +55,7 @@ export default function AcademictPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Initial Image Section */}
-      <InitialImage imagePath="/image.png" text="Academics" />
+      <InitialImage imagePath="/image.png" textEn="Academics" textKh="កម្មវិធីសិក្សា"/>
 
       <div className="w-full grid grid-cols-5 gap-x-2">
         {/* Sidebar Navigation */}
