@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 import { useEffect } from "react";
 import AppRouter from "./AppRouter";
-import { LanguageProvider } from "./LanguageContext";
+import { LanguageProvider } from "../contexts/LanguageContext";
 
 export default function App() {
   useEffect(() => {
