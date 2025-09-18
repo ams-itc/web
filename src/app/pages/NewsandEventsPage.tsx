@@ -277,7 +277,7 @@ const SearchComponent: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-2">
+    <div className="w-full max-w-4xl mx-auto p-2 ">
       <div className="flex flex-col sm:flex-row gap-2 bg-white rounded-lg shadow-sm border border-gray-200">
         {/* Search Input */}
         <div className="flex-1 relative">
@@ -312,7 +312,7 @@ const SearchComponent: React.FC = () => {
 
           {/* Dropdown Menu */}
           {isDropdownOpen && (
-            <div className="absolute top-full right-0 mt-1 w-full sm:w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto">
+            <div className="absolute top-full right-0 mt-1 w-full sm:w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto scrollbar-hidden">
               {categories.map((category) => (
                 <button
                   key={category}

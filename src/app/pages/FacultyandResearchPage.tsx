@@ -1,57 +1,85 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import AcademicSupportStaffSection from "../components/facultyandresearch/AcademicandSupportStaff";
-import InitialImage from "../components/ui/InitialImage";
 import ReDALabSection from "../components/facultyandresearch/ReDALab";
 import PreviousCollaborationsSection from "../components/facultyandresearch/PreviousCollaboration";
 import OngoingProjectsSection from "../components/facultyandresearch/OngoingProject";
+import InitialImage from "../components/ui/InitialImage";
+import ScrollSpySidebar from "../components/ScrollSpySidebar";
+
+// Define sections for ScrollSpy
+const sections = [
+  { id: "academic-support-staff", label: "Academic & Support Staff" },
+  { id: "redalab", label: "ReDa Lab" },
+  { id: "previous-collaborations", label: "Previous Collaborations" },
+  { id: "ongoing-projects", label: "Ongoing Projects" },
+];
 
 export default function FacultyandResearchPage() {
-    return (
-        <div className="min-h-screen bg-gray-50">
-            {/* Initial Image Section */}
-            <InitialImage imagePath="./src/assets/image.png" text="Faculty and Research" />
-            <div className="w-full grid grid-cols-5 gap-x-2">
-                {/* Sidebar Navigation */}
-                <nav className="col-span-1 px-10 py-3 sticky top-0 h-screen overflow-y-auto">
-                    <div className="py-8 border-b border-gray-300">
-                        <a href="/academics/#academic-support-staff" className="text-base text-black font-raleway">
-                            Academic & Support Staff
-                        </a>
-                    </div>
-                    <div className="py-8 border-b border-gray-300">
-                        <a href="/academics/#redalab" className="text-base text-black font-raleway">
-                            ReDa Lab
-                        </a>
-                    </div>
-                    <div className="py-8 border-b border-gray-300">
-                        <a href="/academics/#how-to-apply" className="text-base text-black font-raleway">
-                            Previous Collaborations
-                        </a>
-                    </div>
-                    <div className="py-8 border-b border-gray-300">
-                        <a href="/academics/#scholarship" className="text-base text-black font-raleway">
-                            Ongoing Projects
-                        </a>
-                    </div>
-                </nav>
+  const [activeSection, setActiveSection] = useState<string>("academic-support-staff");
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
-                {/* Content Sections */}
-                <section className="col-span-4 px-10 py-8 space-y-10">
-                    <div id="academic-support-staff">
-                        <AcademicSupportStaffSection />
-                    </div>
-                    <div id="redalab">
-                        <ReDALabSection />
-                    </div>
-                    <div id="how-to-apply">
-                        <PreviousCollaborationsSection />
-                    </div>
-                    <div id="scholarship">
-                        <OngoingProjectsSection />
-                    </div>
-                </section>
-            </div>
-        </div>
-    )
+  useEffect(() => {
+    const handleObserve = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new window.IntersectionObserver(handleObserve, {
+      root: null,
+      rootMargin: "0px 0px -60% 0px", // trigger when section is 40% from top
+      threshold: 0.1,
+    });
+
+    sections.forEach((section) => {
+      const el = document.getElementById(section.id);
+      if (el) {
+        sectionRefs.current[section.id] = el;
+        observer.observe(el);
+      }
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        const el = sectionRefs.current[section.id];
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Initial Image Section */}
+      <InitialImage imagePath="/image.png" text="Faculty and Research" />
+
+      <div className="w-full grid grid-cols-5 gap-x-2">
+        {/* Sidebar Navigation */}
+        <ScrollSpySidebar
+          sections={sections}
+          activeSection={activeSection}
+          className="hidden lg:block col-span-1 border-r border-gray-300"
+        />
+
+        {/* Content Sections */}
+        <section className="col-span-4 px-10 py-8 space-y-10">
+          <div id="academic-support-staff">
+            <AcademicSupportStaffSection />
+          </div>
+          <div id="redalab">
+            <ReDALabSection />
+          </div>
+          <div id="previous-collaborations">
+            <PreviousCollaborationsSection />
+          </div>
+          <div id="ongoing-projects">
+            <OngoingProjectsSection />
+          </div>
+        </section>
+      </div>
+    </div>
+  );
 }

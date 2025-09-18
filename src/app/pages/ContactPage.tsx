@@ -1,19 +1,13 @@
+"use client";
+
 import { Mail, MapPin, Phone, Clock, ArrowRight, Building } from "lucide-react";
+import InitialImage from "../components/ui/InitialImage";
 
 export default function ContactPage() {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <div className="relative w-full h-72 bg-gray-800">
-        <img
-          src="/contact_top_image.jpg" // replace with your actual image path
-          alt="Contact"
-          className="absolute inset-0 w-full h-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-7xl font-bold text-white font-playfair_display">Contact</h1>
-        </div>
-      </div>
+      <InitialImage imagePath="/image.png" text="Contact" />
 
       <div className="container mx-auto px-6 lg:px-20 py-16 grid grid-cols-1 lg:grid-cols-3 gap-12 w-full">
         {/* Left: Contact Form */}
