@@ -1,3 +1,5 @@
+"use client";
+
 import Home from "../components/ui/Home";
 import About from "../components/ui/About";
 import AcademicPrograms from "../components/ui/Academic";
@@ -8,7 +10,7 @@ import Contact from "../components/ui/Contact";
 
 export default function HomePage() {
   return (
-    <div>
+    <div className="w-full">
       <Home />
       <About />
       <AcademicPrograms />
