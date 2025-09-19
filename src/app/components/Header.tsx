@@ -1,7 +1,7 @@
 "use client";
 
 import Navbar from "./Navbar";
-import { useLanguage } from "../../contexts/LanguageContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Header() {
   const { language } = useLanguage();
@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <header className="w-full bg-white h-100px border-b border-gray-300 shadow-sm top-0 z-50">
       <div className="flex items-center justify-between w-full px-6 py-2">
-        {/* Left side with Logo + Department Name */}
+        {/* Left side */}
         <div className="flex items-center space-x-2 w-1/3">
           <img
             src="/Institute_of_Technology_of_Cambodia_logo-removebg-preview.png"

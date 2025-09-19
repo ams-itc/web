@@ -2,7 +2,7 @@
 
 import { NavLink } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
-import { useLanguage } from "../../contexts/LanguageContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Navbar() {
   const { language, setLanguage } = useLanguage();
@@ -125,6 +125,12 @@ export default function Navbar() {
 
   console.log(language);
 
+  const addLangToPath = (path: string) => {
+    const url = new URL(path, window.location.origin);
+    url.searchParams.set("lang", language);
+    return url.pathname + url.search + url.hash;
+  };
+
   return (
     <nav className={`hidden md:flex space-x-2`}>
       {currentNav.map((item) => (
@@ -132,7 +138,7 @@ export default function Navbar() {
           {item.items ? (
             <>
               <NavLink
-                to={item.url}
+                to={addLangToPath(item.url)}
                 className={({ isActive }) =>
                   `inline-flex items-center px-3 text-sm font-medium rounded-md transition ${
                     isActive
@@ -143,7 +149,7 @@ export default function Navbar() {
               >
                 <span
                   className={
-                    language === "kh" ? "font-siemreap" : "font-raleway"
+                    language === "kh" ? "font-kantumruy_pro text-base" : "font-raleway"
                   }
                 >
                   {item.title}
@@ -153,25 +159,25 @@ export default function Navbar() {
 
               <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-200">
                 {item.items.map((subItem) => (
-                  <a
+                  <NavLink
                     key={subItem.title}
-                    href={subItem.url}
+                    to={addLangToPath(subItem.url)}
                     className="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100"
                   >
                     <span
                       className={
-                        language === "kh" ? "font-siemreap" : "font-raleway"
+                        language === "kh" ? "font-kantumruy_pro text-sm" : "font-raleway"
                       }
                     >
                       {subItem.title}
                     </span>
-                  </a>
+                  </NavLink>
                 ))}
               </div>
             </>
           ) : (
             <NavLink
-              to={item.url}
+              to={addLangToPath(item.url)}
               className={({ isActive }) =>
                 `inline-flex items-center px-3 text-sm font-medium rounded-md ${
                   isActive
@@ -181,7 +187,7 @@ export default function Navbar() {
               }
             >
               <span
-                className={language === "kh" ? "font-siemreap" : "font-raleway"}
+                className={language === "kh" ? "font-kantumruy_pro text-base" : "font-raleway"}
               >
                 {item.title}
               </span>
@@ -192,25 +198,39 @@ export default function Navbar() {
 
       {/* Language Switcher */}
       <div className="flex items-center space-x-2 pl-1">
-        <button
-          onClick={() => setLanguage("kh")}
-          className={`transition-transform duration-200 hover:scale-110 ${
-            language === "kh" ? "ring-2 ring-blue-200 rounded" : ""
-          }`}
-        >
-          <img src="Cambodia.png" alt="Khmer" className="w-8 rounded-xs" />
-        </button>
+        {/* Khmer */}
+        <div className="relative group">
+          <button
+            onClick={() => setLanguage("kh")}
+            className={`transition-transform duration-200 hover:scale-110 ${
+              language === "kh" ? "ring-2 ring-blue-200 rounded" : ""
+            }`}
+          >
+            <img src="/Cambodia.png" alt="Khmer" className="w-8 rounded-xs" />
+          </button>
+          {/* Tooltip below */}
+          <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">
+            Khmer
+          </span>
+        </div>
 
         <span className="border border-black h-7"></span>
 
-        <button
-          onClick={() => setLanguage("en")}
-          className={`transition-transform duration-200 hover:scale-110 ${
-            language === "en" ? "ring-2 ring-blue-200 rounded" : ""
-          }`}
-        >
-          <img src="England.png" alt="English" className="w-8 rounded-xs" />
-        </button>
+        {/* English */}
+        <div className="relative group">
+          <button
+            onClick={() => setLanguage("en")}
+            className={`transition-transform duration-200 hover:scale-110 ${
+              language === "en" ? "ring-2 ring-blue-200 rounded" : ""
+            }`}
+          >
+            <img src="/England.png" alt="English" className="w-8 rounded-xs" />
+          </button>
+          {/* Tooltip below */}
+          <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">
+            English
+          </span>
+        </div>
       </div>
     </nav>
   );
