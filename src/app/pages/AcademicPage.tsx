@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 import BachelorDegree from "../components/academics/BachelorDegree";
@@ -21,17 +20,7 @@ const sections = [
 export default function AcademicPage() {
   const [activeSection, setActiveSection] = useState("bachelor-degree");
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
-  const { language, setLanguage } = useLanguage();
-  const location = useLocation();
-
-  // Read query param lang
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const langFromUrl = params.get("lang");
-    if (langFromUrl === "en" || langFromUrl === "kh") {
-      if (langFromUrl !== language) setLanguage(langFromUrl);
-    }
-  }, [location.search, language, setLanguage]);
+  const { language } = useLanguage(); // ✅ No need to call setLanguage here
 
   // ScrollSpy observer
   useEffect(() => {
@@ -63,6 +52,7 @@ export default function AcademicPage() {
   return (
     <section className="min-h-screen bg-white">
       <InitialImage imagePath="/image.png" textEn="Academics" textKh="កម្មវិធីសិក្សា" />
+
       <div className="w-full grid grid-cols-5 gap-x-2">
         <ScrollSpySidebar
           sections={sections.map((s) => ({
