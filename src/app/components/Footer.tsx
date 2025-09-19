@@ -3,56 +3,59 @@
 import React from "react";
 import { MapPinnedIcon, Phone, Mail } from "lucide-react";
 import { useLanguage } from "../../contexts/LanguageContext";
-// import Link from "next/link";
+
+function renderTextWithFont(text: string, language: "en" | "kh", type: "heading" | "body") {
+  if (language === "en") {
+    return <span className={type === "heading" ? "font-playfair_display" : "font-raleway"}>{text}</span>;
+  } else {
+    const parts = text.split(/([^\u1780-\u17FF]+)/);
+    return (
+      <>
+        {parts.map((part, i) => {
+          const isKhmer = /[\u1780-\u17FF]/.test(part);
+          const fontClass =
+            isKhmer
+              ? type === "heading"
+                ? "font-preahvihear"
+                : "font-kantumruy_pro"
+              : type === "heading"
+              ? "font-playfair_display"
+              : "font-raleway";
+          return (
+            <span key={i} className={fontClass}>
+              {part}
+            </span>
+          );
+        })}
+      </>
+    );
+  }
+}
 
 const Footer: React.FC = () => {
-  const footerItems = {
-    en: {
-      departmentName: "Department of Applied Mathematics and Statistics",
-      description:
-        "Advancing mathematical sciences through excellence in education and research.",
-    },
-    kh: {
-      departmentName: "ដេប៉ាតឺម៉ង់គណិតវិទ្យាអនុវត្តន៍ និងស្ថិតិ",
-      description:
-        "ជំរុញវិទ្យាសាស្ត្រគណិតវិទ្យាតាមរយៈឧត្តមភាពក្នុងការអប់រំនិងការស្រាវជ្រាវ។",
-    },
-    quickLinks: {
-      en: [
-        { title: "About Us", url: "/about/#aboutAMS" },
-        { title: "Academics", url: "/about/academics" },
-        { title: "Faculty & Research", url: "/about/faculty-and-research" },
-        { title: "Students", url: "/about/students " },
-      ],
-      kh: [
-        { title: "អំពីយើង", url: "/about/#aboutAMS" },
-        { title: "សិក្សា", url: "/about/#academic" },
-        {
-          title: "គ្រូបង្រៀន និងការស្រាវជ្រាវ",
-          url: "/about/faculty-and-research",
-        },
-        { title: "សិស្ស", url: "/about/students " },
-      ],
-    },
-    academicResources: {
-      en: ["Academic Programs"],
-      kh: ["កម្មវិធីអប់រំ"],
-    },
-    contactInfo: {
-      address: {
-        en: "Room F103, Building F, Russian Blvd Phnom Penh, Cambodia 855, Phnom Penh, Cambodia",
-        kh: "បន្ទប់ F103, អគារ F, ផ្លូវរុស្ស៊ី ភ្នំពេញ, កម្ពុជា 855, ភ្នំពេញ, កម្ពុជា (ទល់មុខពេទ្យកុមារជាតិ)",
-      },
-    },
-    socialMedia: {
-      facebook: "https://www.facebook.com/ams.itc.edu.kh",
-      linkedin: "",
-    },
-  };
-
   const { language } = useLanguage();
 
-  console.log(`footer language: ${language}`);
+  const footerItems = {
+    departmentName: language === "en"
+      ? "Department of Applied Mathematics and Statistics"
+      : "ដេប៉ាតឺម៉ង់គណិតវិទ្យាអនុវត្តន៍ និងស្ថិតិ",
+    description: language === "en"
+      ? "Advancing mathematical sciences through excellence in education and research."
+      : "ជំរុញវិទ្យាសាស្ត្រគណិតវិទ្យាតាមរយៈឧត្តមភាពក្នុងការអប់រំនិងការស្រាវជ្រាវ។",
+    quickLinks: language === "en"
+      ? ["About Us", "Academics", "Faculty & Research", "Students"]
+      : ["អំពីយើង", "សិក្សា", "គ្រូបង្រៀន និងការស្រាវជ្រាវ", "សិស្ស"],
+    academicResources: language === "en"
+      ? ["Academic Programs", "Academic Calendar", "Student Resource", "Career Services"]
+      : ["កម្មវិធីអប់រំ", "ប្រតិទិនសិក្សា", "ធនធានសិស្ស", "សេវាកម្មវិជ្ជាជីវៈ"],
+    contact: {
+      address: language === "en"
+        ? "Room F103, Building F, Russian Blvd Phnom Penh, Cambodia 855, Phnom Penh, Cambodia"
+        : "បន្ទប់ F103, អាគារ F, មហាវិថីសហព័ន្ធរុស្ស៊ី, រាជធានីភ្នំពេញ, ព្រះរាជាណាចក្រកម្ពុជា (ទល់មុខមន្ទីរពេទ្យកុមារជាតិ)",
+      phone: "(+855) 12 999 310",
+      emails: ["ams@itc.edu.kh", "phauk.sokkhey@itc.edu.kh"]
+    }
+  };
 
   return (
     <footer className="w-full bg-[#3A3B5C] text-[#FFFFFF] font-raleway overflow-hidden py-12">
@@ -60,56 +63,31 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Department Info */}
           <div className="col-span-1 md:col-span-1">
-            {language === "en" ? (
-              <h3 className="text-xl font-medium mb-4">
-                Department of Applied Mathematics and Statistics
-              </h3>
-            ) : (
-              <h3 className="text-xl font-light mb-4 font-moul">
-                ដេប៉ាតឺម៉ង់ <br /> គណិតវិទ្យាអនុវត្ត និងស្ថិតិ
-              </h3>
-            )}
+            <h3 className="text-xl font-medium mb-4">
+              {renderTextWithFont(footerItems.departmentName, language, "heading")}
+            </h3>
+            <p className="text-base font-normal mb-6 leading-relaxed">
+              {renderTextWithFont(footerItems.description, language, "body")}
+            </p>
 
-            {language === "en" ? (
-              <p className="text-base font-normal mb-6">
-                Advancing mathematical sciences through excellence in education
-                and research.
-              </p>
-            ) : (
-              <p className="text-base font-normal mb-6 font-siemreap leading-relaxed">
-                ជំរុញវិទ្យាសាស្ត្រគណិតវិទ្យាតាមរយៈឧត្តមភាពក្នុងការអប់រំនិងការស្រាវជ្រាវ។
-              </p>
-            )}
             <div className="flex space-x-4">
-              {/* facebook */}
+              {/* Facebook */}
               <a
                 href="https://www.facebook.com/ams.itc.edu.kh"
                 className="hover:text-gray-400 transition-colors duration-200"
               >
                 <i className="fa-brands fa-square-facebook text-3xl"></i>
               </a>
-
-              {/* linkedin */}
-              <a
-                href=""
-                className="hover:text-gray-400 transition-colors duration-200"
-              >
+              {/* LinkedIn */}
+              <a href="" className="hover:text-gray-400 transition-colors duration-200">
                 <i className="fa-brands fa-linkedin text-3xl"></i>
               </a>
-
-              {/* instagram */}
-              <a
-                href=""
-                className="hover:text-gray-400 transition-colors duration-200"
-              >
+              {/* Instagram */}
+              <a href="" className="hover:text-gray-400 transition-colors duration-200">
                 <i className="fa-brands fa-square-instagram text-3xl"></i>
               </a>
-
-              {/* tiktok */}
-              <a
-                href=""
-                className="hover:text-gray-400 transition-colors duration-200"
-              >
+              {/* TikTok */}
+              <a href="" className="hover:text-gray-400 transition-colors duration-200">
                 <i className="fa-brands fa-tiktok text-3xl"></i>
               </a>
             </div>
@@ -117,95 +95,71 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div className="col-span-1">
-            <h3 className="text-xl font-medium mb-4">Quick Links</h3>
-            
+            <h3 className="text-xl font-medium mb-4">
+              {renderTextWithFont(language === "en" ? "Quick Links" : "តំណភ្ជាប់រហ័ស", language, "heading")}
+            </h3>
             <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-sm hover:underline">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:underline">
-                  Academic
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:underline">
-                  Faculty & Research
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:underline">
-                  Students
-                </a>
-              </li>
+              {footerItems.quickLinks.map((link, index) => (
+                <li key={index}>
+                  <a href="#" className="text-sm hover:underline">
+                    {renderTextWithFont(link, language, "body")}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Academic Resources */}
           <div className="col-span-1">
-            <h3 className="text-xl font-medium mb-4">Academic Resources</h3>
+            <h3 className="text-xl font-medium mb-4">
+              {renderTextWithFont(language === "en" ? "Academic Resources" : "ធនធានសិក្សា", language, "heading")}
+            </h3>
             <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-sm hover:underline">
-                  Academic Programs
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:underline">
-                  Academic Calendar
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:underline">
-                  Student Resource
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:underline">
-                  Career Services
-                </a>
-              </li>
+              {footerItems.academicResources.map((item, index) => (
+                <li key={index}>
+                  <a href="#" className="text-sm hover:underline">
+                    {renderTextWithFont(item, language, "body")}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Contact Info */}
           <div className="col-span-1">
-            <h3 className="text-xl font-medium mb-4">Contact Info</h3>
+            <h3 className="text-xl font-medium mb-4">
+              {renderTextWithFont(language === "en" ? "Contact Info" : "ព័ត៌មានទំនាក់ទំនង", language, "heading")}
+            </h3>
             <div className="space-y-4">
               <div className="flex items-start">
                 <div className="w-5 h-5 mr-3 mt-1 flex-shrink-0">
                   <MapPinnedIcon />
                 </div>
                 <a
-                  href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.6309290619924!2d104.89793907627153!3d11.570933688615233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31095135c2ad598d%3A0xb2d48d6f11032091!2sDepartment%20of%20Applied%20Mathematics%20and%20Statistics%20(AMS)!5e0!3m2!1sen!2skh!4v1733729142000!5m2!1sen!2skh"
+                  href="https://www.google.com/maps"
                   className="text-sm hover:underline"
                 >
-                  Room F103, Building F, Russian Blvd Phnom Penh, Cambodia 855,
-                  Phnom Penh, Cambodia
+                  {renderTextWithFont(footerItems.contact.address, language, "body")}
                 </a>
               </div>
+
               <div className="flex items-center">
                 <div className="w-5 h-5 mr-3 flex-shrink-0">
                   <Phone />
                 </div>
-                <p className="text-sm">(+855) 12 999 310</p>
+                <p className="text-sm">{renderTextWithFont(footerItems.contact.phone, language, "body")}</p>
               </div>
+
               <div className="flex items-start">
                 <div className="w-5 h-5 mr-3 mt-2 flex-shrink-0">
                   <Mail />
                 </div>
-                <div className="flex flex-col text-sm">
-                  <a href="mailto:ams@itc.edu.kh" className="hover:underline">
-                    ams@itc.edu.kh
-                  </a>
-                  <a
-                    href="mailto:phauk.sokkhey@itc.edu.kh"
-                    className="hover:underline"
-                  >
-                    phauk.sokkhey@itc.edu.kh
-                  </a>
+                <div className="flex flex-col text-sm space-y-1">
+                  {footerItems.contact.emails.map((email, idx) => (
+                    <a key={idx} href={`mailto:${email}`} className="hover:underline">
+                      {renderTextWithFont(email, language, "body")}
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
@@ -215,9 +169,14 @@ const Footer: React.FC = () => {
         {/* Footer Bottom */}
         <div className="border-t border-gray-600 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-base font-normal mb-4 md:mb-0">
-            <i className="fa-regular fa-copyright text-lg"></i> 2025 Department
-            of Applied Mathematics and Statistics, Institute of Technology of
-            Cambodia. All rights reserved
+            <i className="fa-regular fa-copyright text-lg"></i>{" "}
+            {renderTextWithFont(
+              language === "en"
+                ? "2025 Department of Applied Mathematics and Statistics, Institute of Technology of Cambodia. All rights reserved"
+                : "២០២៥ ដេប៉ាតឺម៉ង់គណិតវិទ្យាអនុវត្តន៍ និងស្ថិតិ, វិទ្យាស្ថានបច្ចេកវិទ្យាកម្ពុជា។ សិទ្ធិគ្រប់យ៉ាងត្រូវបានរក្សា",
+              language,
+              "body"
+            )}
           </p>
         </div>
       </div>

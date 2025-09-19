@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import Layout from "./components/ui/Layout";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
@@ -16,9 +17,10 @@ import Alumini from "./components/students/Alumini";
 const AppRouter: React.FC = () => {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
+      <LanguageProvider>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/academics" element={<AcademicPage />} />
@@ -34,7 +36,8 @@ const AppRouter: React.FC = () => {
             <Route path="alumni" element={<Alumini />} />
           </Route>
         </Routes>
-      </Layout>
+        </Layout>
+      </LanguageProvider>
     </Router>
   );
 };
