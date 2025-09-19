@@ -1,57 +1,85 @@
-"use clients";
+"use client";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+// Utility function (same as before)
+function renderTextWithFont(
+  text: string,
+  language: "en" | "kh",
+  type: "heading" | "body"
+) {
+  if (language === "en") {
+    return <span className={type === "heading" ? "font-playfair_display" : "font-raleway"}>{text}</span>;
+  } else {
+    const parts = text.split(/([^\u1780-\u17FF]+)/); // match non-Khmer sequences
+    return (
+      <>
+        {parts.map((part, i) => {
+          const isKhmer = /[\u1780-\u17FF]/.test(part);
+          const fontClass =
+            isKhmer
+              ? type === "heading"
+                ? "font-preahvihear"
+                : "font-kantumruy_pro"
+              : type === "heading"
+              ? "font-playfair_display"
+              : "font-raleway";
+          return (
+            <span key={i} className={fontClass}>
+              {part}
+            </span>
+          );
+        })}
+      </>
+    );
+  }
+}
 
 export default function IndustrialPartners() {
+  const { language } = useLanguage();
 
-    const partners = [
-        {
-            imagepath: "/partners/partners.png"
-        },
-        {
-            imagepath: "/partners/partners.png"
-        },
-        {
-            imagepath: "/partners/partners.png"
-        },
-        {
-            imagepath: "/partners/partners.png"
-        },
-        {
-            imagepath: "/partners/partners.png"
-        },
-        {
-            imagepath: "/partners/partners.png"
-        },
-    ]
+  const partners = [
+    { imagepath: "/partners/partners.png" },
+    { imagepath: "/partners/partners.png" },
+    { imagepath: "/partners/partners.png" },
+    { imagepath: "/partners/partners.png" },
+    { imagepath: "/partners/partners.png" },
+    { imagepath: "/partners/partners.png" },
+  ];
 
-    return (
-        <div className="pt-10 w-full">
-            <h1 className="text-3xl font-playfair_display text-black font-semibold">
-                Industrial Partners
-            </h1>
-            <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
-            <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
-            <p className="pt-7 font-raleway text-[#2E2E2E]">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-            </p>
-            <div className="px-10 py-5 grid grid-cols-4 gap-x-10 gap-y-8">
-                {partners.map((partner, index) => (
-                    <div
-                        key={index}
-                        className="col-span-1"
-                    >
-                        <img 
-                            src = {partner.imagepath} 
-                            alt = {(index+1) + "image"} 
-                            className = "w-fit rounded-xl "
-                        />
-                    </div>
-                ))}
-            </div>
-        </div>
-    )
+  const descriptionEn = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`;
+
+  const descriptionKh = `គម្រូកឋាខណ្ឌ`; // You can replace this with proper Khmer text
+
+  return (
+    <div className="pt-10 w-full">
+      <h1 className="text-3xl text-black font-semibold">
+        {renderTextWithFont(
+          language === "en" ? "Industrial Partners" : "ដៃគូឧស្សាហកម្ម",
+          language,
+          "heading"
+        )}
+      </h1>
+      <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
+      <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
+      <p className="pt-7 text-[#2E2E2E]/80">
+        {renderTextWithFont(language === "en" ? descriptionEn : descriptionKh, language, "body")}
+      </p>
+      <div className="px-10 py-5 grid grid-cols-4 gap-x-10 gap-y-8">
+        {partners.map((partner, index) => (
+          <div key={index} className="col-span-1">
+            <img
+              src={partner.imagepath}
+              alt={`${index + 1} image`}
+              className="w-fit rounded-xl"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
