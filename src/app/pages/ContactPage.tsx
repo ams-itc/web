@@ -71,8 +71,11 @@ export default function ContactPage() {
   const t = text[language];
 
   // font helpers
-  const headingFont = language === "kh" ? "font-moul" : "font-playfair_display";
+  const headingFont = language === "kh" ? "font-preahvihear" : "font-playfair_display";
   const bodyFont = language === "kh" ? "font-kantumruy_pro" : "font-raleway";
+  
+  // size helpers
+  const headingSize = language === "kh" ? "text-xl md:text-2xl" : "text-2xl md:text-3xl";
 
   return (
     <div className="w-full">
@@ -82,7 +85,7 @@ export default function ContactPage() {
       <div className="container mx-auto px-6 lg:px-20 py-16 grid grid-cols-1 lg:grid-cols-3 gap-12 w-full">
         {/* Left: Contact Form */}
         <div className="col-span-2">
-          <h2 className={`${headingFont} text-2xl md:text-3xl font-semibold text-black`}>
+          <h2 className={`${headingFont} ${headingSize} font-semibold text-black`}>
             {t.getInTouch}
           </h2>
           <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
@@ -144,7 +147,7 @@ export default function ContactPage() {
 
         {/* Right: Contact Information */}
         <div className="col-span-1">
-          <h2 className={`${headingFont} text-2xl md:text-3xl font-semibold text-black`}>
+          <h2 className={`${headingFont} ${headingSize} font-semibold text-black`}>
             {t.contactInfo}
           </h2>
           <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
@@ -197,8 +200,8 @@ export default function ContactPage() {
           </div>
 
           {/* Collaborate with Us */}
-          <div className="mt-8 bg-[#3A3B5C] text-white rounded-xl p-6 shadow-md flex flex-col items-center">
-            <h3 className={`${headingFont} mb-2 text-xl md:text-2xl font-semibold`}>
+          <div className="mt-8 bg-[#3A3B5C] text-white rounded-xl p-6 shadow-md flex flex-col items-center space-y-3">
+            <h3 className={`${headingFont} ${language === "kh" ? "text-lg" : "text-xl"} font-semibold`}>
               {t.collaborateTitle}
             </h3>
             <p className={`${bodyFont} mb-4 text-center text-sm`}>{t.collaborateText}</p>
@@ -214,7 +217,7 @@ export default function ContactPage() {
       {/* Visit Section */}
       <div className="container mx-auto px-6 lg:px-20 pb-16">
         <div className="bg-gray-100 rounded-xl py-6 px-10 shadow-2xl border border-[#3A3B5C] border-l-8">
-          <h3 className={`${headingFont} mb-2 text-black inline-flex items-center text-xl md:text-2xl`}>
+          <h3 className={`${headingFont} ${headingSize} mb-2 text-black inline-flex items-center ${language === "kh" ? "font-medium" : "font-semibold"}`}>
             <Building className="mr-5" /> {t.visitTitle}
           </h3>
           <p className={`${bodyFont} mb-4 text-sm text-gray-800`}>{t.visitText}</p>
