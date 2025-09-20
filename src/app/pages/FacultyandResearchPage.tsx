@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 import AcademicSupportStaffSection from "../components/facultyandresearch/AcademicandSupportStaff";
@@ -15,25 +14,15 @@ const sections = [
   { id: "academic-support-staff", labelEn: "Academic & Support Staff", labelKh: "គ្រូបង្រៀន និងបុគ្គលិកគាំទ្រ" },
   { id: "redalab", labelEn: "ReDa Lab", labelKh: "ពហុមណ្ឌល ReDa" },
   { id: "previous-collaborations", labelEn: "Previous Collaborations", labelKh: "កិច្ចសហប្រតិបត្តិការមុន" },
-  { id: "ongoing-projects", labelEn: "Ongoing Projects", labelKh: "គម្រោងកំពុងបន្ត" },
+  { id: "ongoing-projects", labelEn: "Ongoing Projects", labelKh: "គម្រោងកំពុងដំណើរ" },
 ];
 
 export default function FacultyandResearchPage() {
-  const [activeSection, setActiveSection] = useState<string>("academic-support-staff");
+  const [activeSection, setActiveSection] = useState("academic-support-staff");
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
-  const { language, setLanguage } = useLanguage();
-  const location = useLocation();
+  const { language } = useLanguage();
 
-  // Set language from URL
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const langFromUrl = params.get("lang");
-    if (langFromUrl === "en" || langFromUrl === "kh") {
-      if (langFromUrl !== language) setLanguage(langFromUrl);
-    }
-  }, [location.search, language, setLanguage]);
-
-  // ScrollSpy IntersectionObserver
+  // ScrollSpy observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -44,24 +33,24 @@ export default function FacultyandResearchPage() {
       { root: null, rootMargin: "0px 0px -60% 0px", threshold: 0.1 }
     );
 
-    sections.forEach((section) => {
-      const el = document.getElementById(section.id);
+    sections.forEach((s) => {
+      const el = document.getElementById(s.id);
       if (el) {
-        sectionRefs.current[section.id] = el;
+        sectionRefs.current[s.id] = el;
         observer.observe(el);
       }
     });
 
     return () => {
-      sections.forEach((section) => {
-        const el = sectionRefs.current[section.id];
+      sections.forEach((s) => {
+        const el = sectionRefs.current[s.id];
         if (el) observer.unobserve(el);
       });
     };
   }, []);
 
   return (
-    <section className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* Initial Image */}
       <InitialImage
         imagePath="/image.png"
@@ -82,20 +71,12 @@ export default function FacultyandResearchPage() {
 
         {/* Content Sections */}
         <section className="col-span-4 px-10 py-8 space-y-10">
-          <div id="academic-support-staff">
-            <AcademicSupportStaffSection />
-          </div>
-          <div id="redalab">
-            <ReDALabSection />
-          </div>
-          <div id="previous-collaborations">
-            <PreviousCollaborationsSection />
-          </div>
-          <div id="ongoing-projects">
-            <OngoingProjectsSection />
-          </div>
+          <div id="academic-support-staff"><AcademicSupportStaffSection /></div>
+          <div id="redalab"><ReDALabSection /></div>
+          <div id="previous-collaborations"><PreviousCollaborationsSection /></div>
+          <div id="ongoing-projects"><OngoingProjectsSection /></div>
         </section>
       </div>
-    </section>
+    </div>
   );
 }
