@@ -15,7 +15,7 @@ const sections = [
   { id: "academic-support-staff", labelEn: "Academic & Support Staff", labelKh: "គ្រូបង្រៀន និងបុគ្គលិកគាំទ្រ" },
   { id: "redalab", labelEn: "ReDa Lab", labelKh: "ពហុមណ្ឌល ReDa" },
   { id: "previous-collaborations", labelEn: "Previous Collaborations", labelKh: "កិច្ចសហប្រតិបត្តិការមុន" },
-  { id: "ongoing-projects", labelEn: "Ongoing Projects", labelKh: "គម្រោងកំពុងបន្ត" },
+  { id: "ongoing-projects", labelEn: "Ongoing Projects", labelKh: "គម្រោងកំពុងដំណើរ" },
 ];
 
 export default function FacultyandResearchPage() {

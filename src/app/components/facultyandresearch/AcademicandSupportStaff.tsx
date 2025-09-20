@@ -2,194 +2,315 @@
 
 import { useState } from "react";
 import { X } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+interface LocalizedString {
+  en: string;
+  kh: string;
+}
 
 interface Staff {
-  name: string;
-    title: string;
-    position: string;
-    degrees: string;
-    expert: string;
-    image: string;
-    division?: string;
-    description?: string;
-    education?: string[];
-    tags?: string[];
-    research?: string;
-    email?: string;
-    phone?: string;
-    office?: string;
-    officeHour?: string[];
-    specialist?: string[];
+  name: string | LocalizedString;
+  title: string | LocalizedString;
+  position: string | LocalizedString;
+  degrees: string | LocalizedString;
+  expert: string | LocalizedString;
+  image: string;
+  division?: string | LocalizedString;
+  description?: string | LocalizedString;
+  education?: (string | LocalizedString)[];
+  tags?: (string | LocalizedString)[];
+  research?: string | LocalizedString;
+  email?: string;
+  phone?: string;
+  office?: string | LocalizedString;
+  officeHour?: (string | LocalizedString)[];
+  specialist?: (string | LocalizedString)[];
+}
+
+// Font rendering function
+function renderTextWithFont(
+  text: string,
+  language: "en" | "kh",
+  type: "heading" | "body"
+) {
+  if (language === "en") {
+    return (
+      <span className={type === "heading" ? "font-playfair_display" : "font-raleway"}>
+        {text}
+      </span>
+    );
+  } else {
+    const parts = text.split(/([^\u1780-\u17FF]+)/).filter(Boolean);
+    return (
+      <>
+        {parts.map((part, i) => {
+          const isKhmer = /[\u1780-\u17FF]/.test(part);
+          const fontClass =
+            isKhmer
+              ? type === "heading"
+                ? "font-preahvihear"
+                : "font-kantumruy_pro"
+              : type === "heading"
+              ? "font-playfair_display"
+              : "font-raleway";
+          return (
+            <span key={i} className={fontClass}>
+              {part}
+            </span>
+          );
+        })}
+      </>
+    );
+  }
 }
 
 export default function AcademicSupportStaffSection() {
     const [selectedStaff, setSelectedStaff] = useState<Staff | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const { language } = useLanguage();
 
     const staffData = {
         head: {
-            title: "Dr",
-            name: "Phauk Sokkhey",
-            position: "Head of Department",
-            degrees: "PHD MATHEMATICS",
-            expert: "Algorithm and Computational Theory",
+            title: {en: "Dr", kh: "សាស្រ្តចារ្យ"},
+            name: {en: "Phauk Sokkhey", kh: "ភោគ​ សុខខី"},
+            position: { en: "Head of Department", kh: "ប្រធាននាយកដ្ឋាន" },
+            degrees: { en: "PHD MATHEMATICS", kh: "បណ្ឌិតវិទ្យាសាស្រ្តគណិតវិទ្យា" },
+            expert: { en: "Algorithm and Computational Theory", kh: "ទ្រឹស្តីអាល់ហ្គរីធម៍ និង ការគណនា" },
             image: "/staff/sokkhey.jpg",
-            division: "Mathematics Division",
-            description:
-                "Dr. LIN Mongkulsery specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.",
+            division: { en: "Mathematics Division", kh: "ផ្នែកគណិតវិទ្យា" },
+            description: {
+                en: "Dr. LIN Mongkulsery specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.",
+                kh: "លោក Dr. LIN Mongkulsery ជាអ្នកឯកទេសក្នុងប្រព័ន្ធចែកចាយ និងស្ថាបត្យកម្មកុំព្យូទ័រមេឃ។ គាត់មានបទពិសោធន៍ឧស្សាហកម្មយ៉ាងច្រើន និងរក្សាការសហការយ៉ាងសកម្មជាមួយក្រុមហ៊ុនបច្ចេកវិទ្យា។"
+            },
             education: [
-                "PhD in Statistics - University of Chicago (2019)",
-                "MS in Applied Mathematics - Northwestern (2016)",
-                "BS in Computer Science - UIUC (2014)",
+                { en: "PhD in Statistics - University of Chicago (2019)", kh: "ឌុចតូរ ក្នុងវិទ្យាសាស្រ្តស្ថិតិ - សាកលវិទ្យាល័យ Chicago (2019)" },
+                { en: "MS in Applied Mathematics - Northwestern (2016)", kh: "មេស្ទ័រ ក្នុងគណិតវិទ្យា អនុវត្ត - Northwestern (2016)" },
+                { en: "BS in Computer Science - UIUC (2014)", kh: "បរិញ្ញាបត្រ ស្ថិតិវិទ្យា - UIUC (2014)" },
             ],
-            tags: ["DATA SCIENCE", "STATISTICS", "ANALYTICS"],
-            research:
-                "Predictive modeling, statistical machine learning, data visualization, and healthcare analytics applications.",
+            tags: [
+                { en: "DATA SCIENCE", kh: "វិទ្យាសាស្រ្តទិន្នន័យ" },
+                { en: "STATISTICS", kh: "ស្ថិតិ" },
+                { en: "ANALYTICS", kh: "វិភាគទិន្នន័យ" }
+            ],
+            research: {
+                en: "Predictive modeling, statistical machine learning, data visualization, and healthcare analytics applications.",
+                kh: "ការម៉ូឌែលទាយទ្រង់, ការសិក្សាម៉ាស៊ីនស្ថិតិ, ការតំណាងទិន្នន័យ និងកម្មវិធីវិភាគទិន្នន័យសុខាភិបាល។"
+            },
             email: "abc@gmial.com",
             phone: "012345678",
-            office: "Room 104",
-            officeHour: ["Monday - Friday : 8:00 AM - 5:00 PM", "Appointment via Email or Phone Number"],
+            office: { en: "Room 104", kh: "បន្ទប់ 104" },
+            officeHour: [
+                { en: "Monday - Friday : 8:00 AM - 5:00 PM", kh: "ថ្ងៃច័ន្ទ - ថ្ងៃសុក្រ : 8:00 ព្រឹក - 5:00 ល្ងាច" },
+                { en: "Appointment via Email or Phone Number", kh: "ណាត់ជួបតាមអ៊ីមែល ឬលេខទូរស័ព្ទ" }
+            ],
         },
         actingHead: {
-            title: "Dr",
-            name: "Lin Mongkulsery",
-            position: "Acting Head",
-            degrees: "PHD MATHEMATICS",
-            expert: "Algorithm and Computational Theory",
+            title: {en: "Dr", kh: "សាស្រ្តាចារ្យ"},
+            name: {en: "Lin Mongkulsery", kh: "លិន មង្គលសិរី"},
+            position: {en: "Acting Head", kh: "ប្រធានស្ដីទី"},
+            degrees: { en: "PHD MATHEMATICS", kh: "បណ្ឌិតវិទ្យាសាស្រ្តគណិតវិទ្យា" },
+            expert: { en: "Algorithm and Computational Theory", kh: "ទ្រឹស្តីអាល់ហ្គរីធម៍ និង ការគណនា" },
             image: "/staff/mongkulserey.jpg",
-            division: "Mathematics Division",
-            description:
-                "Dr. LIN Mongkulsery specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.",
+            division: { en: "Mathematics Division", kh: "ផ្នែកគណិតវិទ្យា" },
+            description: {
+                en: "Dr. LIN Mongkulsery specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.",
+                kh: "លោក Dr. LIN Mongkulsery ជាអ្នកឯកទេសក្នុងប្រព័ន្ធចែកចាយ និងស្ថាបត្យកម្មកុំព្យូទ័រមេឃ។ គាត់មានបទពិសោធន៍ឧស្សាហកម្មយ៉ាងច្រើន និងរក្សាការសហការយ៉ាងសកម្មជាមួយក្រុមហ៊ុនបច្ចេកវិទ្យា។"
+            },
             education: [
-                "PhD in Statistics - University of Chicago (2019)",
-                "MS in Applied Mathematics - Northwestern (2016)",
-                "BS in Computer Science - UIUC (2014)",
+                { en: "PhD in Statistics - University of Chicago (2019)", kh: "ឌុចតូរ ក្នុងវិទ្យាសាស្រ្តស្ថិតិ - សាកលវិទ្យាល័យ Chicago (2019)" },
+                { en: "MS in Applied Mathematics - Northwestern (2016)", kh: "មេស្ទ័រ ក្នុងគណិតវិទ្យា អនុវត្ត - Northwestern (2016)" },
+                { en: "BS in Computer Science - UIUC (2014)", kh: "បរិញ្ញាបត្រ ស្ថិតិវិទ្យា - UIUC (2014)" },
             ],
-            tags: ["DATA SCIENCE", "STATISTICS", "ANALYTICS"],
-            research:
-                "Predictive modeling, statistical machine learning, data visualization, and healthcare analytics applications.",
-            email: "",
-            phone: "",
-            office: "",
-            officeHour: ["Monday - Friday : 8:00 AM - 5:00 PM", "Appointment via Email or Phone Number"],
+            tags: [
+                { en: "DATA SCIENCE", kh: "វិទ្យាសាស្រ្តទិន្នន័យ" },
+                { en: "STATISTICS", kh: "ស្ថិតិ" },
+                { en: "ANALYTICS", kh: "វិភាគទិន្នន័យ" }
+            ],
+            research: {
+                en: "Predictive modeling, statistical machine learning, data visualization, and healthcare analytics applications.",
+                kh: "ការម៉ូឌែលទាយទ្រង់, ការសិក្សាម៉ាស៊ីនស្ថិតិ, ការតំណាងទិន្នន័យ និងកម្មវិធីវិភាគទិន្នន័យសុខាភិបាល។"
+            },
+            email: "abc@gmial.com",
+            phone: "012345678",
+            office: { en: "Room 104", kh: "បន្ទប់ 104" },
+            officeHour: [
+                { en: "Monday - Friday : 8:00 AM - 5:00 PM", kh: "ថ្ងៃច័ន្ទ - ថ្ងៃសុក្រ : 8:00 ព្រឹក - 5:00 ល្ងាច" },
+                { en: "Appointment via Email or Phone Number", kh: "ណាត់ជួបតាមអ៊ីមែល ឬលេខទូរស័ព្ទ" }
+            ],
         },
         professors: [
             {
-                title: "Dr",
-                name: "John Doe",
-                position: "Professor",
-                degrees: "PHD MATHEMATICS",
-                expert: "Algorithm and Computational Theory",
+                title: {en: "Dr", kh: "សាស្រ្តាចារ្យ"},
+                name: {en: "John Doe", kh: "ចន ដូ"},
+                position: {en: "Professor", kh: "គ្រូបង្រៀន"},
+                degrees: { en: "PHD MATHEMATICS", kh: "បណ្ឌិតវិទ្យាសាស្រ្តគណិតវិទ្យា" },
+                expert: { en: "Algorithm and Computational Theory", kh: "ទ្រឹស្តីអាល់ហ្គរីធម៍ និង ការគណនា" },
                 image: "/staff/vanda.jpg",
-                division: "Mathematics Division",
-                description:
-                    "Dr. LIN Mongkulsery specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.",
+                division: { en: "Mathematics Division", kh: "ផ្នែកគណិតវិទ្យា" },
+                description: {
+                    en: "Dr. LIN Mongkulsery specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.",
+                    kh: "លោក Dr. LIN Mongkulsery ជាអ្នកឯកទេសក្នុងប្រព័ន្ធចែកចាយ និងស្ថាបត្យកម្មកុំព្យូទ័រមេឃ។ គាត់មានបទពិសោធន៍ឧស្សាហកម្មយ៉ាងច្រើន និងរក្សាការសហការយ៉ាងសកម្មជាមួយក្រុមហ៊ុនបច្ចេកវិទ្យា។"
+                },
                 education: [
-                    "PhD in Statistics - University of Chicago (2019)",
-                    "MS in Applied Mathematics - Northwestern (2016)",
-                    "BS in Computer Science - UIUC (2014)",
+                    { en: "PhD in Statistics - University of Chicago (2019)", kh: "ឌុចតូរ ក្នុងវិទ្យាសាស្រ្តស្ថិតិ - សាកលវិទ្យាល័យ Chicago (2019)" },
+                    { en: "MS in Applied Mathematics - Northwestern (2016)", kh: "មេស្ទ័រ ក្នុងគណិតវិទ្យា អនុវត្ត - Northwestern (2016)" },
+                    { en: "BS in Computer Science - UIUC (2014)", kh: "បរិញ្ញាបត្រ ស្ថិតិវិទ្យា - UIUC (2014)" },
                 ],
-                tags: ["DATA SCIENCE", "STATISTICS", "ANALYTICS"],
-                research:
-                    "Predictive modeling, statistical machine learning, data visualization, and healthcare analytics applications.",
-                email: "",
-                phone: "",
-                office: "",
-                officeHour: ["Monday - Friday : 8:00 AM - 5:00 PM", "Appointment via Email or Phone Number"],
+                tags: [
+                    { en: "DATA SCIENCE", kh: "វិទ្យាសាស្រ្តទិន្នន័យ" },
+                    { en: "STATISTICS", kh: "ស្ថិតិ" },
+                    { en: "ANALYTICS", kh: "វិភាគទិន្នន័យ" }
+                ],
+                research: {
+                    en: "Predictive modeling, statistical machine learning, data visualization, and healthcare analytics applications.",
+                    kh: "ការម៉ូឌែលទាយទ្រង់, ការសិក្សាម៉ាស៊ីនស្ថិតិ, ការតំណាងទិន្នន័យ និងកម្មវិធីវិភាគទិន្នន័យសុខាភិបាល។"
+                },
+                email: "abc@gmial.com",
+                phone: "012345678",
+                office: { en: "Room 104", kh: "បន្ទប់ 104" },
+                officeHour: [
+                    { en: "Monday - Friday : 8:00 AM - 5:00 PM", kh: "ថ្ងៃច័ន្ទ - ថ្ងៃសុក្រ : 8:00 ព្រឹក - 5:00 ល្ងាច" },
+                    { en: "Appointment via Email or Phone Number", kh: "ណាត់ជួបតាមអ៊ីមែល ឬលេខទូរស័ព្ទ" }
+                ],
             },
             {
-                title: "Dr",
-                name: "John Doe",
-                position: "Professor",
-                degrees: "PHD MATHEMATICS",
-                expert: "Algorithm and Computational Theory",
+                title: {en: "Dr", kh: "សាស្រ្តាចារ្យ"},
+                name: {en: "John Doe", kh: "ចន ដូ"},
+                position: {en: "Professor", kh: "គ្រូបង្រៀន"},
+                degrees: { en: "PHD MATHEMATICS", kh: "បណ្ឌិតវិទ្យាសាស្រ្តគណិតវិទ្យា" },
+                expert: { en: "Algorithm and Computational Theory", kh: "ទ្រឹស្តីអាល់ហ្គរីធម៍ និង ការគណនា" },
                 image: "/staff/vanda.jpg",
-                division: "Mathematics Division",
-                description:
-                    "Dr. LIN Mongkulsery specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.",
+                division: { en: "Mathematics Division", kh: "ផ្នែកគណិតវិទ្យា" },
+                description: {
+                    en: "Dr. LIN Mongkulsery specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.",
+                    kh: "លោក Dr. LIN Mongkulsery ជាអ្នកឯកទេសក្នុងប្រព័ន្ធចែកចាយ និងស្ថាបត្យកម្មកុំព្យូទ័រមេឃ។ គាត់មានបទពិសោធន៍ឧស្សាហកម្មយ៉ាងច្រើន និងរក្សាការសហការយ៉ាងសកម្មជាមួយក្រុមហ៊ុនបច្ចេកវិទ្យា។"
+                },
                 education: [
-                    "PhD in Statistics - University of Chicago (2019)",
-                    "MS in Applied Mathematics - Northwestern (2016)",
-                    "BS in Computer Science - UIUC (2014)",
+                    { en: "PhD in Statistics - University of Chicago (2019)", kh: "ឌុចតូរ ក្នុងវិទ្យាសាស្រ្តស្ថិតិ - សាកលវិទ្យាល័យ Chicago (2019)" },
+                    { en: "MS in Applied Mathematics - Northwestern (2016)", kh: "មេស្ទ័រ ក្នុងគណិតវិទ្យា អនុវត្ត - Northwestern (2016)" },
+                    { en: "BS in Computer Science - UIUC (2014)", kh: "បរិញ្ញាបត្រ ស្ថិតិវិទ្យា - UIUC (2014)" },
                 ],
-                tags: ["DATA SCIENCE", "STATISTICS", "ANALYTICS"],
-                research:
-                    "Predictive modeling, statistical machine learning, data visualization, and healthcare analytics applications.",
-                email: "",
-                phone: "",
-                office: "",
-                officeHour: ["Monday - Friday : 8:00 AM - 5:00 PM", "Appointment via Email or Phone Number"],
+                tags: [
+                    { en: "DATA SCIENCE", kh: "វិទ្យាសាស្រ្តទិន្នន័យ" },
+                    { en: "STATISTICS", kh: "ស្ថិតិ" },
+                    { en: "ANALYTICS", kh: "វិភាគទិន្នន័យ" }
+                ],
+                research: {
+                    en: "Predictive modeling, statistical machine learning, data visualization, and healthcare analytics applications.",
+                    kh: "ការម៉ូឌែលទាយទ្រង់, ការសិក្សាម៉ាស៊ីនស្ថិតិ, ការតំណាងទិន្នន័យ និងកម្មវិធីវិភាគទិន្នន័យសុខាភិបាល។"
+                },
+                email: "abc@gmial.com",
+                phone: "012345678",
+                office: { en: "Room 104", kh: "បន្ទប់ 104" },
+                officeHour: [
+                    { en: "Monday - Friday : 8:00 AM - 5:00 PM", kh: "ថ្ងៃច័ន្ទ - ថ្ងៃសុក្រ : 8:00 ព្រឹក - 5:00 ល្ងាច" },
+                    { en: "Appointment via Email or Phone Number", kh: "ណាត់ជួបតាមអ៊ីមែល ឬលេខទូរស័ព្ទ" }
+                ],
             },
             {
-                title: "Dr",
-                name: "John Doe",
-                position: "Professor",
-                degrees: "PHD MATHEMATICS",
-                expert: "Algorithm and Computational Theory",
+                title: {en: "Dr", kh: "សាស្រ្តាចារ្យ"},
+                name: {en: "John Doe", kh: "ចន ដូ"},
+                position: {en: "Professor", kh: "គ្រូបង្រៀន"},
+                degrees: { en: "PHD MATHEMATICS", kh: "បណ្ឌិតវិទ្យាសាស្រ្តគណិតវិទ្យា" },
+                expert: { en: "Algorithm and Computational Theory", kh: "ទ្រឹស្តីអាល់ហ្គរីធម៍ និង ការគណនា" },
                 image: "/staff/vanda.jpg",
-                division: "Mathematics Division",
-                description:
-                    "Dr. LIN Mongkulsery specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.",
+                division: { en: "Mathematics Division", kh: "ផ្នែកគណិតវិទ្យា" },
+                description: {
+                    en: "Dr. LIN Mongkulsery specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.",
+                    kh: "លោក Dr. LIN Mongkulsery ជាអ្នកឯកទេសក្នុងប្រព័ន្ធចែកចាយ និងស្ថាបត្យកម្មកុំព្យូទ័រមេឃ។ គាត់មានបទពិសោធន៍ឧស្សាហកម្មយ៉ាងច្រើន និងរក្សាការសហការយ៉ាងសកម្មជាមួយក្រុមហ៊ុនបច្ចេកវិទ្យា។"
+                },
                 education: [
-                    "PhD in Statistics - University of Chicago (2019)",
-                    "MS in Applied Mathematics - Northwestern (2016)",
-                    "BS in Computer Science - UIUC (2014)",
+                    { en: "PhD in Statistics - University of Chicago (2019)", kh: "ឌុចតូរ ក្នុងវិទ្យាសាស្រ្តស្ថិតិ - សាកលវិទ្យាល័យ Chicago (2019)" },
+                    { en: "MS in Applied Mathematics - Northwestern (2016)", kh: "មេស្ទ័រ ក្នុងគណិតវិទ្យា អនុវត្ត - Northwestern (2016)" },
+                    { en: "BS in Computer Science - UIUC (2014)", kh: "បរិញ្ញាបត្រ ស្ថិតិវិទ្យា - UIUC (2014)" },
                 ],
-                tags: ["DATA SCIENCE", "STATISTICS", "ANALYTICS"],
-                research:
-                    "Predictive modeling, statistical machine learning, data visualization, and healthcare analytics applications.",
-                email: "",
-                phone: "",
-                office: "",
-                officeHour: ["Monday - Friday : 8:00 AM - 5:00 PM", "Appointment via Email or Phone Number"],
+                tags: [
+                    { en: "DATA SCIENCE", kh: "វិទ្យាសាស្រ្តទិន្នន័យ" },
+                    { en: "STATISTICS", kh: "ស្ថិតិ" },
+                    { en: "ANALYTICS", kh: "វិភាគទិន្នន័យ" }
+                ],
+                research: {
+                    en: "Predictive modeling, statistical machine learning, data visualization, and healthcare analytics applications.",
+                    kh: "ការម៉ូឌែលទាយទ្រង់, ការសិក្សាម៉ាស៊ីនស្ថិតិ, ការតំណាងទិន្នន័យ និងកម្មវិធីវិភាគទិន្នន័យសុខាភិបាល។"
+                },
+                email: "abc@gmial.com",
+                phone: "012345678",
+                office: { en: "Room 104", kh: "បន្ទប់ 104" },
+                officeHour: [
+                    { en: "Monday - Friday : 8:00 AM - 5:00 PM", kh: "ថ្ងៃច័ន្ទ - ថ្ងៃសុក្រ : 8:00 ព្រឹក - 5:00 ល្ងាច" },
+                    { en: "Appointment via Email or Phone Number", kh: "ណាត់ជួបតាមអ៊ីមែល ឬលេខទូរស័ព្ទ" }
+                ],
             },
             {
-                title: "Dr",
-                name: "John Doe",
-                position: "Professor",
-                degrees: "PHD MATHEMATICS",
-                expert: "Algorithm and Computational Theory",
+                title: {en: "Dr", kh: "សាស្រ្តាចារ្យ"},
+                name: {en: "John Doe", kh: "ចន ដូ"},
+                position: {en: "Professor", kh: "គ្រូបង្រៀន"},
+                degrees: { en: "PHD MATHEMATICS", kh: "បណ្ឌិតវិទ្យាសាស្រ្តគណិតវិទ្យា" },
+                expert: { en: "Algorithm and Computational Theory", kh: "ទ្រឹស្តីអាល់ហ្គរីធម៍ និង ការគណនា" },
                 image: "/staff/vanda.jpg",
-                division: "Mathematics Division",
-                description:
-                    "Dr. LIN Mongkulsery specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.",
+                division: { en: "Mathematics Division", kh: "ផ្នែកគណិតវិទ្យា" },
+                description: {
+                    en: "Dr. LIN Mongkulsery specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.",
+                    kh: "លោក Dr. LIN Mongkulsery ជាអ្នកឯកទេសក្នុងប្រព័ន្ធចែកចាយ និងស្ថាបត្យកម្មកុំព្យូទ័រមេឃ។ គាត់មានបទពិសោធន៍ឧស្សាហកម្មយ៉ាងច្រើន និងរក្សាការសហការយ៉ាងសកម្មជាមួយក្រុមហ៊ុនបច្ចេកវិទ្យា។"
+                },
                 education: [
-                    "PhD in Statistics - University of Chicago (2019)",
-                    "MS in Applied Mathematics - Northwestern (2016)",
-                    "BS in Computer Science - UIUC (2014)",
+                    { en: "PhD in Statistics - University of Chicago (2019)", kh: "ឌុចតូរ ក្នុងវិទ្យាសាស្រ្តស្ថិតិ - សាកលវិទ្យាល័យ Chicago (2019)" },
+                    { en: "MS in Applied Mathematics - Northwestern (2016)", kh: "មេស្ទ័រ ក្នុងគណិតវិទ្យា អនុវត្ត - Northwestern (2016)" },
+                    { en: "BS in Computer Science - UIUC (2014)", kh: "បរិញ្ញាបត្រ ស្ថិតិវិទ្យា - UIUC (2014)" },
                 ],
-                tags: ["DATA SCIENCE", "STATISTICS", "ANALYTICS"],
-                research:
-                    "Predictive modeling, statistical machine learning, data visualization, and healthcare analytics applications.",
-                email: "",
-                phone: "",
-                office: "",
-                officeHour: ["Monday - Friday : 8:00 AM - 5:00 PM", "Appointment via Email or Phone Number"],
+                tags: [
+                    { en: "DATA SCIENCE", kh: "វិទ្យាសាស្រ្តទិន្នន័យ" },
+                    { en: "STATISTICS", kh: "ស្ថិតិ" },
+                    { en: "ANALYTICS", kh: "វិភាគទិន្នន័យ" }
+                ],
+                research: {
+                    en: "Predictive modeling, statistical machine learning, data visualization, and healthcare analytics applications.",
+                    kh: "ការម៉ូឌែលទាយទ្រង់, ការសិក្សាម៉ាស៊ីនស្ថិតិ, ការតំណាងទិន្នន័យ និងកម្មវិធីវិភាគទិន្នន័យសុខាភិបាល។"
+                },
+                email: "abc@gmial.com",
+                phone: "012345678",
+                office: { en: "Room 104", kh: "បន្ទប់ 104" },
+                officeHour: [
+                    { en: "Monday - Friday : 8:00 AM - 5:00 PM", kh: "ថ្ងៃច័ន្ទ - ថ្ងៃសុក្រ : 8:00 ព្រឹក - 5:00 ល្ងាច" },
+                    { en: "Appointment via Email or Phone Number", kh: "ណាត់ជួបតាមអ៊ីមែល ឬលេខទូរស័ព្ទ" }
+                ],
             },
         ],
         assistants: [
             {
-                title: "Mr",
-                name: "Sam Vanda",
-                position: "Assistant",
-                degrees: "PHD MATHEMATICS",
-                expert: "Algorithm and Computational Theory",
+                title: {en: "Mr", kh: "លោក"},
+                name: {en: "Sam Vanda", kh: "សំ វ៉ាន់ដា"},
+                position: {en: "Assistant", kh: "អគ្គលេខាធិការ"},
+                degrees: { en: "PHD MATHEMATICS", kh: "បណ្ឌិតវិទ្យាសាស្រ្តគណិតវិទ្យា" },
+                expert: { en: "Algorithm and Computational Theory", kh: "ទ្រឹស្តីអាល់ហ្គរីធម៍ និង ការគណនា" },
                 image: "/staff/vanda.jpg",
-                division: "Mathematics Division",
-                description:
-                    "Dr. LIN Mongkulsery specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.",
+                division: { en: "Mathematics Division", kh: "ផ្នែកគណិតវិទ្យា" },
+                description: {
+                    en: "Dr. LIN Mongkulsery specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.",
+                    kh: "លោក Dr. LIN Mongkulsery ជាអ្នកឯកទេសក្នុងប្រព័ន្ធចែកចាយ និងស្ថាបត្យកម្មកុំព្យូទ័រមេឃ។ គាត់មានបទពិសោធន៍ឧស្សាហកម្មយ៉ាងច្រើន និងរក្សាការសហការយ៉ាងសកម្មជាមួយក្រុមហ៊ុនបច្ចេកវិទ្យា។"
+                },
                 education: [
-                    "PhD in Statistics - University of Chicago (2019)",
-                    "MS in Applied Mathematics - Northwestern (2016)",
-                    "BS in Computer Science - UIUC (2014)",
+                    { en: "PhD in Statistics - University of Chicago (2019)", kh: "ឌុចតូរ ក្នុងវិទ្យាសាស្រ្តស្ថិតិ - សាកលវិទ្យាល័យ Chicago (2019)" },
+                    { en: "MS in Applied Mathematics - Northwestern (2016)", kh: "មេស្ទ័រ ក្នុងគណិតវិទ្យា អនុវត្ត - Northwestern (2016)" },
+                    { en: "BS in Computer Science - UIUC (2014)", kh: "បរិញ្ញាបត្រ ស្ថិតិវិទ្យា - UIUC (2014)" },
                 ],
-                tags: ["DATA SCIENCE", "STATISTICS", "ANALYTICS"],
-                research:
-                    "Predictive modeling, statistical machine learning, data visualization, and healthcare analytics applications.",
-                email: "",
-                phone: "",
-                office: "",
-                officeHour: ["Monday - Friday : 8:00 AM - 5:00 PM", "Appointment via Email or Phone Number"],
+                tags: [
+                    { en: "DATA SCIENCE", kh: "វិទ្យាសាស្រ្តទិន្នន័យ" },
+                    { en: "STATISTICS", kh: "ស្ថិតិ" },
+                    { en: "ANALYTICS", kh: "វិភាគទិន្នន័យ" }
+                ],
+                research: {
+                    en: "Predictive modeling, statistical machine learning, data visualization, and healthcare analytics applications.",
+                    kh: "ការម៉ូឌែលទាយទ្រង់, ការសិក្សាម៉ាស៊ីនស្ថិតិ, ការតំណាងទិន្នន័យ និងកម្មវិធីវិភាគទិន្នន័យសុខាភិបាល។"
+                },
+                email: "abc@gmial.com",
+                phone: "012345678",
+                office: { en: "Room 104", kh: "បន្ទប់ 104" },
+                officeHour: [
+                    { en: "Monday - Friday : 8:00 AM - 5:00 PM", kh: "ថ្ងៃច័ន្ទ - ថ្ងៃសុក្រ : 8:00 ព្រឹក - 5:00 ល្ងាច" },
+                    { en: "Appointment via Email or Phone Number", kh: "ណាត់ជួបតាមអ៊ីមែល ឬលេខទូរស័ព្ទ" }
+                ],
             },
             // {
             // name: "Ms. Sok Nary",
@@ -214,17 +335,23 @@ export default function AcademicSupportStaffSection() {
 
         <section className="w-full">
             <h1 className="text-3xl font-playfair_display text-black font-semibold">
-                Academic & Support Staff
+                {renderTextWithFont(language === "en" ? "Academic & Support Staff" : "បុគ្គលិកអប់រំនិងគាំទ្រ", language, "heading")}
             </h1>
             <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
             <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
             <p className="mt-6 text-lg text-[#767676] font-raleway">
-                Our department is home to a team of dedicated academic and support staff who are committed to excellence in education and research. 
-                With a diverse range of expertise and a passion for fostering student success, our faculty members bring a wealth of knowledge and experience to the classroom. 
-                From seasoned professors to enthusiastic assistants, each member of our team plays a vital role in creating a dynamic and supportive learning environment.
+                {renderTextWithFont(
+                language === "en"
+                    ? "Our department is home to a team of dedicated academic and support staff who are committed to excellence in education and research. With a diverse range of expertise and a passion for fostering student success, our faculty members bring a wealth of knowledge and experience to the classroom."
+                    : "មណ្ឌលរបស់យើងមានក្រុមបុគ្គលិកអប់រំនិងគាំទ្រដែលស្ម័គ្រចិត្តខ្ពស់ ចូលរួមក្នុងការផ្ដល់អប់រំ និងការស្រាវជ្រាវ។ ជាមួយនឹងជំនាញផ្សេងៗ និងក្តីស្រឡាញ់សម្រាប់ជំនួយនិស្សិត បុគ្គលិកនៃផ្នែកយើងផ្ដល់ចំណេះដឹង និងបទពិសោធន៍ដល់ថ្នាក់រៀន។",
+                language,
+                "body"
+                )}
             </p>
             <div className="mt-5">
-                <h1 className="text-xl font-raleway text-[#3A3B5C] font-bold">Organizational Chart</h1>
+                <h1 className="text-xl font-raleway text-[#3A3B5C] font-bold">
+                {renderTextWithFont(language === "en" ? "Organizational Chart" : "សមាសភាពគណៈរដ្ឋមន្រ្តី", language, "heading")}
+                </h1>
                 <div className="space-y-10 pt-5">
                     {/* Administrator  */}
                     <div className="flex flex-row justify-around items-center">
@@ -283,7 +410,7 @@ export default function AcademicSupportStaffSection() {
                             <X />
                             {/* Tooltip */}
                             <span className="absolute -top-8 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 transition-transform bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                                Exit the page
+                                {renderTextWithFont(language === "en" ? "Exit the page" : "ចាកចេញ", language, "body")}
                             </span>
                         </button>
 
@@ -304,31 +431,87 @@ export default function AcademicSupportStaffSection() {
                                     {/* Foreground profile image */}
                                     <img
                                         src={selectedStaff.image}
-                                        alt={selectedStaff.name}
+                                        alt={typeof selectedStaff.name === "string" ? selectedStaff.name : selectedStaff.name[language]}
                                         className="relative z-10 w-50 h-50 object-cover rounded-full mx-auto shadow-lg"
                                     />
                                 </div>
                                 <div className="p-5 space-y-2">
-                                    <h2 className="text-2xl font-bold text-[#3A3B5C]">{selectedStaff.title + ". " + selectedStaff.name}</h2>
-                                    <p className="text-[#C41E3A] font-semibold">{selectedStaff.position}</p>
-                                    <p className="text-[#767676] text-xs">{selectedStaff.division}</p>
-                                    <p className="text-black text-sm">{selectedStaff.description}</p>
+                                    <h2 className="text-2xl font-bold text-[#3A3B5C]">
+                                        {renderTextWithFont(
+                                            typeof selectedStaff.title === "string"
+                                                ? selectedStaff.title + ". " + selectedStaff.name
+                                                : `${selectedStaff.title[language]} ${
+                                                    typeof selectedStaff.name === "string"
+                                                        ? selectedStaff.name
+                                                        : selectedStaff.name[language]
+                                                }`,
+                                            language,
+                                            "heading"
+                                        )}
+                                    </h2>
+                                    <p className="text-[#C41E3A] font-semibold">
+                                        {renderTextWithFont(
+                                            typeof selectedStaff.position === "string"
+                                                ? selectedStaff.position
+                                                : selectedStaff.position[language],
+                                            language,
+                                            "body"
+                                        )}
+                                    </p>
+                                    <p className="text-[#767676] text-xs">
+                                        {renderTextWithFont(
+                                            typeof selectedStaff.division === "string"
+                                                ? selectedStaff.division || ""
+                                                : selectedStaff.division?.[language] || "",
+                                            language,
+                                            "body"
+                                        )}
+                                    </p>
+                                    <p className="text-black text-sm">
+                                        {renderTextWithFont(
+                                            typeof selectedStaff.description === "string"
+                                                ? selectedStaff.description || ""
+                                                : selectedStaff.description?.[language] || "",
+                                            language,
+                                            "body"
+                                        )}
+                                    </p>
                                     <p className="text-[#3A3B5C] text-sm font-semibold pt-3">EDUCATION & QUALIFICATIONS</p>
                                     <ul>
                                         {selectedStaff.education?.map((edu, idx) => (
-                                            <li key={idx} className="text-black text-sm list-disc list-inside font-medium">{edu}</li>
+                                            <li key={idx} className="text-black text-sm list-disc list-inside font-medium">
+                                                {renderTextWithFont(
+                                                    typeof edu === "string" ? edu : edu[language],
+                                                    language,
+                                                    "body"
+                                                )}
+                                            </li>
                                         ))}
                                     </ul>
                                     <div className="mt-2 flex flex-row space-x-2">
                                         {selectedStaff.tags?.map((tag, idx) => (
                                             <div className="px-2 py-1 border bg-[#C41E3A]/20 rounded-full w-fit" key={idx}>
-                                                <p key={idx} className="text-xs text-[#C41E3A] font-medium">{tag}</p>
+                                                <p key={idx} className="text-xs text-[#C41E3A] font-medium">
+                                                    {renderTextWithFont(
+                                                        typeof tag === "string" ? tag : tag[language],
+                                                        language,
+                                                        "body"
+                                                    )}
+                                                </p>
                                             </div>
                                         ))}
                                     </div>
                                     <div className="border w-full h-auto px-5 py-3 rounded-lg mt-4 bg-[#767676]/10">
                                         <h3 className="text-[#3A3B5C] font-bold text-sm">RESEARCH INTEREST</h3>
-                                        <p className="text-xs text-black pt-3">{selectedStaff.research}</p>
+                                        <p className="text-xs text-black pt-3">
+                                            {renderTextWithFont(
+                                                typeof selectedStaff.research === "string"
+                                                    ? selectedStaff.research || ""
+                                                    : selectedStaff.research?.[language] || "",
+                                                language,
+                                                "body"
+                                            )}
+                                        </p>
                                     </div>
                                     <div className="w-full h-auto p-5 rounded-lg mt-4 bg-[#767676]/10">
                                         <div className="grid grid-cols-10 gap-x-4 gap-y-2">
@@ -339,13 +522,27 @@ export default function AcademicSupportStaffSection() {
                                             <p className="col-span-8 text-[#3A3B5C] font-medium text-sm">{selectedStaff.phone}</p>
 
                                             <p className="col-span-2 text-[#3A3B5C] font-semibold text-sm">OFFICE:</p>
-                                            <p className="col-span-8 text-[#3A3B5C] font-medium text-sm">{selectedStaff.office}</p>
+                                            <p className="col-span-8 text-[#3A3B5C] font-medium text-sm">
+                                                {renderTextWithFont(
+                                                    typeof selectedStaff.office === "string"
+                                                        ? selectedStaff.office || ""
+                                                        : selectedStaff.office?.[language] || "",
+                                                    language,
+                                                    "body"
+                                                )}
+                                            </p>
                                         </div>
                                     </div>
                                     <div className="border w-full h-auto p-5 rounded-lg mt-4 bg-[#767676]/10">
                                         <h3 className="text-[#3A3B5C] font-bold text-sm">OFFICE HOUR:</h3>
                                         {selectedStaff.officeHour?.map((hour, idx) => (
-                                            <p key={idx} className="text-xs text-black pt-1">{hour}</p>
+                                            <p key={idx} className="text-xs text-black pt-1">
+                                                {renderTextWithFont(
+                                                    typeof hour === "string" ? hour : hour[language],
+                                                    language,
+                                                    "body"
+                                                )}
+                                            </p>
                                         ))}
                                     </div>
                                 </div>
@@ -368,21 +565,37 @@ interface StaffCardProps {
 function StaffCard({ staff, onClick }: StaffCardProps) {
   return (
     <div
-      className="rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] cursor-pointer"
+      className="rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] cursor-pointer min-w-[250px]"
       onClick={onClick}
     >
       <img
         src={staff.image}
-        alt={staff.name}
+        alt={typeof staff.name === "string" ? staff.name : staff.name.en}
         className="w-full h-48 object-cover rounded-t-xl"
       />
       <div className="text-center px-4 pb-6 pt-4 font-raleway space-y-2">
-        <h3 className="text-lg font-bold text-[#3A3B5C]">{staff.title + ". " + staff.name}</h3>
-        <p className="text-sm text-[#C41E3A] font-semibold">{staff.position}</p>
+        <h3 className="text-lg font-bold text-[#3A3B5C]">
+            {(typeof staff.title === "string" ? staff.title : staff.title[useLanguage().language])
+            + " " +
+            (typeof staff.name === "string" ? staff.name : staff.name[useLanguage().language])}
+        </h3>
+        <p className="text-sm text-[#C41E3A] font-semibold">
+          {typeof staff.position === "string"
+            ? staff.position
+            : staff.position[useLanguage().language]}
+        </p>
         <div className="px-2 border bg-[#C41E3A]/20 rounded-full w-fit mx-auto">
-          <p className="text-xs text-[#C41E3A] font-semibold">{staff.degrees}</p>
+          <p className="text-xs text-[#C41E3A] font-semibold">
+            {typeof staff.degrees === "string"
+              ? staff.degrees
+              : staff.degrees[useLanguage().language]}
+          </p>
         </div>
-        <p className="text-xs text-black mt-2 font-inter">{staff.expert}</p>
+        <p className="text-xs text-black mt-2 font-inter">
+          {typeof staff.expert === "string"
+            ? staff.expert
+            : staff.expert[useLanguage().language]}
+        </p>
       </div>
     </div>
   );
