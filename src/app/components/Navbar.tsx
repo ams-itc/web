@@ -298,7 +298,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="block xl:hidden absolute left-0 right-0 top-full bg-white shadow-xl border-t border-gray-200 z-50">
+        <div className="block absolute left-0 right-0 top-full bg-white shadow-xl border-t border-gray-200 z-50">
           <div className="px-6 py-4 space-y-1">
             {currentNav.map((item) => (
               <div key={item.title}>
