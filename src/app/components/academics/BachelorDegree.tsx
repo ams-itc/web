@@ -837,8 +837,10 @@ export default function BachelorDegree() {
 
         {/* Career Opportunities*/}
         <section className="mb-8">
-          <h2 className="text-xl font-extrabold mb-8 text-[#3A3B5C] font-raleway">
-            Career Opportunities
+          <h2 className={`text-xl font-extrabold mb-4 text-[#3A3B5C] ${ language === "en" ? "font-raleway" : "font-preahvihear" }`}>
+            {language === "en"
+              ? "Career Opportunities"
+              : "ឱកាសការងារ"}
           </h2>
 
           {program.career_opportunities.map((opportunity, idx) => (
@@ -880,8 +882,16 @@ export default function BachelorDegree() {
 
         {/* Learning Outcomes */}
         <section className="mb-5">
-          <h2 className="text-xl font-extrabold mb-8 text-[#3A3B5C] font-raleway">Learning Outcomes</h2>
-          <p className="text-[#2E2E2E] font-raleway">Upon completing the program, students will be able to:</p>
+          <h2 className={`text-xl font-extrabold mb-4 text-[#3A3B5C] ${ language === "en" ? "font-raleway" : "font-preahvihear" }`}>
+            {language === "en"
+              ? "Learning Outcomes"
+              : "លទ្ធផលរំពឹងទុកពីការសិក្សា"}
+          </h2>
+          <p className={`font-extrabold mb-2 text-[#2E2E2E] ${ language === "en" ? "font-raleway" : "font-preahvihear" }`}>
+            {language === "en"
+              ? "Upon completing the program, students will be able to:"
+              : "បន្ទាប់ពីបញ្ចប់កម្មវិធីនេះ និស្សិតនឹងមានសមត្ថភាព៖"}
+          </p>
           {program.learningOutcomes.map((outcome, index) => (
            <div
             key={index}
