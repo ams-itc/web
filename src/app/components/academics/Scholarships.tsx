@@ -62,7 +62,7 @@ export default function Scholarships() {
                     "មិនមានប្រវត្តិនៅក្រោមវិន័យសិក្សា",
                 ],
                 contact: {
-                    office: "ការិយាល័យនាយកដ្ឋាន៖ អាគារ F បន្ទប់ 103",
+                    office: "ការិយាល័យនាយកដ្ឋាន៖ អគារ F បន្ទប់ 103",
                     email: "amp@itc.edu.kh",
                     phone: "012 345 678",
                 },
@@ -108,7 +108,7 @@ export default function Scholarships() {
                     "មិនមានប្រវត្តិនៅក្រោមវិន័យសិក្សា",
                 ],
                 contact: {
-                    office: "ការិយាល័យនាយកដ្ឋាន៖ អាគារ F បន្ទប់ 103",
+                    office: "ការិយាល័យនាយកដ្ឋាន៖ អគារ F បន្ទប់ 103",
                     email: "amp@itc.edu.kh",
                     phone: "012 345 678",
                 },
@@ -154,7 +154,7 @@ export default function Scholarships() {
                     "មិនមានប្រវត្តិនៅក្រោមវិន័យសិក្សា",
                 ],
                 contact: {
-                    office: "ការិយាល័យនាយកដ្ឋាន៖ អាគារ F បន្ទប់ 103",
+                    office: "ការិយាល័យនាយកដ្ឋាន៖ អគារ F បន្ទប់ 103",
                     email: "amp@itc.edu.kh",
                     phone: "012 345 678",
                 },
