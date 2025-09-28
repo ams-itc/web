@@ -116,7 +116,7 @@ const calendarHolidays = {
   ],
   kh: [
     {
-      title: 'ទិវាឯករាជ្យចាតិ',
+      title: 'ទិវាឯករាជ្យជាតិ',
       date: 'ថ្ងៃច័ន្ទ ទី ៩ ខែធ្នូ ឆ្នាំ ២០២៤',
     },
     {
@@ -173,7 +173,7 @@ export default function AcademicCalendar() {
                         ${language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'}`}
           >
             <h2>
-              `${language === 'en' ? 'EVENTS' : 'ព្រឹត្តិការណ៍ និងបុណ្យជាតិ'}`
+              {language === 'en' ? 'EVENTS' : 'ព្រឹត្តិការណ៍ និងបុណ្យជាតិ'}
             </h2>
             <h2>{language === 'en' ? 'DATE' : 'កាលបរិច្ឆេទ'}</h2>
           </div>
@@ -210,7 +210,7 @@ export default function AcademicCalendar() {
             <div key={i} className="grid grid-cols-2 gap-y-5 py-2 space-y-5">
               {/* Title */}
               <div
-                className={`col-span-1 text-sm text-black ${language === 'en' ? 'font-reddit_sans' : 'font-kantumruy_pro'}`}
+                className={`col-span-1 text-sm text-black ${language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'}`}
               >
                 <p>{holiday.title}</p>
               </div>
