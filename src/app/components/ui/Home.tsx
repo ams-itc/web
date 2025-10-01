@@ -4,9 +4,21 @@ import { Link, useLocation } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 // Utility function to apply font based on language and character type
-function renderTextWithFont(text: string, language: "en" | "kh", type: "heading" | "body") {
+function renderTextWithFont(
+  text: string,
+  language: "en" | "kh",
+  type: "heading" | "body"
+) {
   if (language === "en") {
-    return <span className={type === "heading" ? "font-playfair_display" : "font-raleway"}>{text}</span>;
+    return (
+      <span
+        className={
+          type === "heading" ? "font-playfair_display" : "font-raleway"
+        }
+      >
+        {text}
+      </span>
+    );
   } else {
     // Split text into Khmer vs non-Khmer parts
     const parts = text.split(/([^\u1780-\u17FF]+)/); // match non-Khmer sequences
@@ -14,14 +26,13 @@ function renderTextWithFont(text: string, language: "en" | "kh", type: "heading"
       <>
         {parts.map((part, i) => {
           const isKhmer = /[\u1780-\u17FF]/.test(part);
-          const fontClass =
-            isKhmer
-              ? type === "heading"
-                ? "font-preahvihear"
-                : "font-kantumruy_pro"
-              : type === "heading"
-              ? "font-playfair_display"
-              : "font-raleway";
+          const fontClass = isKhmer
+            ? type === "heading"
+              ? "font-preahvihear"
+              : "font-kantumruy_pro"
+            : type === "heading"
+            ? "font-playfair_display"
+            : "font-raleway";
           return (
             <span key={i} className={fontClass}>
               {part}
@@ -46,19 +57,27 @@ export default function Home() {
   };
 
   return (
-    <section className="bg-white grid grid-cols-2 md:flex-row items-center justify-center gap-36 px-20 py-16">
+    <section className="bg-white grid grid-cols-2 md:flex-row items-center justify-center gap-12 px-20 py-16">
       <div className="max-w-xl space-y-6 col-span-1">
         <h1 className="text-5xl font-bold leading-tight text-gray-900">
-          {language === "en"
-            ? renderTextWithFont("Learning Today, Leading Tomorrow", language, "heading")
-            : (
-                <>
-                  <div className="space-y-4">
-                    <h1>{renderTextWithFont("រៀនសូត្រថ្ងៃនេះ", language, "heading")}</h1>
-                    <h1>{renderTextWithFont("ដឹកនាំថ្ងៃស្អែក", language, "heading")}</h1>
-                  </div>
-                </>
-              )}
+          {language === "en" ? (
+            renderTextWithFont(
+              "Learning Today, Leading Tomorrow",
+              language,
+              "heading"
+            )
+          ) : (
+            <>
+              <div className="space-y-4">
+                <h1>
+                  {renderTextWithFont("រៀនសូត្រថ្ងៃនេះ", language, "heading")}
+                </h1>
+                <h1>
+                  {renderTextWithFont("ដឹកនាំថ្ងៃស្អែក", language, "heading")}
+                </h1>
+              </div>
+            </>
+          )}
         </h1>
 
         <p className="text-lg text-gray-600 leading-relaxed">
@@ -91,7 +110,11 @@ export default function Home() {
           >
             {language === "en"
               ? renderTextWithFont("Meet the Faculty", language, "body")
-              : renderTextWithFont("ជួបសំណេះសំណាលជាមួយគ្រូបង្រៀន", language, "body")}
+              : renderTextWithFont(
+                  "ជួបសំណេះសំណាលជាមួយគ្រូបង្រៀន",
+                  language,
+                  "body"
+                )}
           </Link>
         </div>
       </div>

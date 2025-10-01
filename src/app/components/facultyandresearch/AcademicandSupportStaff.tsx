@@ -142,7 +142,7 @@ export default function AcademicSupportStaffSection() {
         professors: [
             {
                 title: {en: "Dr", kh: "សាស្រ្តាចារ្យ"},
-                name: {en: "John Doe", kh: "ចន ដូ"},
+                name: {en: "John Da", kh: "ចន ដា"},
                 position: {en: "Professor", kh: "គ្រូបង្រៀន"},
                 degrees: { en: "PHD MATHEMATICS", kh: "បណ្ឌិតវិទ្យាសាស្រ្តគណិតវិទ្យា" },
                 expert: { en: "Algorithm and Computational Theory", kh: "ទ្រឹស្តីអាល់ហ្គរីធម៍ និង ការគណនា" },
@@ -176,7 +176,7 @@ export default function AcademicSupportStaffSection() {
             },
             {
                 title: {en: "Dr", kh: "សាស្រ្តាចារ្យ"},
-                name: {en: "John Doe", kh: "ចន ដូ"},
+                name: {en: "John Da", kh: "ចន ដា"},
                 position: {en: "Professor", kh: "គ្រូបង្រៀន"},
                 degrees: { en: "PHD MATHEMATICS", kh: "បណ្ឌិតវិទ្យាសាស្រ្តគណិតវិទ្យា" },
                 expert: { en: "Algorithm and Computational Theory", kh: "ទ្រឹស្តីអាល់ហ្គរីធម៍ និង ការគណនា" },
@@ -210,7 +210,7 @@ export default function AcademicSupportStaffSection() {
             },
             {
                 title: {en: "Dr", kh: "សាស្រ្តាចារ្យ"},
-                name: {en: "John Doe", kh: "ចន ដូ"},
+                name: {en: "John Da", kh: "ចន ដា"},
                 position: {en: "Professor", kh: "គ្រូបង្រៀន"},
                 degrees: { en: "PHD MATHEMATICS", kh: "បណ្ឌិតវិទ្យាសាស្រ្តគណិតវិទ្យា" },
                 expert: { en: "Algorithm and Computational Theory", kh: "ទ្រឹស្តីអាល់ហ្គរីធម៍ និង ការគណនា" },
@@ -244,7 +244,7 @@ export default function AcademicSupportStaffSection() {
             },
             {
                 title: {en: "Dr", kh: "សាស្រ្តាចារ្យ"},
-                name: {en: "John Doe", kh: "ចន ដូ"},
+                name: {en: "John Da", kh: "ចន ដា"},
                 position: {en: "Professor", kh: "គ្រូបង្រៀន"},
                 degrees: { en: "PHD MATHEMATICS", kh: "បណ្ឌិតវិទ្យាសាស្រ្តគណិតវិទ្យា" },
                 expert: { en: "Algorithm and Computational Theory", kh: "ទ្រឹស្តីអាល់ហ្គរីធម៍ និង ការគណនា" },
