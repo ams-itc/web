@@ -200,7 +200,7 @@ export default function Navbar() {
               <NavLink
                 to={addLangToPath(item.url)}
                 className={({ isActive }) =>
-                  `inline-flex items-center px-3 text-sm font-medium rounded-md ${
+                  `inline-flex items-center px-3 text-sm font-medium rounded-md transition ${
                     isActive
                       ? "text-blue-600 bg-blue-50"
                       : "text-gray-700 hover:bg-gray-100"
@@ -246,11 +246,7 @@ export default function Navbar() {
                 language === "en" ? "ring-2 ring-blue-200 rounded" : ""
               }`}
             >
-              <img
-                src="/England.png"
-                alt="English"
-                className="w-8 rounded-xs"
-              />
+              <img src="/England.png" alt="English" className="w-8 rounded-xs" />
             </button>
             <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">
               English
