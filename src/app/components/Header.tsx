@@ -7,7 +7,7 @@ export default function Header() {
   const { language } = useLanguage();
 
   return (
-    <header className="w-full bg-white h-100px border-b border-gray-300 shadow-sm top-0 z-50">
+    <header className="relative w-full bg-white min-h-[80px] border-b border-gray-300 shadow-sm top-0 z-50">
       <div className="flex items-center justify-between w-full px-6 py-2">
         {/* Left side */}
         <div className="flex items-center space-x-2 w-1/3">
