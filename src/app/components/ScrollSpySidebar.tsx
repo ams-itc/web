@@ -37,7 +37,7 @@ const ScrollSpySidebar: React.FC<ScrollSpySidebarProps> = ({
           <button
             type="button"
             onClick={() => handleScroll(section.id)}
-            className={`text-base font-raleway text-left w-full ${
+            className={`text-sm font-raleway text-left w-full ${
               activeSection === section.id
                 ? "text-gray-700 font-bold"
                 : "text-black"

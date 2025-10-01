@@ -14,12 +14,12 @@ export default function Header() {
           <img
             src="/Institute_of_Technology_of_Cambodia_logo-removebg-preview.png"
             alt="ITC Logo"
-            className="h-20 w-20 object-contain border-r border-gray-500 pr-2"
+            className="h-15 w-18 object-contain border-r border-gray-500 pr-2"
           />
           <img
             src="/ams_logo.JPG"
             alt="AMS Logo"
-            className="w-20 object-contain pl-1"
+            className="w-18 object-contain pl-1"
           />
           <div className="w-3xs">
             {language === "en" ? (
