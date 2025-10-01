@@ -140,7 +140,7 @@ export default function Navbar() {
               <NavLink
                 to={addLangToPath(item.url)}
                 className={({ isActive }) =>
-                  `inline-flex items-center px-3 text-sm font-medium rounded-md transition ${
+                  `inline-flex items-center px-3 text-xs font-medium rounded-md transition ${
                     isActive
                       ? "text-blue-600 bg-blue-50"
                       : "text-gray-700 hover:bg-gray-100"
@@ -149,7 +149,7 @@ export default function Navbar() {
               >
                 <span
                   className={
-                    language === "kh" ? "font-kantumruy_pro text-base" : "font-raleway"
+                    language === "kh" ? "font-kantumruy_pro text-sm" : "font-raleway"
                   }
                 >
                   {item.title}
@@ -166,7 +166,7 @@ export default function Navbar() {
                   >
                     <span
                       className={
-                        language === "kh" ? "font-kantumruy_pro text-sm" : "font-raleway"
+                        language === "kh" ? "font-kantumruy_pro text-xs" : "font-raleway"
                       }
                     >
                       {subItem.title}
@@ -179,7 +179,7 @@ export default function Navbar() {
             <NavLink
               to={addLangToPath(item.url)}
               className={({ isActive }) =>
-                `inline-flex items-center px-3 text-sm font-medium rounded-md ${
+                `inline-flex items-center px-3 text-xs font-medium rounded-md ${
                   isActive
                     ? "text-blue-600 bg-blue-50"
                     : "text-gray-700 hover:bg-gray-100"
@@ -187,7 +187,7 @@ export default function Navbar() {
               }
             >
               <span
-                className={language === "kh" ? "font-kantumruy_pro text-base" : "font-raleway"}
+                className={language === "kh" ? "font-kantumruy_pro text-sm" : "font-raleway"}
               >
                 {item.title}
               </span>
@@ -206,11 +206,15 @@ export default function Navbar() {
               language === "kh" ? "ring-2 ring-blue-200 rounded" : ""
             }`}
           >
-            <img src="/Cambodia.png" alt="Khmer" className="w-8 rounded-xs" />
+            <img src="/Cambodia.png" alt="Khmer" className="w-7 rounded-xs" />
           </button>
           {/* Tooltip below */}
           <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">
-            Khmer
+            {
+              language === "en"
+              ? "Khmer"
+              : "ភាសាខ្មែរ"
+            }
           </span>
         </div>
 
@@ -224,11 +228,15 @@ export default function Navbar() {
               language === "en" ? "ring-2 ring-blue-200 rounded" : ""
             }`}
           >
-            <img src="/England.png" alt="English" className="w-8 rounded-xs" />
+            <img src="/England.png" alt="English" className="w-7 rounded-xs" />
           </button>
           {/* Tooltip below */}
           <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">
-            English
+            {
+              language === "en"
+              ? "English"
+              : "ភាសាអង់គ្លេស"
+            }
           </span>
         </div>
       </div>

@@ -67,7 +67,7 @@ export default function ReDALabSection() {
       </h1>
       <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
       <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
-      <p className="mt-6 text-lg text-[#767676]">
+      <p className="mt-6 text-base text-[#767676]">
         {renderTextWithFont(redaLabData[language].description, language, "body")}
       </p>
       <div className="mt-6">

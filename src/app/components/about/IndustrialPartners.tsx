@@ -8,7 +8,7 @@ function renderTextWithFont(
   type: "heading" | "body"
 ) {
   if (language === "en") {
-    return <span className={type === "heading" ? "font-playfair_display" : "font-raleway"}>{text}</span>;
+    return <span className={type === "heading" ? "font-raleway" : "font-raleway"}>{text}</span>;
   } else {
     const parts = text.split(/([^\u1780-\u17FF]+)/); // match non-Khmer sequences
     return (
@@ -57,12 +57,12 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 
   return (
     <div className="pt-10 w-full">
-      <h1 className="text-3xl text-black font-semibold">
-        {renderTextWithFont(
-          language === "en" ? "Industrial Partners" : "ដៃគូឧស្សាហកម្ម",
-          language,
-          "heading"
-        )}
+      <h1 className={`text-3xl text-black font-semibold ${language === "en" ? "font-playfair_display" : "font-preahvihear"}`}>
+        {
+          language === "en" 
+          ? "Industrial Partners" 
+          : "ដៃគូឧស្សាហកម្ម"
+        }
       </h1>
       <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
       <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />

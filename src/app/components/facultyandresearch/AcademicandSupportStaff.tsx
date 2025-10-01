@@ -415,58 +415,50 @@ export default function AcademicSupportStaffSection() {
                         </button>
 
                         {/* Staff Info */}
-                        <div className="max-h-[800px] overflow-y-auto rounded-2xl bg-white shadow-lg scrollbar-hidden">
+                        <div className="max-h-[90vh] overflow-y-auto rounded-2xl bg-white shadow-lg scrollbar-hidden">
                             <div>
-                                <div className="relative py-8 rounded-t-2xl">
-                                    {/* Background image */}
-                                    <img
-                                        src="/staff/background.png"
-                                        alt="background"
-                                        className="absolute inset-0 w-full h-full object-cover rounded-t-2xl"
-                                    />
-
-                                {/* Overlay for dimming (optional) */}
-                                <div className="absolute inset-0 bg-black/30 rounded-t-2xl"></div>
-
+                                <div className="grid grid-cols-3 items-center pt-5">
                                     {/* Foreground profile image */}
-                                    <img
-                                        src={selectedStaff.image}
-                                        alt={typeof selectedStaff.name === "string" ? selectedStaff.name : selectedStaff.name[language]}
-                                        className="relative z-10 w-50 h-50 object-cover rounded-full mx-auto shadow-lg"
-                                    />
+                                    <div className="col-span-1">
+                                        <img
+                                            src={selectedStaff.image}
+                                            alt={typeof selectedStaff.name === "string" ? selectedStaff.name : selectedStaff.name[language]}
+                                            className="relative z-10 w-45 object-cover rounded-full mx-auto shadow-lg"
+                                        />
+                                    </div>
+                                    <div className="col-span-2 px-10 space-y-3">
+                                        <h2 className={`text-2xl md:text-3xl font-semibold text-[#3A3B5C] ${language === "en" ? "font-raleway" : "font-preahvihear"}`}>
+                                        {typeof selectedStaff.title === "string"
+                                            ? `${selectedStaff.title}. ${selectedStaff.name}`
+                                            : `${selectedStaff.title[language]} ${
+                                                typeof selectedStaff.name === "string"
+                                                ? selectedStaff.name
+                                                : selectedStaff.name[language]
+                                            }`}
+                                        </h2>
+                                        <p className="text-[#C41E3A] font-semibold">
+                                            {renderTextWithFont(
+                                                typeof selectedStaff.position === "string"
+                                                    ? selectedStaff.position
+                                                    : selectedStaff.position[language],
+                                                language,
+                                                "body"
+                                            )}
+                                        </p>
+                                        <p className="text-[#767676] text-sm">
+                                            {renderTextWithFont(
+                                                typeof selectedStaff.division === "string"
+                                                    ? selectedStaff.division || ""
+                                                    : selectedStaff.division?.[language] || "",
+                                                language,
+                                                "body"
+                                            )}
+                                        </p>
+                                    </div>
+
                                 </div>
                                 <div className="p-5 space-y-2">
-                                    <h2 className="text-2xl font-bold text-[#3A3B5C]">
-                                        {renderTextWithFont(
-                                            typeof selectedStaff.title === "string"
-                                                ? selectedStaff.title + ". " + selectedStaff.name
-                                                : `${selectedStaff.title[language]} ${
-                                                    typeof selectedStaff.name === "string"
-                                                        ? selectedStaff.name
-                                                        : selectedStaff.name[language]
-                                                }`,
-                                            language,
-                                            "heading"
-                                        )}
-                                    </h2>
-                                    <p className="text-[#C41E3A] font-semibold">
-                                        {renderTextWithFont(
-                                            typeof selectedStaff.position === "string"
-                                                ? selectedStaff.position
-                                                : selectedStaff.position[language],
-                                            language,
-                                            "body"
-                                        )}
-                                    </p>
-                                    <p className="text-[#767676] text-xs">
-                                        {renderTextWithFont(
-                                            typeof selectedStaff.division === "string"
-                                                ? selectedStaff.division || ""
-                                                : selectedStaff.division?.[language] || "",
-                                            language,
-                                            "body"
-                                        )}
-                                    </p>
+                                    
                                     <p className="text-black text-sm">
                                         {renderTextWithFont(
                                             typeof selectedStaff.description === "string"
@@ -491,7 +483,7 @@ export default function AcademicSupportStaffSection() {
                                     <div className="mt-2 flex flex-row space-x-2">
                                         {selectedStaff.tags?.map((tag, idx) => (
                                             <div className="px-2 py-1 border bg-[#C41E3A]/20 rounded-full w-fit" key={idx}>
-                                                <p key={idx} className="text-xs text-[#C41E3A] font-medium">
+                                                <p key={idx} className="text-xs text-[#C41E3A] font-bold">
                                                     {renderTextWithFont(
                                                         typeof tag === "string" ? tag : tag[language],
                                                         language,
@@ -516,7 +508,12 @@ export default function AcademicSupportStaffSection() {
                                     <div className="w-full h-auto p-5 rounded-lg mt-4 bg-[#767676]/10">
                                         <div className="grid grid-cols-10 gap-x-4 gap-y-2">
                                             <p className="col-span-2 text-[#3A3B5C] font-semibold text-sm">EMAIL:</p>
-                                            <p className="col-span-8 text-[#3A3B5C] font-medium text-sm">{selectedStaff.email}</p>
+                                            <a 
+                                                href={`mailto:${selectedStaff.email}`}
+                                                className="col-span-8 text-[#3A3B5C] font-medium text-sm"
+                                            >
+                                                {selectedStaff.email}
+                                            </a>
 
                                             <p className="col-span-2 text-[#3A3B5C] font-semibold text-sm">PHONE:</p>
                                             <p className="col-span-8 text-[#3A3B5C] font-medium text-sm">{selectedStaff.phone}</p>
