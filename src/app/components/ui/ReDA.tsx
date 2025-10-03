@@ -64,7 +64,7 @@ export default function ResearchClubs() {
       {/* Title */}
       <div className="text-center max-w-3xl px-4 space-y-4">
         <h2
-          className={`text-3xl md:text-4xl font-bold text-gray-900 ${
+          className={`text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 ${
             language === "en" ? "font-playfair_display" : "font-preahvihear"
           }`}
         >
@@ -73,7 +73,7 @@ export default function ResearchClubs() {
             : "មន្ទីរស្រាវជ្រាវ និងវិភាគទិន្នន័យ"}
         </h2>
         <p
-          className={`text-gray-600 text-base leading-relaxed ${
+          className={`text-gray-600 text-xs md:text-sm lg:text-base leading-relaxed ${
             language === "en" ? "font-raleway" : "font-kantumruy_pro"
           }`}
         >
@@ -88,35 +88,33 @@ export default function ResearchClubs() {
         <div className="absolute top-0 left-0 h-full w-8 bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
 
         {/* Swiper */}
-        <Swiper
-          modules={[Autoplay]}
-          autoplay={{ delay: 4000, disableOnInteraction: false }}
-          slidesPerView={1}
-          slidesPerGroup={1}
-          spaceBetween={15}
-          centeredSlides
-          loop={false}
-          onReachEnd={(swiper) => {
-            setTimeout(() => {
-              swiper.slideTo(0, 500); // Quickly reverse to the first card
-            }, 1000); // Delay before reversing
-          }}
-          grabCursor={true}
-          breakpoints={{
-            480: { slidesPerView: 1.2, slidesPerGroup: 1, spaceBetween: 15 },
-            640: { slidesPerView: 1.5, slidesPerGroup: 1, spaceBetween: 20 },
-            768: {
-              slidesPerView: 2,
-              slidesPerGroup: 1,
-              spaceBetween: 20,
-              centeredSlides: false,
-            },
-            1024: { slidesPerView: 3, slidesPerGroup: 1, spaceBetween: 25 },
-            1440: { slidesPerView: 4, slidesPerGroup: 1, spaceBetween: 30 },
-          }}
-          autoHeight={false}
-          className="w-full max-w-[95vw] md:max-w-[90vw] lg:max-w-6xl mx-auto !overflow-visible relative pb-12 px-4"
-        >
+          <Swiper
+            modules={[Autoplay]}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            slidesPerView={1}
+            slidesPerGroup={1}
+            spaceBetween={15}
+            centeredSlides
+            loop={false}
+            onReachEnd={(swiper) => {
+              setTimeout(() => {
+                swiper.slideTo(0, 500); // Quickly reverse to the first card
+              }, 1000);
+            }}
+            grabCursor={true}
+            breakpoints={{
+              // Always 1 card until desktop
+              0: { slidesPerView: 1, slidesPerGroup: 1, spaceBetween: 15 },
+              640: { slidesPerView: 1, slidesPerGroup: 1, spaceBetween: 20 },
+              768: { slidesPerView: 1, slidesPerGroup: 1, spaceBetween: 20 },
+              // Desktop+
+              1024: { slidesPerView: 2, slidesPerGroup: 1, spaceBetween: 25 },
+              1280: { slidesPerView: 3, slidesPerGroup: 1, spaceBetween: 25 },
+              1440: { slidesPerView: 4, slidesPerGroup: 1, spaceBetween: 30 },
+            }}
+            autoHeight={false}
+            className="w-full max-w-[60vw] md:max-w-[50vw] lg:max-w-6xl mx-auto !overflow-visible relative pb-12 px-4"
+          >
           {clubs.map((club, idx) => (
             <SwiperSlide
               key={idx}
@@ -182,7 +180,7 @@ export default function ResearchClubs() {
       {/* Collaborate with Us */}
       <div className="bg-[#3A3B5C] text-white rounded-xl p-4 sm:p-6 shadow-md flex flex-col items-center w-[95%] max-w-6xl mx-auto mt-8 sm:mt-12">
         <h3
-          className={`text-2xl font-semibold mb-2 ${
+          className={`text-lg md:text-xl lg:text-2xl font-semibold mb-2 ${
             language === "en" ? "font-raleway" : "font-kantumruy_pro"
           }`}
         >

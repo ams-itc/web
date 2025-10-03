@@ -175,7 +175,7 @@ export default function AcademicPrograms() {
 
       {/* Cards */}
       {/* Desktop Grid */}
-      <div className="hidden md:grid grid-cols-3 gap-10">
+      <div className="hidden lg:grid grid-cols-3 gap-10">
         {cards.map((card, index) => (
           <div
             key={index}

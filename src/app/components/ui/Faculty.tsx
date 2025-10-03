@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useRef } from "react";
 import { ExternalLink } from "lucide-react";
 import { Swiper, SwiperSlide, type SwiperClass } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -142,7 +142,7 @@ export default function FacultySection() {
   <div className="grid grid-cols-2 gap-x-3">
     <div className="col-span-1 space-y-3">
       <h3
-        className={`text-sm font-bold text-gray-900 ${
+        className={`text-sm md:text-base lg:text-xl font-bold text-gray-900 ${
           language === "en" ? "font-raleway" : "font-preahvihear"
         }`}
       >
@@ -150,7 +150,7 @@ export default function FacultySection() {
       </h3>
 
       <p
-        className={`text-xs font-medium text-gray-700 ${
+        className={`text-xs md:text-sm lg:text-base font-medium text-gray-700 ${
           language === "en" ? "font-raleway" : "font-kantumruy_pro"
         }`}
       >
@@ -158,7 +158,7 @@ export default function FacultySection() {
       </p>
 
       <p
-        className={`italic text-black text-xs ${
+        className={`italic text-black text-xs md:text-sm lg:text-base${
           language === "en" ? "font-raleway" : "font-kantumruy_pro"
         }`}
       >
@@ -168,7 +168,7 @@ export default function FacultySection() {
       </p>
       <a
         href={member.profileUrl}
-        className={`inline-flex items-center text-[#C41E3A] font-semibold hover:underline text-xs ${
+        className={`inline-flex items-center text-[#C41E3A] font-semibold hover:underline text-xs md:text-sm lg:text-base ${
           language === "en" ? "font-raleway" : "font-kantumruy_pro"
         }`}
       >
@@ -178,7 +178,7 @@ export default function FacultySection() {
     </div>
     <div className="col-span-1">
       <p
-        className={`text-gray-600 leading-relaxed text-xs/4 ${
+        className={`text-gray-600 leading-relaxed text-xs/4 md:text-sm/5 lg:text-base/6 ${
           language === "en" ? "font-reddit_sans" : "font-kantumruy_pro"
         }`}
       >
