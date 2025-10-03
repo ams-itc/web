@@ -83,13 +83,13 @@ export default function About() {
   const { language } = useLanguage();
 
   return (
-    <div className="px-6 md:px-16 lg:px-24 py-8 bg-gray-50 min-h-screen">
+    <div className="px-6 md:px-16 lg:px-24 py-8 bg-gray-50">
       {/* About AMS */}
       <section className="text-center max-w-3xl mx-auto mb-10">
-        <h2 className="text-4xl font-bold mb-4 text-[#2E2E2E]">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-[#2E2E2E]">
           {renderTextWithFont(language === "en" ? "About AMS" : "អំពី AMS", language, "heading")}
         </h2>
-        <p className="text-[#4d4d4d] leading-relaxed">
+        <p className="text-[#4d4d4d] leading-relaxed text-sm md:text-base">
           {renderTextWithFont(
             language === "en"
               ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
@@ -101,21 +101,23 @@ export default function About() {
       </section>
 
       {/* Stats */}
-      <section className="grid grid-cols-2 md:grid-cols-5 gap-6 mb-10">
+      <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-6 mb-10">
         {statsCards.map((card, idx) => {
           const Icon = card.icon;
           return (
             <div
               key={idx}
-              className="bg-white p-6 rounded-lg shadow-md text-center transform transition duration-300 hover:scale-105 hover:shadow-xl"
+              className="bg-white p-4 sm:p-5 md:p-6 rounded-lg shadow-md text-center transform transition duration-300 hover:scale-105 hover:shadow-xl"
             >
-              <Icon className="mx-auto h-10 w-10 text-red-600 mb-2" />
-              <p className="text-2xl font-medium text-[#3A3B5C] font-inter">{card.value}</p>
+              <Icon className="mx-auto h-8 sm:h-9 md:h-10 w-8 sm:w-9 md:w-10 text-red-600 mb-1 sm:mb-2 md:mb-2" />
+              <p className="text-xl sm:text-2xl md:text-2xl font-medium text-[#3A3B5C] font-inter mb-1">
+                {card.value}
+              </p>
               <p
                 className={
                   language === "en"
-                    ? "text-gray-600 font-medium"
-                    : "text-gray-600 font-kantumruy_pro font-medium"
+                    ? "text-sm sm:text-base md:text-sm text-gray-600 font-medium"
+                    : "text-sm sm:text-base md:text-sm text-gray-600 font-kantumruy_pro font-medium"
                 }
               >
                 {renderTextWithFont(card.label[language], language, "body")}
@@ -126,13 +128,33 @@ export default function About() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-startn">
         {/* Text */}
-        <div className="content-start">
-          <h3 className="text-3xl font-bold mb-4 text-[#2E2E2E]">
-            {renderTextWithFont(language === "en" ? "Why Choose Us?" : "ហេតុអ្វីបានជាជ្រើសរើសយើង?", language, "heading")}
+        <div className="order-1 md:order-1 content-start">
+          <h3 className="text-xl sm:text-2xl md:text-3xl  font-bold text-[#2E2E2E] mb-4">
+            {renderTextWithFont(
+              language === "en"
+                ? "Why Choose Us?"
+                : "ហេតុអ្វីបានជាជ្រើសរើសយើង?",
+              language,
+              "heading"
+            )}
           </h3>
-          <p className="text-gray-600 mb-6">
+
+          {/* Desktop image between heading and paragraph */}
+          <div className="lg:hidden flex mb-6">
+            <img
+              src="/students.jpg"
+              alt={
+                language === "en"
+                  ? "Students working together"
+                  : "និស្សិតកំពុងធ្វើការងារជាក្រុម"
+              }
+              className="rounded-lg shadow-lg object-cover w-full"
+            />
+          </div>
+
+          <p className="text-gray-600 mb-6 text-sm md:text-base">
             {renderTextWithFont(
               language === "en"
                 ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
@@ -141,19 +163,24 @@ export default function About() {
               "body"
             )}
           </p>
-          <ul className="list-disc list-inside text-gray-700 space-y-2">
+
+          <ul className="list-disc list-inside text-gray-700 space-y-2 text-sm md:text-base">
             {whyChooseUsList[language].map((item, idx) => (
               <li key={idx}>{renderTextWithFont(item, language, "body")}</li>
             ))}
           </ul>
         </div>
 
-        {/* Image */}
-        <div className="content-center">
+        {/* Mobile/Tablet image below text */}
+        <div className="order-2 hidden lg:flex justify-center">
           <img
             src="/students.jpg"
-            alt={language === "en" ? "Students working together" : "និស្សិតកំពុងធ្វើការងារជាក្រុម"}
-            className="rounded-lg shadow-lg object-cover"
+            alt={
+              language === "en"
+                ? "Students working together"
+                : "និស្សិតកំពុងធ្វើការងារជាក្រុម"
+            }
+            className="rounded-lg shadow-lg object-cover w-full"
           />
         </div>
       </section>

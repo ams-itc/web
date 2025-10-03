@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Navbar from "./Navbar";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -7,29 +7,62 @@ export default function Header() {
   const { language } = useLanguage();
 
   return (
-    <header className="relative w-full bg-white min-h-[80px] border-b border-gray-300 shadow-sm top-0 z-50">
-      <div className="flex items-center justify-between w-full px-6 py-2">
-        {/* Left side */}
-        <div className="flex items-center space-x-2 w-1/3">
+    <header className="relative w-full bg-white min-h-[70px] sm:min-h-[80px] border-b border-gray-300 shadow-sm top-0 z-50">
+      <div className="flex items-center justify-between w-full px-3 sm:px-6 py-2">
+        {/* Left side: Laptop / Tablet / iPad */}
+        <div className="hidden sm:flex items-center space-x-2 w-2/3 sm:w-auto">
           <img
             src="/Institute_of_Technology_of_Cambodia_logo-removebg-preview.png"
             alt="ITC Logo"
-            className="h-15 w-18 object-contain border-r border-gray-500 pr-2"
+            className="h-10 sm:h-12 w-auto object-contain border-r border-gray-500 pr-2"
           />
           <img
             src="/ams_logo.JPG"
             alt="AMS Logo"
-            className="w-18 object-contain pl-1"
+            className="h-8 sm:h-12 w-auto object-contain pl-1"
           />
-          <div className="w-3xs">
+          {/* Department Name */}
+          <div className="ml-2">
             {language === "en" ? (
-              <h2 className="text-base font-bold text-black font-playfair_display">
-                Department of Applied Mathematics and Statistics
+              <h2 className="text-xs sm:text-base font-bold text-black font-playfair_display leading-tight">
+                Department of<br />
+                Applied Mathematics<br />
+                and Statistics
               </h2>
             ) : (
-              <h2 className="text-base font-bold text-black font-moul leading-snug">
+              <h2 className="text-sm sm:text-base md:text-lg font-bold text-black font-moul leading-tight">
                 ដេប៉ាតឺម៉ង់ <br />
-                គណិតវិទ្យាអនុវត្ត និងស្ថិតិ
+                គណិតវិទ្យាអនុវត្ត <br />
+                និងស្ថិតិ
+              </h2>
+            )}
+          </div>
+        </div>
+
+        {/* Left side: Mobile / Phone */}
+        <div className="flex sm:hidden items-center space-x-2">
+          <img
+            src="/Institute_of_Technology_of_Cambodia_logo-removebg-preview.png"
+            alt="ITC Logo"
+            className="h-8 w-auto object-contain border-r border-gray-500 pr-1"
+          />
+          <img
+            src="/ams_logo.JPG"
+            alt="AMS Logo"
+            className="h-6 w-auto object-contain pl-1"
+          />
+          <div className="ml-1">
+            {language === "en" ? (
+              <h2 className="text-xs font-bold text-black font-playfair_display leading-tight">
+                Department of <br />
+                Applied Mathematics <br />
+                and Statistics
+              </h2>
+            ) : (
+              <h2 className="text-xs font-bold text-black font-moul leading-tight">
+                ដេប៉ាតឺម៉ង់ <br />
+                គណិតវិទ្យា <br />
+                អនុវត្ត និងស្ថិតិ
               </h2>
             )}
           </div>
