@@ -149,7 +149,7 @@ export default function Navbar() {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden 2xl:flex space-x-2">
+      <nav className="hidden xl:flex space-x-2">
         {currentNav.map((item) => (
           <div key={item.title} className="relative group">
             {item.items ? (
@@ -167,8 +167,8 @@ export default function Navbar() {
                   <span
                     className={
                       language === "kh"
-                        ? "font-kantumruy_pro text-base"
-                        : "font-raleway"
+                        ? "font-kantumruy_pro text-sm"
+                        : "font-raleway text-sm"      
                     }
                   >
                     {item.title}
@@ -181,13 +181,13 @@ export default function Navbar() {
                     <NavLink
                       key={subItem.title}
                       to={addLangToPath(subItem.url)}
-                      className="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     >
                       <span
                         className={
                           language === "kh"
                             ? "font-kantumruy_pro text-sm"
-                            : "font-raleway"
+                            : "font-raleway text-sm"
                         }
                       >
                         {subItem.title}
@@ -210,8 +210,8 @@ export default function Navbar() {
                 <span
                   className={
                     language === "kh"
-                      ? "font-kantumruy_pro text-base"
-                      : "font-raleway"
+                      ? "font-kantumruy_pro text-sm"
+                      : "font-raleway text-sm"
                   }
                 >
                   {item.title}
@@ -223,6 +223,7 @@ export default function Navbar() {
 
         {/* Desktop Language Switcher */}
         <div className="flex items-center space-x-2 pl-1">
+          {/* Khmer */}
           <div className="relative group">
             <button
               onClick={() => setLanguage("kh")}
@@ -232,13 +233,18 @@ export default function Navbar() {
             >
               <img src="/Cambodia.png" alt="Khmer" className="w-8 rounded-xs" />
             </button>
-            <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">
-              Khmer
+            <span className={`absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 ${language === "en" ? "font-reddit_sans font-medium" : "font-kantumruy_pro font-semibold"}`}>
+              {
+                language === "en"
+                ? "Khmer"
+                : "ភាសាខ្មែរ"
+              }
             </span>
           </div>
 
           <span className="border border-black h-7"></span>
 
+          {/* English */}
           <div className="relative group">
             <button
               onClick={() => setLanguage("en")}
@@ -248,15 +254,19 @@ export default function Navbar() {
             >
               <img src="/England.png" alt="English" className="w-8 rounded-xs" />
             </button>
-            <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">
-              English
+            <span className={`absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 ${language === "en" ? "font-reddit_sans font-medium" : "font-kantumruy_pro font-semibold"}`}>
+              {
+                language === "en"
+                ? "English"
+                : "ភាសាអង់គ្លេស"
+              }
             </span>
           </div>
         </div>
       </nav>
 
       {/* Mobile Menu Button */}
-      <div className="2xl:hidden flex items-center space-x-4">
+      <div className="xl:hidden flex items-center space-x-4">
         {/* Mobile Language Switcher */}
         <div className="flex items-center space-x-2">
           <button

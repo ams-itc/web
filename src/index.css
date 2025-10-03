@@ -179,3 +179,10 @@ html {
 .scrollbar-hidden::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
+
+.swiper-pagination {
+  position: relative !important;  
+  bottom: 0 !important;           /* stick under the swiper */
+  margin-top: 1rem;               /* spacing below cards */
+  text-align: center !important;  /* keep centered */
+}

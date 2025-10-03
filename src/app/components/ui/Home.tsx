@@ -2,10 +2,11 @@
 
 import { Link, useLocation } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import type { ReactNode } from "react";
 
 // Utility function to apply font based on language and character type
 function renderTextWithFont(
-  text: string,
+  text: string | ReactNode,
   language: "en" | "kh",
   type: "heading" | "body"
 ) {
@@ -21,7 +22,7 @@ function renderTextWithFont(
     );
   } else {
     // Split text into Khmer vs non-Khmer parts
-    const parts = text.split(/([^\u1780-\u17FF]+)/); // match non-Khmer sequences
+    const parts = (text as string).split(/([^\u1780-\u17FF]+)/); // match non-Khmer sequences
     return (
       <>
         {parts.map((part, i) => {
@@ -57,30 +58,38 @@ export default function Home() {
   };
 
   return (
-    <section className="bg-white grid grid-cols-2 md:flex-row items-center justify-center gap-12 px-20 py-16">
-      <div className="max-w-xl space-y-6 col-span-1">
-        <h1 className="text-5xl font-bold leading-tight text-gray-900">
+    <section className="bg-white flex flex-col lg:flex-row items-center justify-center gap-12 px-6 md:px-20 py-16">
+
+      {/* Image */}
+      <div className="order-1 lg:order-2 w-full lg:w-1/2 flex justify-center mb-8 lg:mb-0">
+        <img
+          src="/campus.jpg"
+          alt={language === "en" ? "AMS Building" : "អគាររបស់ AMS"}
+          className="rounded-lg shadow-xl w-full max-w-[500px] object-cover"
+        />
+      </div>
+
+      {/* Text */}
+      <div className="max-w-screen space-y-6 order-2 md:order-1 w-full lg:w-1/2">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium sm:font-semibold md:font-bold leading-tight text-gray-900">
           {language === "en" ? (
             renderTextWithFont(
-              "Learning Today, Leading Tomorrow",
+              <>
+                Learning Today,<br />
+                Leading Tomorrow
+              </>,
               language,
               "heading"
             )
           ) : (
-            <>
-              <div className="space-y-4">
-                <h1>
-                  {renderTextWithFont("រៀនសូត្រថ្ងៃនេះ", language, "heading")}
-                </h1>
-                <h1>
-                  {renderTextWithFont("ដឹកនាំថ្ងៃស្អែក", language, "heading")}
-                </h1>
-              </div>
-            </>
+            <div className="space-y-4">
+              <h1>{renderTextWithFont("រៀនសូត្រថ្ងៃនេះ", language, "heading")}</h1>
+              <h1>{renderTextWithFont("ដឹកនាំថ្ងៃស្អែក", language, "heading")}</h1>
+            </div>
           )}
         </h1>
 
-        <p className="text-lg text-gray-600 leading-relaxed">
+        <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
           {language === "en"
             ? renderTextWithFont(
                 "Through world-class instruction and hands-on research opportunities, we prepare students at every level to excel in data-driven fields and contribute meaningfully to science, technology, and society.",
@@ -94,10 +103,10 @@ export default function Home() {
               )}
         </p>
 
-        <div className="flex space-x-4">
+        <div className="flex gap-4 flex-wrap">
           <Link
             to={addLangToPath("/academics")}
-            className="px-6 py-3 bg-[#3A3B5C] rounded-md shadow hover:bg-[#62649d] transition font-raleway text-white font-semibold"
+            className="px-4 py-3 bg-[#3A3B5C] rounded-2xl shadow hover:bg-[#62649d] transition font-raleway text-white font-semibold text-center text-xs sm:text-sm md:text-base inline-flex"
           >
             {language === "en"
               ? renderTextWithFont("Explore Our Programs →", language, "body")
@@ -106,7 +115,7 @@ export default function Home() {
 
           <Link
             to={addLangToPath("/faculty-and-research")}
-            className="px-6 py-3 border border-[#C41E3A] rounded-md hover:bg-red-50 transition font-raleway text-[#C41E3A] font-semibold"
+            className="px-4 py-3 border border-[#C41E3A] rounded-2xl hover:bg-red-50 transition font-raleway text-[#C41E3A] font-semibold text-center text-xs sm:text-sm md:text-base inline-flex"
           >
             {language === "en"
               ? renderTextWithFont("Meet the Faculty", language, "body")
@@ -117,14 +126,6 @@ export default function Home() {
                 )}
           </Link>
         </div>
-      </div>
-
-      <div className="mt-5 md:mt-0 col-span-1">
-        <img
-          src="/campus.jpg"
-          alt={language === "en" ? "AMS Building" : "អគាររបស់ AMS"}
-          className="rounded-lg shadow-xl/50 w-500 object-cover"
-        />
       </div>
     </section>
   );

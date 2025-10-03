@@ -3,11 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import { ExternalLink } from "lucide-react";
 import { Swiper, SwiperSlide, type SwiperClass } from "swiper/react";
-import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -71,24 +71,7 @@ const facultyMembers = [
   },
 ];
 
-
 export default function FacultySection() {
-  const [current, setCurrent] = useState(0);
-  const swiperRef = useRef<SwiperClass | null>(null);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % facultyMembers.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    if (swiperRef.current) {
-      swiperRef.current.slideTo(current);
-    }
-  }, [current]);
-
   const { language } = useLanguage();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -99,19 +82,21 @@ export default function FacultySection() {
     return `${path}?${newParams.toString()}`;
   };
 
+  const swiperRef = useRef<SwiperClass | null>(null);
+
   return (
     <section className="bg-gray-50 px-8 md:px-20 py-10">
       {/* Title */}
       <div className="text-center max-w-3xl mx-auto space-y-4 mb-10">
         <h2
-          className={`text-3xl md:text-4xl font-bold text-gray-900 ${
+          className={`text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 ${
             language === "en" ? "font-playfair_display" : "font-preahvihear"
           }`}
         >
           {language === "en" ? "Meet Our Faculty Members" : "ជួបជាមួយសាស្រ្តាចារ្យរបស់យើង"}
         </h2>
         <p
-          className={`text-gray-600 text-base leading-relaxed ${
+          className={`text-gray-600 text-xs md:text-sm lg:text-base leading-relaxed ${
             language === "en" ? "font-raleway" : "font-kantumruy_pro"
           }`}
         >
@@ -123,18 +108,89 @@ export default function FacultySection() {
 
       {/* Swiper Carousel */}
       <Swiper
-        modules={[Autoplay, Navigation, Pagination]}
+        modules={[Autoplay, Pagination]}
         spaceBetween={30}
         slidesPerView={1}
-        navigation
         pagination={{ clickable: true }}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
         className="max-w-5xl mx-auto"
       >
         {facultyMembers.map((member, idx) => (
           <SwiperSlide key={idx}>
-            <div className="flex flex-col md:flex-row items-center gap-10 bg-white shadow-md rounded-xl p-8 hover:shadow-xl hover:scale-105 transition-transform duration-300">
-              {/* Faculty Image */}
+            {({ isActive }) => (
+<motion.div
+  initial={{ scale: 0.9, opacity: 0.6 }}
+  animate={isActive ? { scale: 1, opacity: 1 } : { scale: 0.9, opacity: 0.6 }}
+  transition={{ duration: 0.5, ease: "easeOut" }}
+  className="lg:bg-white lg:shadow-md lg:rounded-xl lg:p-6 hover:shadow-xl hover:scale-[1.02] transition-transform duration-300"
+>
+
+
+{/* Tablet & Phone (2-column grid) */}
+<div className="lg:hidden">
+  {/* Faculty Image */}
+  <div className="flex justify-center mb-6 lg:mb-0">
+    <img
+      src={member.image}
+      alt={language === "en" ? member.name.en : member.name.kh}
+      className="rounded-lg shadow-lg w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] object-cover"
+    />
+  </div>
+
+  {/* Right Column (Info + Quote) */}
+  <div className="grid grid-cols-2 gap-x-3">
+    <div className="col-span-1 space-y-3">
+      <h3
+        className={`text-sm font-bold text-gray-900 ${
+          language === "en" ? "font-raleway" : "font-preahvihear"
+        }`}
+      >
+        {language === "en" ? member.name.en : member.name.kh}
+      </h3>
+
+      <p
+        className={`text-xs font-medium text-gray-700 ${
+          language === "en" ? "font-raleway" : "font-kantumruy_pro"
+        }`}
+      >
+        {language === "en" ? member.position.en : member.position.kh}
+      </p>
+
+      <p
+        className={`italic text-black text-xs ${
+          language === "en" ? "font-raleway" : "font-kantumruy_pro"
+        }`}
+      >
+        {language === "en"
+          ? `Specializes in ${member.specialization.en}`
+          : `ជំនាញ ${member.specialization.kh}`}
+      </p>
+      <a
+        href={member.profileUrl}
+        className={`inline-flex items-center text-[#C41E3A] font-semibold hover:underline text-xs ${
+          language === "en" ? "font-raleway" : "font-kantumruy_pro"
+        }`}
+      >
+        {language === "en" ? "View Full Profile" : "ប្រវត្តិរូបពេញ"}{" "}
+        <ExternalLink className="w-4 h-4 ml-1" />
+      </a>
+    </div>
+    <div className="col-span-1">
+      <p
+        className={`text-gray-600 leading-relaxed text-xs/4 ${
+          language === "en" ? "font-reddit_sans" : "font-kantumruy_pro"
+        }`}
+      >
+        “{language === "en" ? member.quote.en : member.quote.kh}”
+      </p>
+    </div>
+  </div>
+</div>
+
+
+  {/* Desktop (Image left, Info right) */}
+  <div className="hidden lg:flex items-center gap-10">
               <div className="flex-shrink-0">
                 <img
                   src={member.image}
@@ -142,54 +198,57 @@ export default function FacultySection() {
                   className="rounded-lg shadow-lg w-[320px] h-[320px] object-cover"
                 />
               </div>
+    {/* Faculty Info */}
+    <div className="space-y-4">
+      <h3
+        className={`text-2xl font-bold text-gray-900 ${
+          language === "en" ? "font-raleway" : "font-preahvihear"
+        }`}
+      >
+        {language === "en" ? member.name.en : member.name.kh}
+      </h3>
 
-              {/* Faculty Info */}
-              <div className="space-y-4">
-                <h3
-                  className={`text-2xl font-bold text-gray-900 ${
-                    language === "en" ? "font-raleway" : "font-preahvihear"
-                  }`}
-                >
-                  {language === "en" ? member.name.en : member.name.kh}
-                </h3>
+      <p
+        className={`text-sm font-medium text-gray-700 ${
+          language === "en" ? "font-raleway" : "font-kantumruy_pro"
+        }`}
+      >
+        {language === "en" ? member.position.en : member.position.kh}
+      </p>
 
-                <p
-                  className={`text-sm font-medium text-gray-700 ${
-                    language === "en" ? "font-raleway" : "font-kantumruy_pro"
-                  }`}
-                >
-                  {language === "en" ? member.position.en : member.position.kh}
-                </p>
+      <p
+        className={`italic text-gray-700 ${
+          language === "en" ? "font-raleway" : "font-kantumruy_pro"
+        }`}
+      >
+        {language === "en"
+          ? `Specializes in ${member.specialization.en}`
+          : `ជំនាញ ${member.specialization.kh}`}
+      </p>
 
-                <p
-                  className={`italic text-gray-700 ${
-                    language === "en" ? "font-raleway" : "font-kantumruy_pro"
-                  }`}
-                >
-                  {language === "en"
-                    ? `Specializes in ${member.specialization.en}`
-                    : `ជំនាញ ${member.specialization.kh}`}
-                </p>
+      <p
+        className={`text-gray-600 leading-relaxed ${
+          language === "en" ? "font-reddit_sans" : "font-kantumruy_pro"
+        }`}
+      >
+        “{language === "en" ? member.quote.en : member.quote.kh}”
+      </p>
 
-                <p
-                  className={`text-gray-600 leading-relaxed ${
-                    language === "en" ? "font-reddit_sans" : "font-kantumruy_pro"
-                  }`}
-                >
-                  “{language === "en" ? member.quote.en : member.quote.kh}”
-                </p>
+      <a
+        href={member.profileUrl}
+        className={`inline-flex items-center text-[#C41E3A] font-semibold hover:underline ${
+          language === "en" ? "font-raleway" : "font-kantumruy_pro"
+        }`}
+      >
+        {language === "en" ? "View Full Profile" : "ប្រវត្តិរូបពេញ"}{" "}
+        <ExternalLink className="w-4 h-4 ml-1" />
+      </a>
+    </div>
+  </div>
+</motion.div>
 
-                <a
-                  href={member.profileUrl}
-                  className={`inline-flex items-center text-[#C41E3A] font-semibold hover:underline ${
-                    language === "en" ? "font-raleway" : "font-kantumruy_pro"
-                  }`}
-                >
-                  {language === "en" ? "View Full Profile" : "ប្រវត្តិរូបពេញ"}{" "}
-                  <ExternalLink className="w-4 h-4 ml-1" />
-                </a>
-              </div>
-            </div>
+
+            )}
           </SwiperSlide>
         ))}
       </Swiper>
@@ -198,7 +257,7 @@ export default function FacultySection() {
       <div className="flex justify-center mt-10">
         <Link
           to={addLangToPath("/faculty-and-research")}
-          className={`px-8 py-3 border border-[#C41E3A] text-[#C41E3A] font-semibold rounded-md hover:bg-red-50 transition ${
+          className={`text-xs lg:text-base px-8 py-3 border border-[#C41E3A] text-[#C41E3A] font-semibold rounded-md hover:bg-red-50 transition ${
             language === "en" ? "font-raleway" : "font-kantumruy_pro"
           }`}
         >
