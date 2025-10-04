@@ -19,7 +19,7 @@ interface EndingDate {
 }
 
 interface EventDate {
-  startingdata: StartingDate;
+  startingdate: StartingDate;
   enddate: EndingDate;
 }
 
@@ -32,7 +32,7 @@ interface Calendar {
 
 const calendarURL = '';
 
-const calendarEvents = {
+const calendarEvents : Record<"en" | "kh", Calendar[]> = {
   en: [
     {
       title: 'Semester 1',
