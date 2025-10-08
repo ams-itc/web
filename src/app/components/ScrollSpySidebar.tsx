@@ -9,18 +9,22 @@ interface ScrollSpySidebarProps {
   sections: Section[];
   activeSection: string;
   className?: string;
+  onLinkClick?: () => void; // optional callback
 }
 
 const ScrollSpySidebar: React.FC<ScrollSpySidebarProps> = ({
   sections,
   activeSection,
   className = "",
+  onLinkClick, // ✅ receive the callback
 }) => {
   const handleScroll = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+
+    if (onLinkClick) onLinkClick(); // ✅ call it after scrolling
   };
 
   return (

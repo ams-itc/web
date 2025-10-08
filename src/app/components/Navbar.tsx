@@ -288,18 +288,19 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Hamburger Menu Button */}
-        <button
-          onClick={toggleMobileMenu}
-          className="p-2 text-gray-700 hover:bg-gray-100 rounded-md transition"
-          aria-label="Toggle mobile menu"
-        >
-          {isMobileMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
+{/* Hamburger Menu Button */}
+<button
+  onClick={toggleMobileMenu}
+  className="p-2 text-gray-700 hover:bg-gray-100 rounded-md transition"
+  aria-label="Toggle mobile menu"
+>
+  {isMobileMenuOpen ? (
+    <X className="h-[clamp(1.25rem,2vw,2rem)] w-[clamp(1.25rem,2vw,2rem)]" />
+  ) : (
+    <Menu className="h-[clamp(1.25rem,2vw,2rem)] w-[clamp(1.25rem,2vw,2rem)]" />
+  )}
+</button>
+
       </div>
 
       {/* Mobile Menu Overlay */}
