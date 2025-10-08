@@ -1,6 +1,6 @@
 // pages/404.tsx
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const NotFoundPage: React.FC = () => {
   const navigate = useNavigate();
@@ -29,7 +29,9 @@ const NotFoundPage: React.FC = () => {
               />
             </svg>
           </div>
-          <h1 className="text-6xl font-bold text-gray-900 mb-4 font-playfair_display">404</h1>
+          <h1 className="text-6xl font-bold text-gray-900 mb-4 font-playfair_display">
+            404
+          </h1>
           <h2 className="text-2xl font-semibold text-gray-700 mb-4 font-playfair_display">
             Page Not Found
           </h2>
@@ -41,7 +43,7 @@ const NotFoundPage: React.FC = () => {
 
         <div className="space-y-4">
           <button
-            onClick={() => navigate("/")}
+            onClick={() => navigate('/')}
             className="w-full bg-slate-700 hover:bg-slate-800 text-white font-medium py-3 px-6 rounded-lg transition duration-200 transform hover:scale-105 shadow-lg"
           >
             Go to Homepage
@@ -57,9 +59,9 @@ const NotFoundPage: React.FC = () => {
 
         <div className="mt-8">
           <p className="text-sm text-gray-500 font-semibold">
-            Need help?{" "}
+            Need help?{' '}
             <button
-              onClick={() => navigate("/contact")}
+              onClick={() => navigate('/contact')}
               className="text-blue-600 hover:text-blue-800 underline cursor-pointer"
             >
               Contact Support

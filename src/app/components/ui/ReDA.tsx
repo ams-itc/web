@@ -64,7 +64,7 @@ export default function ResearchClubs() {
       {/* Title */}
       <div className="text-center max-w-3xl px-4 space-y-4">
         <h2
-          className={`text-[clamp(1.5rem,1.5vw,2rem)] font-bold text-gray-900 ${
+          className={`text-[clamp(1.5rem,2vw,2rem)] font-bold text-gray-900 ${
             language === 'en' ? 'font-playfair_display' : 'font-preahvihear'
           }`}
         >
@@ -73,7 +73,7 @@ export default function ResearchClubs() {
             : 'មន្ទីរស្រាវជ្រាវ និងវិភាគទិន្នន័យ'}
         </h2>
         <p
-          className={`text-gray-600 text-[clamp(0.75rem,1vw,1rem)] leading-relaxed ${
+          className={`text-gray-600 text-[clamp(0.75rem,1.5vw,1rem)] leading-relaxed ${
             language === 'en' ? 'font-raleway' : 'font-kantumruy_pro'
           }`}
         >
@@ -113,7 +113,7 @@ export default function ResearchClubs() {
             1440: { slidesPerView: 4, slidesPerGroup: 1, spaceBetween: 30 },
           }}
           autoHeight={false}
-          className="w-full max-w-[60vw] md:max-w-[50vw] lg:max-w-6xl mx-auto !overflow-visible relative pb-12 px-4"
+          className="w-full max-w-[60vw] md:max-w-[50vw] lg:max-w-7xl mx-auto !overflow-visible relative pb-12 px-4"
         >
           {clubs.map((club, idx) => (
             <SwiperSlide
@@ -122,7 +122,7 @@ export default function ResearchClubs() {
             >
               {({ isActive }) => (
                 <div
-                  className={`p-4 sm:p-6 rounded-xl shadow-md border-2 bg-white flex flex-col justify-between transition-transform duration-300 min-h-[400px] mt-8 ${
+                  className={`p-4 sm:p-6 rounded-xl shadow-md border-2 bg-white flex flex-col justify-between transition-transform duration-300 min-h-[400px] lg:min-w-[300px] mt-8 ${
                     club.color
                   } ${
                     isActive
@@ -132,7 +132,7 @@ export default function ResearchClubs() {
                 >
                   <div>
                     <h3
-                      className={`text-[clamp(1.125rem,1vw,1.75rem)] font-medium text-gray-900 line-clamp-2 ${
+                      className={`text-[clamp(1rem,2vw,1.25rem)] font-medium text-gray-900 line-clamp-2 ${
                         language === 'en'
                           ? 'font-playfair_display'
                           : 'font-preahvihear'
@@ -141,7 +141,7 @@ export default function ResearchClubs() {
                       {language === 'en' ? club.title.en : club.title.kh}
                     </h3>
                     <p
-                      className={`text-gray-600 mt-2 sm:mt-3 text-[clamp(0.875rem,1vw,1.25rem)] ${
+                      className={`text-gray-600 mt-2 sm:mt-3 text-[clamp(0.75rem,1.5vw,1rem)] ${
                         language === 'en'
                           ? 'font-raleway'
                           : 'font-kantumruy_pro'
@@ -156,7 +156,7 @@ export default function ResearchClubs() {
                   <div className="flex justify-end">
                     <a
                       href="#"
-                      className={`text-[#C41E3A] text-[clamp(0.825rem,1vw,1.25rem)] font-semibold hover:underline mt-1 ${
+                      className={`text-[#C41E3A] text-[clamp(0.75rem,1.5vw,1rem)] font-semibold hover:underline mt-1 ${
                         language === 'en'
                           ? 'font-raleway'
                           : 'font-kantumruy_pro'
@@ -180,14 +180,14 @@ export default function ResearchClubs() {
       {/* Collaborate with Us */}
       <div className="bg-[#3A3B5C] text-white rounded-xl p-4 sm:p-6 shadow-md flex flex-col items-center w-[95%] max-w-6xl mx-auto mt-8 sm:mt-12">
         <h3
-          className={`text-[clamp(1.25rem,1vw,1.5rem)] font-semibold mb-2 ${
+          className={`text-[clamp(1rem,2vw,1.25rem)] font-semibold mb-2 ${
             language === 'en' ? 'font-raleway' : 'font-kantumruy_pro'
           }`}
         >
           {language === 'en' ? 'Collaborate with Us' : 'សហការជាមួយយើង'}
         </h3>
         <p
-          className={`mb-4 text-[clamp(0.9rem,1vw,1.15rem)] text-center ${
+          className={`mb-4 text-[clamp(0.75rem,1.5vw,1rem)] text-center ${
             language === 'en' ? 'font-raleway' : 'font-kantumruy_pro'
           }`}
         >
@@ -198,7 +198,7 @@ export default function ResearchClubs() {
         <div className="flex justify-center">
           <button className="bg-white text-indigo-900 px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition">
             <span
-              className={`inline-flex items-center font-bold text-[clamp(0.875rem,1vw,1.125rem)] ${
+              className={`inline-flex items-center font-bold text-[clamp(0.75rem,1.5vw,1rem)] ${
                 language === 'en' ? 'font-raleway' : 'font-kantumruy_pro'
               }`}
             >

@@ -153,12 +153,12 @@ export default function AcademicPrograms() {
     <section className="bg-white px-8 md:px-20 py-10">
       {/* Title */}
       <div className="text-center max-w-3xl mx-auto space-y-4 mb-5">
-        <h2 className="text-[clamp(1.5rem,1.5vw,2rem)] font-bold text-gray-900">
+        <h2 className="text-[clamp(1.5rem,2vw,2rem)] font-bold text-gray-900">
           {language === 'en'
             ? renderTextWithFont('Academic Programs', language, 'heading')
             : renderTextWithFont('កម្មវិធីសិក្សា', language, 'heading')}
         </h2>
-        <p className="text-gray-600 text-[clamp(0.75rem,1vw,1rem)] leading-relaxed">
+        <p className="text-gray-600 text-[clamp(0.75rem,1.5vw,1rem)] leading-relaxed">
           {language === 'en'
             ? renderTextWithFont(
                 "Explore your passion and build your future with our diverse range of academic programs. Whether you're a prospective student seeking a new challenge or a current student looking to specialize, our curriculum is designed to provide you with the knowledge and skills needed to thrive in an ever-evolving world.",
@@ -182,7 +182,7 @@ export default function AcademicPrograms() {
             className={`border-2 ${card.border} rounded-2xl shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 p-6 flex flex-col justify-between`}
           >
             <div>
-              <h3 className="text-[clamp(1.125rem,1vw,1.5rem)] font-bold text-gray-900">
+              <h3 className="text-[clamp(1rem,2vw,1.25rem)] font-bold text-gray-900">
                 {renderTextWithFont(card.title[language], language, 'heading')}
                 <span className="text-[#C41E3A]">
                   {renderTextWithFont(
@@ -192,14 +192,14 @@ export default function AcademicPrograms() {
                   )}
                 </span>
               </h3>
-              <p className="text-gray-600 mt-3 text-[clamp(0.5rem,1vw,0.875rem)]">
+              <p className="text-gray-600 mt-3 text-[clamp(0.5rem,1.5vw,0.875rem)]">
                 {renderTextWithFont(
                   card.description[language],
                   language,
                   'body'
                 )}
               </p>
-              <ul className="mt-4 space-y-1 text-gray-700 text-[clamp(0.5rem,1vw,0.875rem)] list-disc list-inside">
+              <ul className="mt-4 space-y-1 text-gray-700 text-[clamp(0.5rem,1.5vw,0.875rem)] list-disc list-inside">
                 {card.list[language].map((item, i) => (
                   <li
                     key={i}
@@ -212,7 +212,7 @@ export default function AcademicPrograms() {
                 ))}
               </ul>
             </div>
-            <div className="mt-4 flex items-center justify-between text-xs border-t border-gray-400 pt-2">
+            <div className="mt-4 flex items-center justify-between text-[clamp(0.5rem,1.5vw,0.75rem)] border-t border-gray-400 pt-2">
               <span className="text-gray-500">
                 {renderTextWithFont(card.duration[language], language, 'body')}
               </span>
@@ -254,7 +254,7 @@ export default function AcademicPrograms() {
                   className={`w-full max-w-xs border-2 ${card.border} rounded-2xl shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 p-6 flex flex-col justify-between`}
                 >
                   <div>
-                    <h3 className="text-[clamp(1rem,1vw,1.25rem)] font-bold text-gray-900">
+                    <h3 className="text-[clamp(1rem,2vw,1.25rem)] font-bold text-gray-900">
                       {renderTextWithFont(
                         card.title[language],
                         language,
@@ -320,7 +320,7 @@ export default function AcademicPrograms() {
       <div className="flex justify-center mt-10">
         <Link
           to={addLangToPath('/academics')}
-          className="px-6 py-3 bg-[#3A3B5C] rounded-full shadow hover:bg-[#62649d] transition font-raleway text-white font-semibold text-[clamp(0.75rem,1vw,1.125rem)]"
+          className="px-6 py-3 bg-[#3A3B5C] rounded-full shadow hover:bg-[#62649d] transition font-raleway text-white font-semibold text-[clamp(0.75rem,1.5vw,1.125rem)]"
         >
           {language === 'en'
             ? renderTextWithFont('Learn More →', language, 'body')

@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { NavLink } from "react-router-dom";
-import { ChevronDown, Menu, X } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useState } from "react";
+import { NavLink } from 'react-router-dom';
+import { ChevronDown, Menu, X } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useState } from 'react';
 
 export default function Navbar() {
   const { language, setLanguage } = useLanguage();
@@ -12,115 +12,115 @@ export default function Navbar() {
 
   const navItems = {
     en: [
-      { title: "Home", url: "/", icon: null },
+      { title: 'Home', url: '/', icon: null },
       {
-        title: "About Us",
-        url: "/about",
+        title: 'About Us',
+        url: '/about',
         icon: null,
         items: [
-          { title: "About AMS", url: "/about/#aboutAMS" },
-          { title: "Board of Trustees", url: "/about/#boardoftrustees" },
-          { title: "Accreditation", url: "/about/#accreditation" },
-          { title: "Industrial Partners", url: "/about/#industrialpartners" },
+          { title: 'About AMS', url: '/about/#aboutAMS' },
+          { title: 'Board of Trustees', url: '/about/#boardoftrustees' },
+          { title: 'Accreditation', url: '/about/#accreditation' },
+          { title: 'Industrial Partners', url: '/about/#industrialpartners' },
         ],
       },
       {
-        title: "Academics",
-        url: "/academics",
+        title: 'Academics',
+        url: '/academics',
         icon: null,
         items: [
-          { title: "Programs", url: "/academics/programs" },
-          { title: "Courses", url: "/academics/courses" },
-          { title: "Admissions", url: "/academics/admissions" },
+          { title: 'Programs', url: '/academics/programs' },
+          { title: 'Courses', url: '/academics/courses' },
+          { title: 'Admissions', url: '/academics/admissions' },
         ],
       },
       {
-        title: "Faculty & Research",
-        url: "/faculty-and-research",
+        title: 'Faculty & Research',
+        url: '/faculty-and-research',
         icon: null,
         items: [
           {
-            title: "Academic Support Staff",
-            url: "/faculty-and-research#academic-support-staff",
+            title: 'Academic Support Staff',
+            url: '/faculty-and-research#academic-support-staff',
           },
-          { title: "ReDa Lab", url: "/faculty-and-research#redalab" },
+          { title: 'ReDa Lab', url: '/faculty-and-research#redalab' },
           {
-            title: "Previous Collaborations",
-            url: "/faculty-and-research#previous-collaborations",
+            title: 'Previous Collaborations',
+            url: '/faculty-and-research#previous-collaborations',
           },
           {
-            title: "Ongoing Projects",
-            url: "/faculty-and-research#ongoing-projects",
+            title: 'Ongoing Projects',
+            url: '/faculty-and-research#ongoing-projects',
           },
         ],
       },
       {
-        title: "Students",
-        url: "/students",
+        title: 'Students',
+        url: '/students',
         icon: null,
         items: [
-          { title: "Student's Achievement", url: "/students/#achievement" },
-          { title: "Student's Life", url: "/students/#activity" },
-          { title: "Student's Resource", url: "/students/#resource" },
-          { title: "Alumni", url: "/students/#alumni" },
+          { title: "Student's Achievement", url: '/students/#achievement' },
+          { title: "Student's Life", url: '/students/#activity' },
+          { title: "Student's Resource", url: '/students/#resource' },
+          { title: 'Alumni', url: '/students/#alumni' },
         ],
       },
-      { title: "News & Events", url: "/news-and-events", icon: null },
-      { title: "Contact", url: "/contact", icon: null },
+      { title: 'News & Events', url: '/news-and-events', icon: null },
+      { title: 'Contact', url: '/contact', icon: null },
     ],
     kh: [
-      { title: "ទំព័រដើម", url: "/", icon: null },
+      { title: 'ទំព័រដើម', url: '/', icon: null },
       {
-        title: "អំពីយើង",
-        url: "/about",
+        title: 'អំពីយើង',
+        url: '/about',
         icon: null,
         items: [
-          { title: "អំពី AMS", url: "/about/#aboutAMS" },
-          { title: "ក្រុមប្រឹក្សាភិបាល", url: "/about/#boardoftrustees" },
-          { title: "ការទទួលស្គាល់", url: "/about/#accreditation" },
-          { title: "ដៃគូឧសាហកម្ម", url: "/about/#industrialpartners" },
+          { title: 'អំពី AMS', url: '/about/#aboutAMS' },
+          { title: 'ក្រុមប្រឹក្សាភិបាល', url: '/about/#boardoftrustees' },
+          { title: 'ការទទួលស្គាល់', url: '/about/#accreditation' },
+          { title: 'ដៃគូឧសាហកម្ម', url: '/about/#industrialpartners' },
         ],
       },
       {
-        title: "កម្មវិធីសិក្សា",
-        url: "/academics",
+        title: 'កម្មវិធីសិក្សា',
+        url: '/academics',
         icon: null,
         items: [
-          { title: "កម្មវិធី", url: "/academics/programs" },
-          { title: "វគ្គសិក្សា", url: "/academics/courses" },
-          { title: "ការចូលរៀន", url: "/academics/admissions" },
+          { title: 'កម្មវិធី', url: '/academics/programs' },
+          { title: 'វគ្គសិក្សា', url: '/academics/courses' },
+          { title: 'ការចូលរៀន', url: '/academics/admissions' },
         ],
       },
       {
-        title: "គ្រូបង្រៀន និងការស្រាវជ្រាវ",
-        url: "/faculty-and-research",
+        title: 'គ្រូបង្រៀន និងការស្រាវជ្រាវ',
+        url: '/faculty-and-research',
         icon: null,
         items: [
           {
-            title: "បុគ្គលិកអនុរំ",
-            url: "/faculty-and-research#academic-support-staff",
+            title: 'បុគ្គលិកអនុរំ',
+            url: '/faculty-and-research#academic-support-staff',
           },
-          { title: "ReDa Lab", url: "/faculty-and-research#redalab" },
+          { title: 'ReDa Lab', url: '/faculty-and-research#redalab' },
           {
-            title: "ការសហការ",
-            url: "/faculty-and-research#previous-collaborations",
+            title: 'ការសហការ',
+            url: '/faculty-and-research#previous-collaborations',
           },
-          { title: "គម្រោង", url: "/faculty-and-research#ongoing-projects" },
+          { title: 'គម្រោង', url: '/faculty-and-research#ongoing-projects' },
         ],
       },
       {
-        title: "សិស្ស",
-        url: "/students",
+        title: 'សិស្ស',
+        url: '/students',
         icon: null,
         items: [
-          { title: "សមិទ្ធិផល", url: "/students/#achievement" },
-          { title: "សកម្មភាព", url: "/students/#activity" },
-          { title: "ធនធាន", url: "/students/#resource" },
-          { title: "អតីតសិស្ស", url: "/students/#alumni" },
+          { title: 'សមិទ្ធិផល', url: '/students/#achievement' },
+          { title: 'សកម្មភាព', url: '/students/#activity' },
+          { title: 'ធនធាន', url: '/students/#resource' },
+          { title: 'អតីតសិស្ស', url: '/students/#alumni' },
         ],
       },
-      { title: "ព័ត៌មាន", url: "/news-and-events", icon: null },
-      { title: "ទំនាក់ទំនង", url: "/contact", icon: null },
+      { title: 'ព័ត៌មាន', url: '/news-and-events', icon: null },
+      { title: 'ទំនាក់ទំនង', url: '/contact', icon: null },
     ],
   };
 
@@ -128,7 +128,7 @@ export default function Navbar() {
 
   const addLangToPath = (path: string) => {
     const url = new URL(path, window.location.origin);
-    url.searchParams.set("lang", language);
+    url.searchParams.set('lang', language);
     return url.pathname + url.search + url.hash;
   };
 
@@ -159,16 +159,16 @@ export default function Navbar() {
                   className={({ isActive }) =>
                     `inline-flex items-center px-3 text-sm font-medium rounded-md transition ${
                       isActive
-                        ? "text-blue-600 bg-blue-50"
-                        : "text-gray-700 hover:bg-gray-100"
+                        ? 'text-blue-600 bg-blue-50'
+                        : 'text-gray-700 hover:bg-gray-100'
                     }`
                   }
                 >
                   <span
                     className={
-                      language === "kh"
-                        ? "font-kantumruy_pro text-sm"
-                        : "font-raleway text-sm"      
+                      language === 'kh'
+                        ? 'font-kantumruy_pro text-sm'
+                        : 'font-raleway text-sm'
                     }
                   >
                     {item.title}
@@ -185,9 +185,9 @@ export default function Navbar() {
                     >
                       <span
                         className={
-                          language === "kh"
-                            ? "font-kantumruy_pro text-sm"
-                            : "font-raleway text-sm"
+                          language === 'kh'
+                            ? 'font-kantumruy_pro text-sm'
+                            : 'font-raleway text-sm'
                         }
                       >
                         {subItem.title}
@@ -202,16 +202,16 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   `inline-flex items-center px-3 text-sm font-medium rounded-md transition ${
                     isActive
-                      ? "text-blue-600 bg-blue-50"
-                      : "text-gray-700 hover:bg-gray-100"
+                      ? 'text-blue-600 bg-blue-50'
+                      : 'text-gray-700 hover:bg-gray-100'
                   }`
                 }
               >
                 <span
                   className={
-                    language === "kh"
-                      ? "font-kantumruy_pro text-sm"
-                      : "font-raleway text-sm"
+                    language === 'kh'
+                      ? 'font-kantumruy_pro text-sm'
+                      : 'font-raleway text-sm'
                   }
                 >
                   {item.title}
@@ -226,19 +226,17 @@ export default function Navbar() {
           {/* Khmer */}
           <div className="relative group">
             <button
-              onClick={() => setLanguage("kh")}
+              onClick={() => setLanguage('kh')}
               className={`transition-transform duration-200 hover:scale-110 ${
-                language === "kh" ? "ring-2 ring-blue-200 rounded" : ""
+                language === 'kh' ? 'ring-2 ring-blue-200 rounded' : ''
               }`}
             >
               <img src="/Cambodia.png" alt="Khmer" className="w-8 rounded-xs" />
             </button>
-            <span className={`absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 ${language === "en" ? "font-reddit_sans font-medium" : "font-kantumruy_pro font-semibold"}`}>
-              {
-                language === "en"
-                ? "Khmer"
-                : "ភាសាខ្មែរ"
-              }
+            <span
+              className={`absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 ${language === 'en' ? 'font-reddit_sans font-medium' : 'font-kantumruy_pro font-semibold'}`}
+            >
+              {language === 'en' ? 'Khmer' : 'ភាសាខ្មែរ'}
             </span>
           </div>
 
@@ -247,19 +245,21 @@ export default function Navbar() {
           {/* English */}
           <div className="relative group">
             <button
-              onClick={() => setLanguage("en")}
+              onClick={() => setLanguage('en')}
               className={`transition-transform duration-200 hover:scale-110 ${
-                language === "en" ? "ring-2 ring-blue-200 rounded" : ""
+                language === 'en' ? 'ring-2 ring-blue-200 rounded' : ''
               }`}
             >
-              <img src="/England.png" alt="English" className="w-8 rounded-xs" />
+              <img
+                src="/England.png"
+                alt="English"
+                className="w-8 rounded-xs"
+              />
             </button>
-            <span className={`absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 ${language === "en" ? "font-reddit_sans font-medium" : "font-kantumruy_pro font-semibold"}`}>
-              {
-                language === "en"
-                ? "English"
-                : "ភាសាអង់គ្លេស"
-              }
+            <span
+              className={`absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 ${language === 'en' ? 'font-reddit_sans font-medium' : 'font-kantumruy_pro font-semibold'}`}
+            >
+              {language === 'en' ? 'English' : 'ភាសាអង់គ្លេស'}
             </span>
           </div>
         </div>
@@ -270,18 +270,18 @@ export default function Navbar() {
         {/* Mobile Language Switcher */}
         <div className="flex items-center space-x-2">
           <button
-            onClick={() => setLanguage("kh")}
+            onClick={() => setLanguage('kh')}
             className={`transition-transform duration-200 ${
-              language === "kh" ? "ring-2 ring-blue-200 rounded" : ""
+              language === 'kh' ? 'ring-2 ring-blue-200 rounded' : ''
             }`}
           >
             <img src="/Cambodia.png" alt="Khmer" className="w-6 rounded-xs" />
           </button>
           <span className="border border-gray-400 h-5"></span>
           <button
-            onClick={() => setLanguage("en")}
+            onClick={() => setLanguage('en')}
             className={`transition-transform duration-200 ${
-              language === "en" ? "ring-2 ring-blue-200 rounded" : ""
+              language === 'en' ? 'ring-2 ring-blue-200 rounded' : ''
             }`}
           >
             <img src="/England.png" alt="English" className="w-6 rounded-xs" />
@@ -295,9 +295,9 @@ export default function Navbar() {
           aria-label="Toggle mobile menu"
         >
           {isMobileMenuOpen ? (
-            <X className="h-6 w-6" />
+            <X className="h-[clamp(1.25rem,2vw,2rem)] w-[clamp(1.25rem,2vw,2rem)]" />
           ) : (
-            <Menu className="h-6 w-6" />
+            <Menu className="h-[clamp(1.25rem,2vw,2rem)] w-[clamp(1.25rem,2vw,2rem)]" />
           )}
         </button>
       </div>
@@ -316,16 +316,16 @@ export default function Navbar() {
                     >
                       <span
                         className={
-                          language === "kh"
-                            ? "font-kantumruy_pro text-base font-medium"
-                            : "font-raleway text-base font-medium"
+                          language === 'kh'
+                            ? 'font-kantumruy_pro text-base font-medium'
+                            : 'font-raleway text-base font-medium'
                         }
                       >
                         {item.title}
                       </span>
                       <ChevronDown
                         className={`h-4 w-4 transition-transform ${
-                          openDropdown === item.title ? "rotate-180" : ""
+                          openDropdown === item.title ? 'rotate-180' : ''
                         }`}
                       />
                     </button>
@@ -333,9 +333,9 @@ export default function Navbar() {
                       <div
                         className="ml-4 space-y-1 transition-opacity duration-200 opacity-100 visible z-50"
                         style={{
-                          position: "relative",
-                          background: "white",
-                          overflow: "visible",
+                          position: 'relative',
+                          background: 'white',
+                          overflow: 'visible',
                         }}
                       >
                         {item.items.map((subItem) => (
@@ -347,9 +347,9 @@ export default function Navbar() {
                           >
                             <span
                               className={
-                                language === "kh"
-                                  ? "font-kantumruy_pro"
-                                  : "font-raleway"
+                                language === 'kh'
+                                  ? 'font-kantumruy_pro'
+                                  : 'font-raleway'
                               }
                             >
                               {subItem.title}
@@ -366,16 +366,16 @@ export default function Navbar() {
                     className={({ isActive }) =>
                       `block px-3 py-3 rounded-md transition ${
                         isActive
-                          ? "text-blue-600 bg-blue-50 font-medium"
-                          : "text-gray-700 hover:bg-gray-100"
+                          ? 'text-blue-600 bg-blue-50 font-medium'
+                          : 'text-gray-700 hover:bg-gray-100'
                       }`
                     }
                   >
                     <span
                       className={
-                        language === "kh"
-                          ? "font-kantumruy_pro text-base font-medium"
-                          : "font-raleway text-base font-medium"
+                        language === 'kh'
+                          ? 'font-kantumruy_pro text-base font-medium'
+                          : 'font-raleway text-base font-medium'
                       }
                     >
                       {item.title}
