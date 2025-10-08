@@ -1,7 +1,7 @@
 'use client';
 
-import Navbar from "./Navbar";
-import { useLanguage } from "@/contexts/LanguageContext";
+import Navbar from './Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Header() {
   const { language } = useLanguage();
@@ -23,10 +23,12 @@ export default function Header() {
           />
           {/* Department Name */}
           <div className="ml-2">
-            {language === "en" ? (
+            {language === 'en' ? (
               <h2 className="text-[clamp(0.625rem,1.4vw,1.125rem)] font-bold text-black font-playfair_display leading-tight">
-                Department of<br />
-                Applied Mathematics<br />
+                Department of
+                <br />
+                Applied Mathematics
+                <br />
                 and Statistics
               </h2>
             ) : (
@@ -52,7 +54,7 @@ export default function Header() {
             className="h-6 w-auto object-contain pl-1"
           />
           <div className="ml-1">
-            {language === "en" ? (
+            {language === 'en' ? (
               <h2 className="text-xs font-bold text-black font-playfair_display leading-tight">
                 Department of <br />
                 Applied Mathematics <br />

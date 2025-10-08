@@ -32,7 +32,7 @@ interface Calendar {
 
 const calendarURL = '';
 
-const calendarEvents : Record<"en" | "kh", Calendar[]> = {
+const calendarEvents: Record<'en' | 'kh', Calendar[]> = {
   en: [
     {
       title: 'Semester 1',

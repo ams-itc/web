@@ -1,18 +1,22 @@
-"use client";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
+'use client';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 // Font utility
 function renderTextWithFont(
   text: string,
-  language: "en" | "kh",
-  type: "heading" | "body"
+  language: 'en' | 'kh',
+  type: 'heading' | 'body'
 ) {
-  if (language === "en") {
-    return <span className={type === "heading" ? "font-raleway" : "font-raleway"}>{text}</span>;
+  if (language === 'en') {
+    return (
+      <span className={type === 'heading' ? 'font-raleway' : 'font-raleway'}>
+        {text}
+      </span>
+    );
   } else {
     const parts = text.split(/([^\u1780-\u17FF]+)/);
     return (
@@ -20,12 +24,12 @@ function renderTextWithFont(
         {parts.map((part, i) => {
           const isKhmer = /[\u1780-\u17FF]/.test(part);
           const fontClass = isKhmer
-            ? type === "heading"
-              ? "font-preahvihear"
-              : "font-kantumruy_pro"
-            : type === "heading"
-            ? "font-playfair_display"
-            : "font-raleway";
+            ? type === 'heading'
+              ? 'font-preahvihear'
+              : 'font-kantumruy_pro'
+            : type === 'heading'
+              ? 'font-playfair_display'
+              : 'font-raleway';
           return (
             <span key={i} className={fontClass}>
               {part}
@@ -41,12 +45,12 @@ export default function IndustrialPartners() {
   const { language } = useLanguage();
 
   const partners = [
-    { imagepath: "/partners/partners.png" },
-    { imagepath: "/partners/partners.png" },
-    { imagepath: "/partners/partners.png" },
-    { imagepath: "/partners/partners.png" },
-    { imagepath: "/partners/partners.png" },
-    { imagepath: "/partners/partners.png" },
+    { imagepath: '/partners/partners.png' },
+    { imagepath: '/partners/partners.png' },
+    { imagepath: '/partners/partners.png' },
+    { imagepath: '/partners/partners.png' },
+    { imagepath: '/partners/partners.png' },
+    { imagepath: '/partners/partners.png' },
   ];
 
   const descriptionEn = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -59,17 +63,21 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
       {/* Header */}
       <h1
         className={`text-[clamp(1.75rem,2.5vw,2.5rem)] text-black font-semibold ${
-          language === "en" ? "font-playfair_display" : "font-preahvihear"
+          language === 'en' ? 'font-playfair_display' : 'font-preahvihear'
         }`}
       >
-        {language === "en" ? "Industrial Partners" : "ដៃគូឧស្សាហកម្ម"}
+        {language === 'en' ? 'Industrial Partners' : 'ដៃគូឧស្សាហកម្ម'}
       </h1>
       <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
       <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
 
       {/* Description */}
       <p className="pt-7 text-[#2E2E2E]/80 text-[clamp(0.95rem,1.1vw,1.1rem)] leading-relaxed px-3 md:px-0">
-        {renderTextWithFont(language === "en" ? descriptionEn : descriptionKh, language, "body")}
+        {renderTextWithFont(
+          language === 'en' ? descriptionEn : descriptionKh,
+          language,
+          'body'
+        )}
       </p>
 
       {/* ✅ Swiper Carousel (Mobile/Tablet) */}
