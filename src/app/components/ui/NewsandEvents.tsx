@@ -170,7 +170,7 @@ export default function NewsEvents() {
       <div className="max-w-7xl mx-auto">
         {/* Title */}
         <div className="text-center mb-8">
-          <h2 className="text-[clamp(1.5rem,1.5vw,2rem)] font-bold text-gray-800">
+          <h2 className="text-[clamp(1.5rem,2vw,2rem)] font-bold text-gray-800">
             {renderTextWithFont(
               language === 'en'
                 ? 'Latest News & Events'
@@ -179,7 +179,7 @@ export default function NewsEvents() {
               'heading'
             )}
           </h2>
-          <p className="text-[#2E2E2E]/80 mt-2 text-[clamp(1rem,1vw,1.5rem)]">
+          <p className="text-[#2E2E2E]/80 mt-2 text-[clamp(0.75rem,1.5vw,1rem)]">
             {renderTextWithFont(
               language === 'en'
                 ? 'Stay updated with the latest news, events, and achievements from our department.'
@@ -193,7 +193,7 @@ export default function NewsEvents() {
         <div className="grid md:grid-cols-3 gap-x-6">
           {/* Left: Recent News */}
           <div className="md:col-span-2 space-y-4">
-            <h1 className="text-[clamp(1rem,2vw,1.5rem)] text-black">
+            <h1 className="text-[clamp(1.25rem,2vw,1.75rem)] text-black">
               {renderTextWithFont(
                 language === 'en' ? 'Recent News' : 'ព័ត៌មានថ្មីៗ',
                 language,
@@ -211,17 +211,17 @@ export default function NewsEvents() {
                   className="h-fit object-cover col-span-1"
                 />
                 <div className="px-2 py-1.5 lg:p-4 col-span-2 h-full relative flex flex-col">
-                  <div className="flex items-center justify-between text-[clamp(0.75rem,1vw,1rem)] mb-1 lg:mb-2">
+                  <div className="flex items-center justify-between text-[clamp(0.75rem,1.5vw,1rem)] mb-1 lg:mb-2">
                     <span
                       style={{ backgroundColor: news.categoryColor }}
                       className={`${
                         news.categoryColor.toLowerCase().includes('d9d9d9')
                           ? 'text-black'
                           : 'text-white'
-                      } px-1.5 lg:py-0.5 rounded-full text-[clamp(0.425rem,1vw,0.75rem)] font-medium inline-flex items-center gap-0.5`}
+                      } px-1.5 lg:py-0.5 rounded-full text-[clamp(0.425rem,1.5vw,0.75rem)] font-medium inline-flex items-center gap-0.5`}
                     >
                       {news.icon && (
-                        <news.icon className="inline-block mr-1 w-2 md:w-2.5 lg:w-3" />
+                        <news.icon className="inline-block mr-1 w-2 md:w-2.5 lg:w-3 h-5 md:h-7.5" />
                       )}
                       {renderTextWithFont(
                         language === 'en' ? news.category.en : news.category.kh,
@@ -229,7 +229,7 @@ export default function NewsEvents() {
                         'body'
                       )}
                     </span>
-                    <span className="flex items-center gap-0.5 text-gray-500 text-[clamp(0.425rem,1vw,0.75rem)] lg:mb-1.5">
+                    <span className="flex items-center gap-0.5 text-gray-500 text-[clamp(0.425rem,1.5vw,0.75rem)] lg:mb-1.5">
                       <CalendarDays size={10} />{' '}
                       {renderTextWithFont(
                         language === 'en' ? news.date.en : news.date.kh,
@@ -239,7 +239,7 @@ export default function NewsEvents() {
                     </span>
                   </div>
 
-                  <h3 className="text-[clamp(0.75rem,1.5vw,1.125rem)] font-semibold text-gray-800 mb-1">
+                  <h3 className="text-[clamp(0.75rem,2vw,1.125rem)] font-semibold text-gray-800 mb-1">
                     {renderTextWithFont(
                       language === 'en' ? news.title.en : news.title.kh,
                       language,
@@ -247,7 +247,7 @@ export default function NewsEvents() {
                     )}
                   </h3>
 
-                  <p className="text-gray-600 text-[clamp(0.425rem,1vw,0.875rem)] lg:mb-3 leading-snug">
+                  <p className="text-gray-600 text-[clamp(0.425rem,1.5vw,0.875rem)] lg:mb-3 leading-snug">
                     {renderTextWithFont(
                       language === 'en'
                         ? news.description.en
@@ -262,7 +262,7 @@ export default function NewsEvents() {
                   {/* Link pinned to bottom-left */}
                   <a
                     href="#"
-                    className="text-[#C41E3A] font-medium text-[clamp(0.5rem,1vw,0.875rem)] inline-flex items-center gap-0.5 hover:underline"
+                    className="text-[#C41E3A] font-medium text-[clamp(0.5rem,1.5vw,0.875rem)] inline-flex items-center gap-0.5 hover:underline"
                   >
                     {renderTextWithFont(
                       language === 'en' ? 'Read Full Article' : 'អានអត្ថបទពេញ',
@@ -278,7 +278,7 @@ export default function NewsEvents() {
 
           {/* Right: Upcoming Events */}
           <div className="space-y-4 mt-3 md:mt-1 lg:mt-0">
-            <h1 className="text-[clamp(1rem,2vw,1.5rem)] text-black">
+            <h1 className="text-[clamp(1.25rem,2vw,1.75rem)] text-black">
               {renderTextWithFont(
                 language === 'en' ? 'Upcoming Events' : 'ព្រឹត្តិការណ៍ខាងមុខ',
                 language,
@@ -298,7 +298,7 @@ export default function NewsEvents() {
                       )}
                     </h1>
                     <div className="text-gray-600 space-y-0.5 mt-1">
-                      <h2 className="text-[clamp(0.625rem,1vw,0.875rem)] mb-0.5 font-medium">
+                      <h2 className="text-[clamp(0.625rem,1.5vw,0.875rem)] mb-0.5 font-medium">
                         {renderTextWithFont(
                           language === 'en'
                             ? event.speaker.en
@@ -307,7 +307,7 @@ export default function NewsEvents() {
                           'body'
                         )}
                       </h2>
-                      <span className="inline-flex gap-1 items-center text-[clamp(0.625rem,1vw,0.875rem)] font-medium">
+                      <span className="inline-flex gap-1 items-center text-[clamp(0.625rem,1.5vw,0.875rem)] font-medium">
                         <CalendarDays size={12} />
                         {renderTextWithFont(
                           language === 'en' ? event.date.en : event.date.kh,
@@ -315,14 +315,14 @@ export default function NewsEvents() {
                           'body'
                         )}
                       </span>
-                      <p className="text-[clamp(0.625rem,1vw,0.875rem)] font-medium">
+                      <p className="text-[clamp(0.625rem,1.5vw,0.875rem)] font-medium">
                         {renderTextWithFont(
                           language === 'en' ? event.time.en : event.time.kh,
                           language,
                           'body'
                         )}
                       </p>
-                      <p className="text-[clamp(0.625rem,1vw,0.875rem)] font-medium">
+                      <p className="text-[clamp(0.625rem,1.5vw,0.875rem)] font-medium">
                         {renderTextWithFont(
                           language === 'en'
                             ? event.location.en
@@ -390,13 +390,13 @@ export default function NewsEvents() {
             {/* Newsletter */}
             <div className="bg-[#3A3B5C] text-white rounded-xl p-4">
               <h4
-                className={`font-semibold mb-4 md:mb-2 lg:mb-1 text-[clamp(1rem,1vw,1.25rem)] ${language === 'en' ? 'font-raleway' : 'font-preahvihear'}`}
+                className={`font-semibold mb-4 md:mb-2 lg:mb-1 text-[clamp(1rem,2vw,1.25rem)] ${language === 'en' ? 'font-raleway' : 'font-preahvihear'}`}
               >
                 {language === 'en'
                   ? 'Stay Connected'
                   : 'សូមភ្ជាប់ជាមួយយើង ដើម្បីទទួលបានព័ត៌មាន និងព្រឹត្តិការណ៍ថ្មីៗ'}
               </h4>
-              <p className="text-[clamp(0.625rem,1vw,0.875rem)] text-white mb-2">
+              <p className="text-[clamp(0.625rem,1.5vw,0.875rem)] text-white mb-2">
                 {renderTextWithFont(
                   language === 'en'
                     ? 'Subscribe to our newsletter for the latest updates and events'
@@ -405,7 +405,7 @@ export default function NewsEvents() {
                   'body'
                 )}
               </p>
-              <button className="w-full bg-white text-[#3A3B5C] py-1.5 rounded-md text-xs font-semibold hover:bg-gray-200 hover:text-[#4f507d] transition">
+              <button className="w-full bg-white text-[#3A3B5C] py-1.5 rounded-md text-[clamp(0.625rem,1.5vw,0.875rem)] font-semibold hover:bg-gray-200 hover:text-[#4f507d] transition">
                 {renderTextWithFont(
                   language === 'en' ? 'Subscribe' : 'ចុះឈ្មោះ',
                   language,

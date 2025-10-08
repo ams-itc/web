@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="w-full bg-[#3A3B5C] text-[#FFFFFF] font-raleway overflow-hidden py-12">
+    <footer className="w-full bg-[#3A3B5C] text-[#FFFFFF] font-raleway overflow-hidden lg:py-12 py-5">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {/* Department Info */}

@@ -49,14 +49,14 @@ export default function Contact() {
     <div className="w-full py-10 px-6 md:px-20 lg:px-25">
       {/* Hero Section */}
       <div className="text-center space-y-4">
-        <h1 className="text-[clamp(1.75rem,1.5vw,2rem)] font-bold text-black">
+        <h1 className="text-[clamp(1.5rem,2vw,2rem)] font-bold text-black">
           {renderTextWithFont(
             language === 'en' ? 'Contact Us' : 'ទំនាក់ទំនង',
             language,
             'heading'
           )}
         </h1>
-        <p className="text-[clamp(1rem,1vw,1.5rem)] text-[#2E2E2E]">
+        <p className="text-[clamp(0.75rem,1.5vw,1rem)] text-[#2E2E2E]">
           {renderTextWithFont(
             language === 'en'
               ? 'Get in touch with our department for inquiries about programs, research opportunities, or general questions.'
@@ -71,7 +71,7 @@ export default function Contact() {
       <div className="container mx-auto px-6 lg:px-20 py-5 lg:py-16 grid lg:grid-cols-1 xl:grid-cols-3 lg:gap-12 w-full space-y-5 lg:space-y-0">
         {/* Left: Contact Form */}
         <div className="col-span-2">
-          <h2 className="text-[clamp(1.5rem,1.5vw,2rem)] font-semibold text-black">
+          <h2 className="text-[clamp(1.25rem,2vw,1.75rem)] font-semibold text-black">
             {renderTextWithFont(
               language === 'en' ? 'Get in Touch' : 'ទំនាក់ទំនងមកយើង',
               language,
@@ -81,7 +81,7 @@ export default function Contact() {
           <form className="space-y-6 mt-5 lg:mt-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
               <div>
-                <label className="text-black text-[clamp(1rem,1vw,1.125rem)] font-semibold">
+                <label className="text-black text-[clamp(1rem,1.5vw,1.125rem)] font-semibold">
                   {renderTextWithFont(
                     language === 'en' ? 'First Name' : 'នាម',
                     language,
@@ -97,7 +97,7 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label className="text-black text-[clamp(1rem,1vw,1.125rem)] font-semibold">
+                <label className="text-black text-[clamp(1rem,1.5vw,1.125rem)] font-semibold">
                   {renderTextWithFont(
                     language === 'en' ? 'Last Name' : 'គោត្តនាម',
                     language,
@@ -117,7 +117,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <label className="text-black text-[clamp(1rem,1vw,1.125rem)] font-semibold">
+              <label className="text-black text-[clamp(1rem,1.5vw,1.125rem)] font-semibold">
                 {renderTextWithFont(
                   language === 'en' ? 'Email' : 'អ៊ីម៉ែល',
                   language,
@@ -136,7 +136,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <label className="text-black text-[clamp(1rem,1vw,1.125rem)] font-semibold">
+              <label className="text-black text-[clamp(1rem,1.5vw,1.125rem)] font-semibold">
                 {renderTextWithFont(
                   language === 'en' ? 'Subject' : 'ប្រធានបទ',
                   language,
@@ -153,7 +153,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <label className="text-black text-[clamp(1rem,1vw,1.125rem)] font-semibold">
+              <label className="text-black text-[clamp(1rem,1.5vw,1.125rem)] font-semibold">
                 {renderTextWithFont(
                   language === 'en' ? 'Message' : 'សារ',
                   language,
@@ -170,7 +170,7 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="w-full bg-[#3A3B5C] text-white py-3 rounded-lg font-semibold hover:bg-[#585a8d] transition text-[clamp(1rem,1vw,1.125rem)]"
+              className="w-full bg-[#3A3B5C] text-white py-3 rounded-lg font-semibold hover:bg-[#585a8d] transition text-[clamp(1rem,1.5vw,1.125rem)]"
             >
               {renderTextWithFont(
                 language === 'en' ? 'Send Message' : 'ផ្ញើសារ',
@@ -183,7 +183,7 @@ export default function Contact() {
 
         {/* Right: Contact Information */}
         <div className="col-span-1 space-y-6">
-          <h2 className="text-[clamp(1.5rem,1.5vw,2rem)] font-semibold text-black">
+          <h2 className="text-[clamp(1.25rem,2vw,1.75rem)] font-semibold text-black">
             {renderTextWithFont(
               language === 'en' ? 'Contact Information' : 'ព័ត៌មានទំនាក់ទំនង',
               language,
@@ -195,14 +195,14 @@ export default function Contact() {
             <div className="flex items-start space-x-2">
               <MapPin className="text-[#C41E3A]" size={40} />
               <div className="flex flex-col">
-                <h4 className="text-[clamp(1rem,1vw,1.125rem)] text-[#2E2E2E] font-medium">
+                <h4 className="text-[clamp(0.75rem,1.5vw,1rem)] text-[#2E2E2E] font-medium">
                   {renderTextWithFont(
                     language === 'en' ? 'Address' : 'អាសយដ្ឋាន',
                     language,
                     'body'
                   )}
                 </h4>
-                <p className="text-[clamp(0.625rem,1vw,0.875rem)] text-gray-600">
+                <p className="text-[clamp(0.625rem,1.5vw,0.875rem)] text-gray-600">
                   {language === 'en'
                     ? 'Room F103, Building F, Russian Blvd Phnom Penh, Cambodia'
                     : 'បន្ទប់ F103, អាគារ F, មហាវិថីសហព័ន្ធរុស្ស៊ី, រាជធានីភ្នំពេញ, ព្រះរាជាណាចក្រកម្ពុជា'}
@@ -214,14 +214,14 @@ export default function Contact() {
             <div className="flex items-start space-x-2">
               <Phone className="text-[#C41E3A] mt-1" size={25} />
               <div className="flex flex-col">
-                <h4 className="text-[clamp(1rem,1vw,1.125rem)] text-[#2E2E2E] font-medium">
+                <h4 className="text-[clamp(0.75rem,1.5vw,1rem)] text-[#2E2E2E] font-medium">
                   {renderTextWithFont(
                     language === 'en' ? 'Phone' : 'ទូរស័ព្ទ',
                     language,
                     'body'
                   )}
                 </h4>
-                <p className="text-[clamp(0.625rem,1vw,0.875rem)] text-gray-600">
+                <p className="text-[clamp(0.625rem,1.5vw,0.875rem)] text-gray-600">
                   (+855) 12 999 310
                 </p>
               </div>
@@ -230,14 +230,14 @@ export default function Contact() {
             <div className="flex items-start space-x-2">
               <Mail className="text-[#C41E3A] mt-0.5" size={25} />
               <div className="flex flex-col">
-                <h4 className="text-[clamp(1rem,1vw,1.125rem)] text-[#2E2E2E] font-medium">
+                <h4 className="text-[clamp(0.75rem,1.5vw,1rem)] text-[#2E2E2E] font-medium">
                   {renderTextWithFont(
                     language === 'en' ? 'Email' : 'អ៊ីម៉ែល',
                     language,
                     'body'
                   )}
                 </h4>
-                <p className="text-[clamp(0.625rem,1vw,0.875rem)] text-gray-600">
+                <p className="text-[clamp(0.625rem,1.5vw,0.875rem)] text-gray-600">
                   <a href="mailto:ams@itc.edu.kh">ams@itc.edu.kh</a>
                   <br />
                   <a href="mailto:phauk.sokkhey@itc.edu.kh">
@@ -250,14 +250,14 @@ export default function Contact() {
             <div className="flex items-start space-x-2">
               <Clock className="text-[#C41E3A] mt-0.5" size={25} />
               <div className="flex flex-col">
-                <h4 className="text-[clamp(1rem,1vw,1.125rem)] text-[#2E2E2E] font-medium">
+                <h4 className="text-[clamp(0.75rem,1.5vw,1rem)] text-[#2E2E2E] font-medium">
                   {renderTextWithFont(
                     language === 'en' ? 'Office Hours' : 'ម៉ោងធ្វើការ',
                     language,
                     'body'
                   )}
                 </h4>
-                <p className="text-[clamp(0.625rem,1vw,0.875rem)] text-gray-600 whitespace-pre-line">
+                <p className="text-[clamp(0.625rem,1.5vw,0.875rem)] text-gray-600 whitespace-pre-line">
                   {renderTextWithFont(
                     language === 'en'
                       ? 'Monday - Friday: 9:00 AM - 5:00 PM\nSaturday: 10:00 AM - 2:00 PM'
@@ -273,7 +273,7 @@ export default function Contact() {
           {/* Visit Section */}
           <div className="bg-gray-100 rounded-xl py-6 shadow-2xl border border-[#3A3B5C] border-l-8 mt-6 w-full">
             <div className="px-5 w-full">
-              <h3 className="text-[clamp(1.25rem,1.25vw,1.5rem)] font-medium mb-5 text-black inline-flex items-center gap-2">
+              <h3 className="text-[clamp(1rem,2vw,1.25rem)] font-medium mb-5 text-black inline-flex items-center gap-2">
                 <Building size={25} />
                 {renderTextWithFont(
                   language === 'en'
@@ -283,7 +283,7 @@ export default function Contact() {
                   'heading'
                 )}
               </h3>
-              <p className="mb-4 text-[clamp(0.875rem,1vw,1rem)] text-gray-600">
+              <p className="mb-4 text-[clamp(0.625rem,1.5vw,0.875rem)] text-gray-600">
                 {renderTextWithFont(
                   language === 'en'
                     ? 'Our department office is located in Room F103, Building F of the Institute of Technology of Cambodia. Visitors are welcome during regular office hours.'
