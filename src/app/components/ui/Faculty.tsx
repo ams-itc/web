@@ -98,7 +98,7 @@ export default function FacultySection() {
       {/* Title */}
       <div className="text-center max-w-3xl mx-auto space-y-4 mb-10">
         <h2
-          className={`text-[clamp(1.5rem,1.5vw,2rem)] font-bold text-gray-900 ${
+          className={`text-[clamp(1.5rem,2vw,2rem)] font-bold text-gray-900 ${
             language === 'en' ? 'font-playfair_display' : 'font-preahvihear'
           }`}
         >
@@ -107,7 +107,7 @@ export default function FacultySection() {
             : 'ជួបជាមួយសាស្រ្តាចារ្យរបស់យើង'}
         </h2>
         <p
-          className={`text-gray-600 text-[clamp(0.625rem,1vw,1rem)] leading-relaxed ${
+          className={`text-gray-600 text-[clamp(0.75rem,1.5vw,1rem)] leading-relaxed ${
             language === 'en' ? 'font-raleway' : 'font-kantumruy_pro'
           }`}
         >
@@ -155,7 +155,7 @@ export default function FacultySection() {
                   <div className="grid grid-cols-2 gap-x-3">
                     <div className="col-span-1 space-y-3">
                       <h3
-                        className={`text-[clamp(0.875rem,1vw,1.25rem)] font-bold text-gray-900 ${
+                        className={`text-[clamp(0.875rem,2vw,1.25rem)] font-bold text-gray-900 ${
                           language === 'en'
                             ? 'font-raleway'
                             : 'font-preahvihear'
@@ -165,7 +165,7 @@ export default function FacultySection() {
                       </h3>
 
                       <p
-                        className={`text-[clamp(0.75rem,1vw,1rem)] font-medium text-gray-700 ${
+                        className={`text-[clamp(0.75rem,1.5vw,1rem)] font-medium text-gray-700 ${
                           language === 'en'
                             ? 'font-raleway'
                             : 'font-kantumruy_pro'
@@ -177,7 +177,7 @@ export default function FacultySection() {
                       </p>
 
                       <p
-                        className={`italic text-black text-[clamp(0.625rem,1vw,1rem)] ${
+                        className={`italic text-black text-[clamp(0.625rem,1.5vw,1rem)] ${
                           language === 'en'
                             ? 'font-raleway'
                             : 'font-kantumruy_pro'
@@ -189,7 +189,7 @@ export default function FacultySection() {
                       </p>
                       <a
                         href={member.profileUrl}
-                        className={`inline-flex items-center text-[#C41E3A] font-semibold hover:underline text-[clamp(0.625rem,1vw,1rem)] ${
+                        className={`inline-flex items-center text-[#C41E3A] font-semibold hover:underline text-[clamp(0.625rem,1.5vw,1rem)] ${
                           language === 'en'
                             ? 'font-raleway'
                             : 'font-kantumruy_pro'
@@ -203,7 +203,7 @@ export default function FacultySection() {
                     </div>
                     <div className="col-span-1">
                       <p
-                        className={`text-gray-600 leading-relaxed text-[clamp(0.675rem,1vw,1.125rem)] ${
+                        className={`text-gray-600 leading-relaxed text-[clamp(0.675rem,1.5vw,1.125rem)] ${
                           language === 'en'
                             ? 'font-reddit_sans'
                             : 'font-kantumruy_pro'
@@ -294,7 +294,7 @@ export default function FacultySection() {
       <div className="flex justify-center mt-10">
         <Link
           to={addLangToPath('/faculty-and-research')}
-          className={`text-[clamp(0.625rem,1vw,1rem)] px-8 py-3 border border-[#C41E3A] text-[#C41E3A] font-bold rounded-md hover:bg-red-50 transition ${
+          className={`text-[clamp(0.625rem,1.5vw,1rem)] px-8 py-3 border border-[#C41E3A] text-[#C41E3A] font-bold rounded-md hover:bg-red-50 transition ${
             language === 'en' ? 'font-raleway' : 'font-kantumruy_pro'
           }`}
         >

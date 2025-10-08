@@ -80,7 +80,7 @@ export default function ContactPage() {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <InitialImage imagePath="/image.png" textEn="Contact" textKh="ទំនាក់ទំនង" />
+      <InitialImage imagePath="/image.jpg" textEn="Contact" textKh="ទំនាក់ទំនង" />
 
       <div className="container mx-auto px-6 lg:px-20 py-16 grid grid-cols-1 lg:grid-cols-3 gap-12 w-full">
         {/* Left: Contact Form */}

@@ -99,14 +99,14 @@ export default function About() {
     <div className="px-6 md:px-16 lg:px-24 py-8 bg-gray-50">
       {/* About AMS */}
       <section className="text-center max-w-3xl mx-auto mb-10">
-        <h2 className="text-[clamp(1.5rem,1.5vw,2rem)] font-bold mb-4 text-[#2E2E2E]">
+        <h2 className="text-[clamp(1.5rem,2vw,2rem)] font-bold mb-4 text-[#2E2E2E]">
           {renderTextWithFont(
             language === 'en' ? 'About AMS' : 'អំពី AMS',
             language,
             'heading'
           )}
         </h2>
-        <p className="text-[#4d4d4d] leading-relaxed text-[clamp(0.75rem,1vw,1rem)]">
+        <p className="text-[#4d4d4d] leading-relaxed text-[clamp(0.75rem,1.5vw,1rem)]">
           {renderTextWithFont(
             language === 'en'
               ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
@@ -126,15 +126,15 @@ export default function About() {
               key={idx}
               className="bg-white p-4 sm:p-5 md:p-6 rounded-lg shadow-md text-center transform transition duration-300 hover:scale-105 hover:shadow-xl"
             >
-              <Icon className="mx-auto h-8 sm:h-9 md:h-10 text-red-600 mb-1 sm:mb-2 md:mb-2" />
-              <p className="text-[clamp(1.125rem,1vw,1.5rem)] font-medium text-[#3A3B5C] font-inter mb-1">
+              <Icon className="mx-auto h-8 sm:h-10 md:h-12 lg:h-14 text-red-600 mb-1 sm:mb-2 md:mb-2" />
+              <p className="text-[clamp(0.75rem,1.5vw,1.5rem)] font-medium text-[#3A3B5C] font-inter mb-1">
                 {card.value}
               </p>
               <p
                 className={
                   language === 'en'
-                    ? 'text-[clamp(0.625rem,1vw,1.25rem)] text-gray-600 font-medium'
-                    : 'text-[clamp(0.75rem,1vw,1.125rem)] text-gray-600 font-kantumruy_pro font-medium'
+                    ? 'text-[clamp(0.75rem,1.5vw,1rem)] text-gray-600 font-medium'
+                    : 'text-[clamp(0.75rem,1.5vw,1rem)] text-gray-600 font-kantumruy_pro font-medium'
                 }
               >
                 {renderTextWithFont(card.label[language], language, 'body')}
@@ -148,7 +148,7 @@ export default function About() {
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-startn">
         {/* Text */}
         <div className="order-1 md:order-1 content-start">
-          <h3 className="text-[clamp(1.25rem,1vw,1.825rem)] font-bold text-[#2E2E2E] mb-4">
+          <h3 className="text-[clamp(1.25rem,1.5vw,2.25rem)] font-bold text-[#2E2E2E] mb-4">
             {renderTextWithFont(
               language === 'en'
                 ? 'Why Choose Us?'
@@ -171,7 +171,7 @@ export default function About() {
             />
           </div>
 
-          <p className="text-gray-600 mb-4 lg:mb-6 text-[clamp(0.75rem,1vw,1.25rem)]">
+          <p className="text-gray-600 mb-4 lg:mb-6 text-[clamp(0.75rem,1.5vw,1rem)]">
             {renderTextWithFont(
               language === 'en'
                 ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
@@ -181,7 +181,7 @@ export default function About() {
             )}
           </p>
 
-          <ul className="list-disc list-inside text-gray-700 space-y-2 text-[clamp(0.75rem,1vw,1.25rem)]">
+          <ul className="list-disc list-inside text-gray-700 space-y-2 text-[clamp(0.75rem,1.5vw,1rem)]">
             {whyChooseUsList[language].map((item, idx) => (
               <li key={idx}>{renderTextWithFont(item, language, 'body')}</li>
             ))}

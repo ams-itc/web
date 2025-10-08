@@ -70,7 +70,7 @@ export default function Home() {
 
       {/* Text */}
       <div className="max-w-screen space-y-6 order-2 md:order-1 w-full lg:w-1/2">
-        <h1 className="text-[clamp(1.5rem,1.5vw,3rem)] font-medium sm:font-semibold md:font-bold leading-tight text-gray-900">
+        <h1 className="text-[clamp(1.5rem,2vw,3rem)] font-medium sm:font-semibold md:font-bold leading-tight text-gray-900">
           {language === 'en' ? (
             renderTextWithFont(
               <>
@@ -93,7 +93,7 @@ export default function Home() {
           )}
         </h1>
 
-        <p className="text-[clamp(0.75rem,1vw,1.125rem)] text-gray-600 leading-relaxed">
+        <p className="text-[clamp(0.75rem,1.5vw,1rem)] text-gray-600 leading-relaxed">
           {language === 'en'
             ? renderTextWithFont(
                 'Through world-class instruction and hands-on research opportunities, we prepare students at every level to excel in data-driven fields and contribute meaningfully to science, technology, and society.',
@@ -110,7 +110,7 @@ export default function Home() {
         <div className="flex gap-4 flex-wrap">
           <Link
             to={addLangToPath('/academics')}
-            className="px-4 py-3 bg-[#3A3B5C] rounded-2xl shadow hover:bg-[#62649d] transition font-raleway text-white font-semibold text-center text-[clamp(0.625rem,1vw,1rem)] inline-flex"
+            className="px-4 py-3 bg-[#3A3B5C] rounded-2xl shadow hover:bg-[#62649d] transition font-raleway text-white font-semibold text-center text-[clamp(0.625rem,1.5vw,1rem)] inline-flex"
           >
             {language === 'en'
               ? renderTextWithFont('Explore Our Programs →', language, 'body')
@@ -119,7 +119,7 @@ export default function Home() {
 
           <Link
             to={addLangToPath('/faculty-and-research')}
-            className="px-4 py-3 border border-[#C41E3A] rounded-2xl hover:bg-red-50 transition font-raleway text-[#C41E3A] font-semibold text-center text-[clamp(0.625rem,1vw,1rem)] inline-flex"
+            className="px-4 py-3 border border-[#C41E3A] rounded-2xl hover:bg-red-50 transition font-raleway text-[#C41E3A] font-semibold text-center text-[clamp(0.625rem,1.5vw,1rem)] inline-flex"
           >
             {language === 'en'
               ? renderTextWithFont('Meet the Faculty', language, 'body')

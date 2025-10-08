@@ -51,7 +51,7 @@ export default function AcademicPage() {
 
   return (
     <section className="min-h-screen bg-white">
-      <InitialImage imagePath="/image.png" textEn="Academics" textKh="កម្មវិធីសិក្សា" />
+      <InitialImage imagePath="/image.jpg" textEn="Academics" textKh="កម្មវិធីសិក្សា" />
 
       <div className="w-full grid grid-cols-5 gap-x-2">
         <ScrollSpySidebar

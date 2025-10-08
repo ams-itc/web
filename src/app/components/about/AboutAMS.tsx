@@ -2,10 +2,15 @@
 
 import { FaMountain, FaEye, FaHandsHelping } from "react-icons/fa";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 export default function AboutAMS() {
-
-  // Utility function to apply font based on language and character type
+  // Utility function to apply font based on language
   function renderTextWithFont(
     text: string,
     language: "en" | "kh",
@@ -14,7 +19,7 @@ export default function AboutAMS() {
     if (language === "en") {
       return <span className={type === "heading" ? "font-playfair_display" : "font-raleway"}>{text}</span>;
     } else {
-      const parts = text.split(/([^\u1780-\u17FF]+)/); // match non-Khmer sequences
+      const parts = text.split(/([^\u1780-\u17FF]+)/);
       return (
         <>
           {parts.map((part, i) => {
@@ -110,27 +115,52 @@ export default function AboutAMS() {
   return (
     <div className="w-full">
       {/* Title */}
-      <h1 className="text-3xl text-black font-semibold">
+      <h1 className="text-[clamp(1.5rem,2vw,2rem)] text-black font-semibold">
         {renderTextWithFont(language === "en" ? "About AMS" : "អំពី AMS", language, "heading")}
       </h1>
       <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
       <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
 
-      {/* Image Grid */}
-      <div className="grid grid-cols-3 gap-5 pt-5 px-3">
-        {images.map((image, index) => (
-          <img
-            key={index}
-            src={image.filepath}
-            alt={`AMS image ${index + 1}`}
-            className="rounded-2xl object-cover w-full h-full"
-          />
-        ))}
+      {/* Image Grid / Carousel */}
+      <div className="pt-5 px-3">
+        {/* Desktop Grid */}
+        <div className="hidden lg:grid grid-cols-3 gap-5">
+          {images.map((image, index) => (
+            <img
+              key={index}
+              src={image.filepath}
+              alt={`AMS image ${index + 1}`}
+              className="rounded-2xl object-cover w-full h-full"
+            />
+          ))}
+        </div>
+
+        {/* Mobile / Tablet Carousel */}
+        <div className="lg:hidden">
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            spaceBetween={10}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            loop
+          >
+            {images.map((image, index) => (
+              <SwiperSlide key={index}>
+                <img
+                  src={image.filepath}
+                  alt={`AMS image ${index + 1}`}
+                  className="rounded-2xl object-cover w-full h-64"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
 
       {/* Intro Text */}
       <div className="p-7">
-        <p className="text-[#2E2E2E] text-base leading-relaxed">
+        <p className="text-[#2E2E2E] text-[clamp(0.75rem,1.5vw,1rem)] leading-relaxed">
           {renderTextWithFont(
             language === "en"
               ? "The Department of Applied Mathematics and Statistics (AMS) is committed to advancing mathematical sciences through excellence in teaching, research, and service. We aim to prepare students with analytical and problem-solving skills to meet the growing demand in various industries and academic fields."
@@ -141,27 +171,25 @@ export default function AboutAMS() {
         </p>
       </div>
 
-      {/* Cards */}
-      <div className="pt-7">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-x-20">
-          {describes[language].map((block, index) => (
-            <div key={index} className="text-center md:text-left">
-              <div className="flex items-center justify-center md:justify-start space-x-3 pb-5">
-                <span className="text-[#3A3B5C] text-5xl">{block.icon}</span>
-                <h2 className="text-3xl font-medium text-[#3A3B5C]">
-                  {renderTextWithFont(block.title, language, "heading")}
-                </h2>
-              </div>
-              <ul className="space-y-3 text-gray-600 text-base leading-relaxed">
-                {block.items.map((item, i) => (
-                  <li key={i} className={`list-disc list-inside tracking-wide ${language === "kh" ? "font-medium" : "text-base/8"}`}>
-                    {renderTextWithFont(item, language, "body")}
-                  </li>
-                ))}
-              </ul>
+      {/* Cards / Descriptions */}
+      <div className="pt-7 px-6 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-6">
+        {describes[language].map((block, index) => (
+          <div key={index} className="md:text-left">
+            <div className="flex items-center justify-center md:justify-start space-x-3 pb-5">
+              <span className="text-[#3A3B5C] text-[clamp(1.5rem,2vw,2rem)]">{block.icon}</span>
+              <h2 className="text-[clamp(1.5rem,2vw,2rem)] font-medium text-[#3A3B5C]">
+                {renderTextWithFont(block.title, language, "heading")}
+              </h2>
             </div>
-          ))}
-        </div>
+            <ul className="space-y-3 text-gray-600 text-[clamp(0.75rem,1.5vw,1rem)] leading-relaxed">
+              {block.items.map((item, i) => (
+                <li key={i} className={`list-disc list-inside tracking-wide ${language === "kh" ? "font-medium" : "text-base/8"}`}>
+                  {renderTextWithFont(item, language, "body")}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   );

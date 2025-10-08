@@ -38,7 +38,7 @@ const trustees: Trustee[] = [
   },
 ];
 
-// Utility function to apply font based on language and character type
+// Font utility
 function renderTextWithFont(
   text: string,
   language: "en" | "kh",
@@ -47,19 +47,18 @@ function renderTextWithFont(
   if (language === "en") {
     return <span className={type === "heading" ? "font-raleway" : "font-raleway"}>{text}</span>;
   } else {
-    const parts = text.split(/([^\u1780-\u17FF]+)/); // match non-Khmer sequences
+    const parts = text.split(/([^\u1780-\u17FF]+)/);
     return (
       <>
         {parts.map((part, i) => {
           const isKhmer = /[\u1780-\u17FF]/.test(part);
-          const fontClass =
-            isKhmer
-              ? type === "heading"
-                ? "font-preahvihear"
-                : "font-kantumruy_pro"
-              : type === "heading"
-              ? "font-playfair_display"
-              : "font-raleway";
+          const fontClass = isKhmer
+            ? type === "heading"
+              ? "font-preahvihear"
+              : "font-kantumruy_pro"
+            : type === "heading"
+            ? "font-playfair_display"
+            : "font-raleway";
           return (
             <span key={i} className={fontClass}>
               {part}
@@ -76,18 +75,21 @@ export default function BoardOfTrustees() {
 
   return (
     <div className="pt-10 w-full">
-      <h1 className={`text-3xl text-black font-semibold ${language === "en" ? "font-playfair_display" : "font-preahvihear"}`}>
-        {
-          language === "en" 
-          ? "Board of Trustees" 
-          : "ក្រុមប្រឹក្សាភិបាល"
-        }
+      {/* Title */}
+      <h1
+        className={`text-[clamp(1.5rem,2vw,2rem)] text-black font-semibold ${
+          language === "en"
+            ? "font-playfair_display"
+            : "font-preahvihear"
+        }`}
+      >
+        {language === "en" ? "Board of Trustees" : "ក្រុមប្រឹក្សាភិបាល"}
       </h1>
       <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
       <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
 
-      {/* Trustees List */}
-      <div className="pt-5 space-y-10">
+      {/* Trustees */}
+      <div className="pt-5 space-y-16">
         {trustees.map((trustee, index) => {
           const name = language === "en" ? trustee.nameEn : trustee.nameKh;
           const title = language === "en" ? trustee.titleEn : trustee.titleKh;
@@ -96,12 +98,12 @@ export default function BoardOfTrustees() {
           return (
             <div
               key={index}
-              className={`flex flex-col md:flex-row justify-between gap-x-8 ${
+              className={`flex flex-col md:flex-row items-center gap-8 ${
                 index % 2 === 1 ? "md:flex-row-reverse" : ""
               }`}
             >
               {/* Image */}
-              <div className="flex-shrink-0 md:w-1/3">
+              <div className="w-full sm:w-2/3 md:w-1/3">
                 <img
                   src={trustee.image}
                   alt={name}
@@ -110,27 +112,20 @@ export default function BoardOfTrustees() {
               </div>
 
               {/* Text */}
-              <div
-                className={`w-full md:w-2/3 ${
-                  index % 2 === 1 ? "text-left items-start" : "text-right items-end"
-                } flex flex-col`}
-              >
-                <h3 className="text-3xl mb-3 font-semibold text-[#2E2E2E]">
+              <div className="flex-1 flex flex-col text-center md:text-left">
+                <h3 className="text-[clamp(1.25rem,1.5vw,1.75rem)] mb-2 font-semibold text-[#2E2E2E]">
                   {renderTextWithFont(name, language, "heading")}
                 </h3>
-                <p className="text-[#2E2E2E] mb-6 text-lg font-semibold">
+                <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-[#2E2E2E] mb-6 font-semibold">
                   {renderTextWithFont(title, language, "body")}
                 </p>
-                <div className="relative">
-                  <FaQuoteLeft className="text-red-600 absolute text-xl -left-6 top-0" />
-                  <p
-                    className={`text-[#2E2E2E] text-base/7 leading-relaxed ${
-                      index % 2 === 1 ? "pr-30 pl-10" : "pl-30 pr-10"
-                    }`}
-                  >
+
+                <div className="relative px-6 md:px-10">
+                  <FaQuoteLeft className="text-red-600 absolute text-lg -left-2 top-0 md:-left-4" />
+                  <p className="text-[clamp(0.75rem,1.5vw,1.25rem)] text-[#2E2E2E] leading-relaxed mt-2">
                     {renderTextWithFont(quote, language, "body")}
                   </p>
-                  <FaQuoteRight className="text-red-600 absolute text-xl right-0 bottom-0" />
+                  <FaQuoteRight className="text-red-600 absolute text-lg right-0 bottom-0 md:-right-2" />
                 </div>
               </div>
             </div>
