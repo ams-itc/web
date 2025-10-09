@@ -91,7 +91,7 @@ export default function Accreditation() {
 
       {/* Responsive Content */}
       <div className="pt-7">
-        {/* ✅ Swiper Carousel for Mobile */}
+        {/* Swiper Carousel for Mobile */}
         <div className="lg:hidden">
           <Swiper
             modules={[Pagination, Autoplay]}

@@ -115,16 +115,16 @@ export default function BoardOfTrustees() {
 
               {/* Text */}
               <div className="flex-1 flex flex-col text-center md:text-left">
-                <h3 className="text-[clamp(1.25rem,1.5vw,1.75rem)] mb-2 font-semibold text-[#2E2E2E]">
+                <h3 className="text-[clamp(1rem,1.5vw,1.5rem)] mb-2 font-semibold text-[#2E2E2E]">
                   {renderTextWithFont(name, language, 'heading')}
                 </h3>
-                <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-[#2E2E2E] mb-6 font-semibold">
+                <p className="text-[clamp(0.75rem,1.5vw,1rem)] text-[#2E2E2E]/80 mb-6 font-semibold">
                   {renderTextWithFont(title, language, 'body')}
                 </p>
 
                 <div className="relative px-6 md:px-10">
                   <FaQuoteLeft className="text-red-600 absolute text-lg -left-2 top-0 md:-left-4" />
-                  <p className="text-[clamp(0.75rem,1.5vw,1.25rem)] text-[#2E2E2E] leading-relaxed mt-2">
+                  <p className="text-[clamp(0.75rem,1.5vw,1rem)] text-[#2E2E2E] leading-relaxed mt-2">
                     {renderTextWithFont(quote, language, 'body')}
                   </p>
                   <FaQuoteRight className="text-red-600 absolute text-lg right-0 bottom-0 md:-right-2" />
