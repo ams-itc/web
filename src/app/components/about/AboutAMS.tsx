@@ -194,11 +194,11 @@ export default function AboutAMS() {
                 {renderTextWithFont(block.title, language, 'heading')}
               </h2>
             </div>
-            <ul className="space-y-3 text-gray-600 text-[clamp(0.75rem,1.5vw,1rem)] leading-relaxed">
+            <ul className="space-y-3 text-gray-600 leading-relaxed">
               {block.items.map((item, i) => (
                 <li
                   key={i}
-                  className={`list-disc list-inside tracking-wide ${language === 'kh' ? 'font-medium' : 'text-base/8'}`}
+                  className={`list-disc list-inside tracking-wide ${language === 'kh' ? 'font-medium' : 'text-[clamp(0.75rem,1.5vw,1rem)] md:text-[clamp(0.75rem,1.5vw,1rem)]/4 lg:text-[clamp(0.75rem,1.5vw,1rem)]/8'}`}
                 >
                   {renderTextWithFont(item, language, 'body')}
                 </li>
