@@ -32,7 +32,7 @@ const ScrollSpySidebar: React.FC<ScrollSpySidebarProps> = ({
 
   return (
     <nav
-      className={`px-10 py-3 sticky top-0 h-screen overflow-y-auto ${className}`}
+      className={`px-10 py-3 sticky top-[4rem] h-[calc(100vh-4rem)] overflow-y-auto overflow-x-hidden ${className}`}
     >
       {sections.map((section) => (
         <div
