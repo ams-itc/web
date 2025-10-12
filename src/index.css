@@ -186,3 +186,7 @@ html {
   margin-top: 1rem;               /* spacing below cards */
   text-align: center !important;  /* keep centered */
 }
+
+.font-khmer {
+  font-family: 'Kantumruy Pro', 'Battambang', sans-serif;
+}
