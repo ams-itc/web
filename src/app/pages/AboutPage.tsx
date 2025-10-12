@@ -11,7 +11,11 @@ import InitialImage from '../components/ui/InitialImage';
 import ScrollSpySidebar from '../components/ScrollSpySidebar';
 
 const sections = [
-  { id: 'aboutAMS', labelEn: 'About AMS', labelKh: 'អំពី AMS' },
+  {
+    id: 'aboutAMS',
+    labelEn: 'About AMS',
+    labelKh: 'អំពី AMS',
+  },
   {
     id: 'boardoftrustees',
     labelEn: 'Board of Trustees',
