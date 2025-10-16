@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useState } from 'react';
+import { Link as ScrollLink } from 'react-scroll';
 
 export default function Navbar() {
   const { language, setLanguage } = useLanguage();
@@ -129,7 +130,7 @@ export default function Navbar() {
   const addLangToPath = (path: string) => {
     const url = new URL(path, window.location.origin);
     url.searchParams.set('lang', language);
-    return url.pathname + url.search + url.hash;
+    return url.pathname + url.search + (url.hash || '');
   };
 
   const toggleMobileMenu = () => {
@@ -156,12 +157,11 @@ export default function Navbar() {
               <>
                 <NavLink
                   to={addLangToPath(item.url)}
-                  className={({ isActive }) =>
-                    `inline-flex items-center px-3 text-sm font-medium rounded-md transition ${
-                      isActive
-                        ? 'text-blue-600 bg-blue-50'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`
+                  className={({ isActive }: { isActive: boolean }) =>
+                    (isActive
+                      ? 'text-blue-600 bg-blue-50'
+                      : 'text-gray-700 hover:bg-gray-100') +
+                    ' inline-flex items-center px-3 text-sm font-medium rounded-md transition'
                   }
                 >
                   <span
@@ -196,10 +196,27 @@ export default function Navbar() {
                   ))}
                 </div>
               </>
+            ) : item.url.startsWith('#') ? (
+              <ScrollLink
+                to={item.url.substring(1)}
+                smooth={true}
+                duration={500}
+                className="inline-flex items-center px-3 text-sm font-medium rounded-md transition text-gray-700 hover:bg-gray-100"
+              >
+                <span
+                  className={
+                    language === 'kh'
+                      ? 'font-kantumruy_pro text-sm'
+                      : 'font-raleway text-sm'
+                  }
+                >
+                  {item.title}
+                </span>
+              </ScrollLink>
             ) : (
               <NavLink
                 to={addLangToPath(item.url)}
-                className={({ isActive }) =>
+                className={({ isActive }: { isActive: boolean }) =>
                   `inline-flex items-center px-3 text-sm font-medium rounded-md transition ${
                     isActive
                       ? 'text-blue-600 bg-blue-50'
@@ -297,7 +314,7 @@ export default function Navbar() {
           {isMobileMenuOpen ? (
             <X className="h-[clamp(1.25rem,2vw,2rem)] w-[clamp(1.25rem,2vw,2rem)]" />
           ) : (
-            <Menu className="h-[clamp(1.25rem,2vw,2rem)] w-[clamp(1.25rem,2vw,2rem)]" />
+            <Menu className="h-[clamp(1.25rem,2vw,2rem)] w-[clamp(1.25rem,2vw,2rem]" />
           )}
         </button>
       </div>
@@ -359,6 +376,30 @@ export default function Navbar() {
                       </div>
                     )}
                   </>
+                ) : item.url.startsWith('#') ? (
+                  <ScrollLink
+                    to={item.url.substring(1)}
+                    smooth={true}
+                    duration={500}
+                    onClick={closeMobileMenu}
+                    className={({ isActive }) =>
+                      `block px-3 py-3 rounded-md transition ${
+                        isActive
+                          ? 'text-blue-600 bg-blue-50 font-medium'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`
+                    }
+                  >
+                    <span
+                      className={
+                        language === 'kh'
+                          ? 'font-kantumruy_pro text-base font-medium'
+                          : 'font-raleway text-base font-medium'
+                      }
+                    >
+                      {item.title}
+                    </span>
+                  </ScrollLink>
                 ) : (
                   <NavLink
                     to={addLangToPath(item.url)}
