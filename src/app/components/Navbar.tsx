@@ -30,9 +30,11 @@ export default function Navbar() {
         url: '/academics',
         icon: null,
         items: [
-          { title: 'Programs', url: '/academics/programs' },
-          { title: 'Courses', url: '/academics/courses' },
-          { title: 'Admissions', url: '/academics/admissions' },
+          { title: "Bachelor's Degree", url: '/academics#bachelor-degree' },
+          { title: 'Master’s Degree', url: '/academics#master-degree' },
+          { title: 'How to Apply', url: '/academics#how-to-apply' },
+          { title: 'Scholarships', url: '/academics#scholarship' },
+          { title: 'Academic Calendar', url: '/academics#academic-calendar' },
         ],
       },
       {
@@ -87,11 +89,14 @@ export default function Navbar() {
         url: '/academics',
         icon: null,
         items: [
-          { title: 'កម្មវិធី', url: '/academics/programs' },
-          { title: 'វគ្គសិក្សា', url: '/academics/courses' },
-          { title: 'ការចូលរៀន', url: '/academics/admissions' },
+          { title: 'បរិញ្ញាបត្រ', url: '/academics#bachelor-degree' },
+          { title: 'អនុបណ្ឌិត', url: '/academics#master-degree' },
+          { title: 'របៀបដាក់ពាក្យ', url: '/academics#how-to-apply' },
+          { title: 'អាហារូបករណ៍', url: '/academics#scholarship' },
+          { title: 'ប្រតិទិនសិក្សា', url: '/academics#academic-calendar' },
         ],
       },
+
       {
         title: 'គ្រូបង្រៀន និងការស្រាវជ្រាវ',
         url: '/faculty-and-research',
@@ -377,29 +382,25 @@ export default function Navbar() {
                     )}
                   </>
                 ) : item.url.startsWith('#') ? (
-                  <ScrollLink
-                    to={item.url.substring(1)}
-                    smooth={true}
-                    duration={500}
-                    onClick={closeMobileMenu}
-                    className={({ isActive }) =>
-                      `block px-3 py-3 rounded-md transition ${
-                        isActive
-                          ? 'text-blue-600 bg-blue-50 font-medium'
-                          : 'text-gray-700 hover:bg-gray-100'
-                      }`
-                    }
-                  >
-                    <span
-                      className={
-                        language === 'kh'
-                          ? 'font-kantumruy_pro text-base font-medium'
-                          : 'font-raleway text-base font-medium'
-                      }
-                    >
-                      {item.title}
-                    </span>
-                  </ScrollLink>
+<ScrollLink
+  to={item.url.substring(1)}
+  smooth={true}
+  duration={500}
+  onClick={closeMobileMenu}
+  className="block px-3 py-3 rounded-md transition text-gray-700 hover:bg-gray-100"
+>
+  <span
+    className={
+      language === 'kh'
+        ? 'font-kantumruy_pro text-base font-medium'
+        : 'font-raleway text-base font-medium'
+    }
+  >
+    {item.title}
+  </span>
+</ScrollLink>
+
+
                 ) : (
                   <NavLink
                     to={addLangToPath(item.url)}
