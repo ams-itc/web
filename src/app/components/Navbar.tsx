@@ -382,29 +382,25 @@ export default function Navbar() {
                     )}
                   </>
                 ) : item.url.startsWith('#') ? (
-                  <ScrollLink
-                    to={item.url.substring(1)}
-                    smooth={true}
-                    duration={500}
-                    onClick={closeMobileMenu}
-                    className={({ isActive }) =>
-                      `block px-3 py-3 rounded-md transition ${
-                        isActive
-                          ? 'text-blue-600 bg-blue-50 font-medium'
-                          : 'text-gray-700 hover:bg-gray-100'
-                      }`
-                    }
-                  >
-                    <span
-                      className={
-                        language === 'kh'
-                          ? 'font-kantumruy_pro text-base font-medium'
-                          : 'font-raleway text-base font-medium'
-                      }
-                    >
-                      {item.title}
-                    </span>
-                  </ScrollLink>
+<ScrollLink
+  to={item.url.substring(1)}
+  smooth={true}
+  duration={500}
+  onClick={closeMobileMenu}
+  className="block px-3 py-3 rounded-md transition text-gray-700 hover:bg-gray-100"
+>
+  <span
+    className={
+      language === 'kh'
+        ? 'font-kantumruy_pro text-base font-medium'
+        : 'font-raleway text-base font-medium'
+    }
+  >
+    {item.title}
+  </span>
+</ScrollLink>
+
+
                 ) : (
                   <NavLink
                     to={addLangToPath(item.url)}
