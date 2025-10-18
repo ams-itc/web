@@ -839,22 +839,23 @@ export default function BachelorDegree() {
   const { language } = useLanguage();
 
   return (
-    <div className="w-full">
-      <h1 className="text-3xl font-playfair_display text-black font-semibold">
-        {renderTextWithFont(
-          language === 'en' ? 'Bachelor Degree' : 'កម្រិតបរិញ្ញាបត្រ',
-          language,
-          'heading'
-        )}
-      </h1>
-      <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
-      <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
+<div className="w-auto bg-white">
+  <div className="w-auto px-4 sm:px-6 lg:px-8">
+    <h1 className="text-[clamp(1.5rem,2vw,2rem)] font-playfair_display text-black font-semibold">
+      {renderTextWithFont(
+        language === 'en' ? 'Bachelor Degree' : 'កម្រិតបរិញ្ញាបត្រ',
+        language,
+        'heading'
+      )}
+    </h1>
+
+    <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
+    <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
       {/* Bachelor's Degree Tabs */}
-      <div className="bg-white shadow-md">
-        <div className="bg-white shadow-md">
-          <div className="w-full grid grid-cols-2">
+      <div className="bg-white shadow-md overflow-hidden">
+          <div className="grid grid-cols-2">
             <button
-              className={`col-span-1 py-3 text-left font-medium px-3 text-xl ${
+              className={`col-span-1 py-3 text-left font-medium px-3 text-[clamp(0.875rem,2vw,1.25rem)] ${
                 selected === 'dataScience'
                   ? 'bg-[#3A3B5C]/20 text-[#3A3B5C]'
                   : 'bg-[#D9D9D9]/50 text-[#3A3B5C]'
@@ -883,7 +884,7 @@ export default function BachelorDegree() {
             </button>
 
             <button
-              className={`col-span-1 py-3 text-left font-medium px-3 text-xl ${
+              className={`col-span-1 py-3 text-left font-medium px-3 text-[clamp(0.875rem,2vw,1.25rem)] ${
                 selected === 'financialEngineering'
                   ? 'bg-[#3A3B5C]/20 text-[#3A3B5C]'
                   : 'bg-[#D9D9D9]/50 text-[#3A3B5C]'
@@ -910,22 +911,21 @@ export default function BachelorDegree() {
                 )}
               </span>
             </button>
-          </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="max-w-6xl py-6">
+      <div className="w-auto py-6">
         {/* Overview */}
         <section className="mb-5">
-          <h2 className="text-xl font-extrabold mb-2 text-[#3A3B5C]">
+          <h2 className=" font-extrabold mb-2 text-[#3A3B5C] text-[clamp(1.125rem,2vw,1.5rem)]">
             {renderTextWithFont(
               language === 'en' ? 'Program Overview' : 'ទិដ្ឋភាពកម្មវិធី',
               language,
               'heading'
             )}
           </h2>
-          <p className="font-raleway text-[#2E2E2E]">
+          <p className="font-raleway text-[#2E2E2E] text-[clamp(0.875rem,2vw,1.25rem)]">
             {renderTextWithFont(
               language === 'en'
                 ? `${program.overview.en}`
@@ -938,7 +938,7 @@ export default function BachelorDegree() {
 
         {/* Curriculum */}
         <section className="mb-8">
-          <h2 className="text-xl font-extrabold mb-2 text-[#3A3B5C] font-raleway">
+          <h2 className="text-[clamp(1.125rem,2vw,1.5rem)] font-extrabold mb-2 text-[#3A3B5C] font-raleway">
             {renderTextWithFont(
               language === 'en' ? 'Curriculum Structure' : 'កម្មវិធីសិក្សា',
               language,
@@ -951,7 +951,7 @@ export default function BachelorDegree() {
               {Object.keys(program.curriculum).map((yearKey) => (
                 <button
                   key={yearKey}
-                  className={`py-3 font-medium px-2 text-base border border-gray-300 ${
+                  className={`py-3 font-medium px-2 text-[clamp(0.75rem,2vw,0.825rem)] border border-gray-300 ${
                     selectedYear === yearKey
                       ? 'bg-[#D9D9D9] text-black'
                       : 'bg-gray-100 text-black'
@@ -967,7 +967,7 @@ export default function BachelorDegree() {
               ))}
             </div>
           </div>
-          <div>
+          <div className='hidden lg:flex flex-col'>
             {/* Animated Curriculum Content */}
             <AnimatePresence mode="wait">
               <motion.div
@@ -981,7 +981,7 @@ export default function BachelorDegree() {
                 {/* Column 1 - Semester 1 */}
                 <div className="grid grid-rows-7 divide-y-2 divide-gray-400">
                   {/* Header */}
-                  <div className="grid grid-cols-5 py-2 row-span-1 px-4 text-lg text-[#3A3B5C] bg-gray-50 items-center rounded-t-xl font-raleway">
+                  <div className="grid grid-cols-5 py-2 row-span-1 px-4 text-[clamp(1rem,2vw,1.25rem)] text-[#3A3B5C] bg-gray-50 items-center rounded-t-xl font-raleway">
                     <h3 className="font-semibold col-span-4">
                       {renderTextWithFont(
                         language === 'en' ? 'Semester 1' : 'ឆមាស ១',
@@ -1003,11 +1003,11 @@ export default function BachelorDegree() {
                     {yearData.semester1?.map((c) => (
                       <li
                         key={c.code}
-                        className="grid grid-cols-5 border-b pt-5 pb-5 px-4 text-base font-medium text-[#767676] space-y-2 font-reddit_sans "
+                        className="grid grid-cols-5 border-b pt-5 pb-5 px-4 text-[clamp(0.875rem,1.5vw,1rem)] font-medium text-[#767676] space-y-2 font-reddit_sans "
                       >
                         <div className="col-span-4 grid grid-cols-4 space-x-7">
-                          <p className="col-span-1">{c.code}</p>
-                          <p className="col-span-3">
+                          <p className="col-span-2 xl:col-span-1">{c.code}</p>
+                          <p className="col-span-2 xl:col-span-3">
                             {renderTextWithFont(
                               language === 'en'
                                 ? `${c.name.en}`
@@ -1025,7 +1025,7 @@ export default function BachelorDegree() {
                   </ul>
 
                   {/* Total */}
-                  <div className="grid grid-cols-5 py-2 px-4 text-base text-[#3A3B5C] bg-gray-50 row-span-1 items-center rounded-b-xl">
+                  <div className="grid grid-cols-5 py-2 px-4 text-[clamp(0.875rem,1.5vw,1rem)] text-[#3A3B5C] bg-gray-50 row-span-1 items-center rounded-b-xl">
                     <h3
                       className={`font-bold col-span-4 ${language === 'en' ? 'font-raleway' : 'font-preahvihear'}`}
                     >
@@ -1054,7 +1054,7 @@ export default function BachelorDegree() {
                 {/* Column 2 - Semester 2 */}
                 <div className="grid grid-rows-7 divide-y-2 divide-gray-400">
                   {/* Header */}
-                  <div className="grid grid-cols-5 py-2 px-4 text-lg text-[#3A3B5C] bg-gray-50 row-span-1 items-center font-raleway rounded-t-xl">
+                  <div className="grid grid-cols-5 py-2 px-4 text-[clamp(1rem,2vw,1.25rem)] text-[#3A3B5C] bg-gray-50 row-span-1 items-center font-raleway rounded-t-xl">
                     <h3 className="font-semibold col-span-4">
                       {renderTextWithFont(
                         language === 'en' ? 'Semester 2' : 'ឆមាស ២',
@@ -1076,11 +1076,11 @@ export default function BachelorDegree() {
                     {yearData.semester2?.map((c) => (
                       <li
                         key={c.code}
-                        className="grid grid-cols-5 border-b pt-5 pb-5 px-4 text-base font-medium text-[#767676] font-reddit_sans space-y-2"
+                        className="grid grid-cols-5 border-b pt-5 pb-5 px-4 text-[clamp(0.875rem,1.5vw,1rem)] font-medium text-[#767676] font-reddit_sans space-y-2"
                       >
                         <div className="col-span-4 grid grid-cols-4">
-                          <p className="col-span-1">{c.code}</p>
-                          <p className="col-span-3">
+                          <p className="col-span-2 xl:col-span-1">{c.code}</p>
+                          <p className="col-span-2 xl:col-span-3">
                             {renderTextWithFont(
                               language === 'en'
                                 ? `${c.name.en}`
@@ -1098,7 +1098,7 @@ export default function BachelorDegree() {
                   </ul>
 
                   {/* Total */}
-                  <div className="grid grid-cols-5 py-2 px-4 text-base text-[#3A3B5C] bg-gray-50 row-span-1 items-center rounded-b-xl">
+                  <div className="grid grid-cols-5 py-2 px-4 text-[clamp(0.875rem,1.5vw,1rem)] text-[#3A3B5C] bg-gray-50 row-span-1 items-center rounded-b-xl">
                     <h3
                       className={`font-bold col-span-4 ${language === 'en' ? 'font-raleway' : 'font-preahvihear'}`}
                     >
@@ -1126,19 +1126,170 @@ export default function BachelorDegree() {
               </motion.div>
             </AnimatePresence>
           </div>
+          <div 
+            className='lg:hidden mt-5'
+            key={selectedYear}
+          >
+            {/* Column 1 - Semester 1 */}
+                <div className="mb-6 grid grid-rows-[auto_1fr_auto] divide-y-2 divide-gray-400 rounded-xl bg-gray-50">
+                  {/* Header */}
+                  <div className="grid grid-cols-5 py-2 row-span-1 px-4 text-[clamp(1rem,2vw,1.25rem)] text-[#3A3B5C] bg-gray-50 items-center rounded-t-xl font-raleway">
+                    <h3 className="font-semibold col-span-4">
+                      {renderTextWithFont(
+                        language === 'en' ? 'Semester 1' : 'ឆមាស ១',
+                        language,
+                        'heading'
+                      )}
+                    </h3>
+                    <h3 className="font-semibold col-span-1 text-center">
+                      {renderTextWithFont(
+                        language === 'en' ? 'Credit' : 'ក្រេឌីត',
+                        language,
+                        'heading'
+                      )}
+                    </h3>
+                  </div>
+
+                  {/* Courses */}
+                  <ul className="overflow-y-auto row-span-5">
+                    {yearData.semester1?.map((c) => (
+                      <li
+                        key={c.code}
+                        className="grid grid-cols-5 border-b pt-5 pb-5 px-4 text-[clamp(0.875rem,1.5vw,1rem)] font-medium text-[#767676] space-y-2 font-reddit_sans "
+                      >
+                        <div className="col-span-4 grid grid-cols-4 space-x-7">
+                          <p className="col-span-1">{c.code}</p>
+                          <p className="col-span-3">
+                            {renderTextWithFont(
+                              language === 'en'
+                                ? `${c.name.en}`
+                                : `${c.name.kh}`,
+                              language,
+                              'body'
+                            )}
+                          </p>
+                        </div>
+                        <span className="col-span-1 text-center">
+                          {c.credit}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Total */}
+                  <div className="grid grid-cols-5 py-2 px-4 text-[clamp(0.875rem,1.5vw,1rem)] text-[#3A3B5C] bg-gray-50 row-span-1 items-center rounded-b-xl">
+                    <h3
+                      className={`font-bold col-span-4 ${language === 'en' ? 'font-raleway' : 'font-preahvihear'}`}
+                    >
+                      {language === 'en' ? (
+                        <>
+                          Total Semester 1{' '}
+                          <span className="text-[#C41E3A]">
+                            {yearLabels[selectedYear]?.[language]}
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          សរុបក្រេឌីតឆមាសទី១សម្រាប់{' '}
+                          <span className="text-[#C41E3A]">
+                            {yearLabels[selectedYear]?.[language]}
+                          </span>
+                        </>
+                      )}
+                    </h3>
+                    <h3 className="font-bold col-span-1 text-center font-reddit_sans">
+                      {yearData.totalCredit}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Column 2 - Semester 2 */}
+                <div className="grid grid-rows-[auto_1fr_auto] divide-y-2 divide-gray-400 rounded-xl bg-gray-50">
+                  {/* Header */}
+                  <div className="grid grid-cols-5 py-2 px-4 text-[clamp(1rem,2vw,1.25rem)] text-[#3A3B5C] bg-gray-50 row-span-1 items-center font-raleway rounded-t-xl">
+                    <h3 className="font-semibold col-span-4">
+                      {renderTextWithFont(
+                        language === 'en' ? 'Semester 2' : 'ឆមាស ២',
+                        language,
+                        'heading'
+                      )}
+                    </h3>
+                    <h3 className="font-semibold col-span-1 text-center">
+                      {renderTextWithFont(
+                        language === 'en' ? 'Credit' : 'ក្រេឌីត',
+                        language,
+                        'heading'
+                      )}
+                    </h3>
+                  </div>
+
+                  {/* Courses */}
+                  <ul className="overflow-y-auto row-span-5">
+                    {yearData.semester2?.map((c) => (
+                      <li
+                        key={c.code}
+                        className="grid grid-cols-5 border-b pt-5 pb-5 px-4 text-[clamp(0.875rem,1.5vw,1rem)] font-medium text-[#767676] font-reddit_sans space-y-2"
+                      >
+                        <div className="col-span-4 grid grid-cols-4">
+                          <p className="col-span-1">{c.code}</p>
+                          <p className="col-span-3">
+                            {renderTextWithFont(
+                              language === 'en'
+                                ? `${c.name.en}`
+                                : `${c.name.kh}`,
+                              language,
+                              'body'
+                            )}
+                          </p>
+                        </div>
+                        <span className="col-span-1 text-gray-600 text-center">
+                          {c.credit}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Total */}
+                  <div className="grid grid-cols-5 py-2 px-4 text-[clamp(0.875rem,1.5vw,1rem)] text-[#3A3B5C] bg-gray-50 row-span-1 items-center rounded-b-xl">
+                    <h3
+                      className={`font-bold col-span-4 ${language === 'en' ? 'font-raleway' : 'font-preahvihear'}`}
+                    >
+                      {language === 'en' ? (
+                        <>
+                          Total Semester 2{' '}
+                          <span className="text-[#C41E3A]">
+                            {yearLabels[selectedYear]?.[language]}
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          សរុបក្រេឌីតឆមាសទី២សម្រាប់{' '}
+                          <span className="text-[#C41E3A]">
+                            {yearLabels[selectedYear]?.[language]}
+                          </span>
+                        </>
+                      )}
+                    </h3>
+                    <h3 className="font-bold col-span-1 text-center font-reddit_sans">
+                      {yearData.totalCredit}
+                    </h3>
+                  </div>
+                </div>
+              
+          </div>
         </section>
 
         {/* Career Opportunities*/}
         <section className="mb-8">
           <h2
-            className={`text-xl font-extrabold mb-4 text-[#3A3B5C] ${language === 'en' ? 'font-raleway' : 'font-preahvihear'}`}
+            className={`text-[clamp(1.125rem,2vw,1.5rem)] font-extrabold mb-4 text-[#3A3B5C] ${language === 'en' ? 'font-raleway' : 'font-preahvihear'}`}
           >
             {language === 'en' ? 'Career Opportunities' : 'ឱកាសការងារ'}
           </h2>
 
           {program.career_opportunities.map((opportunity, idx) => (
             <div key={idx} className="space-y-5">
-              <p className="text-[#2E2E2E] font-raleway text-base">
+              <p className="text-[#2E2E2E] font-raleway text-[clamp(0.875rem,2vw,1.25rem)]">
                 {renderTextWithFont(
                   language === 'en'
                     ? opportunity.description.en
@@ -1150,13 +1301,13 @@ export default function BachelorDegree() {
 
               <div>
                 <p
-                  className={`text-black mb-2 ${language === 'en' ? 'font-raleway' : 'font-preahvihear'}`}
+                  className={`text-black text-[clamp(0.875rem,2vw,1.25rem)] mb-2 ${language === 'en' ? 'font-raleway' : 'font-preahvihear'}`}
                 >
                   {language === 'en'
                     ? 'Data Science career paths may include:'
                     : 'ផ្លូវការងារផ្នែកវិទ្យាសាស្ត្រទិន្នន័យអាចរួមមាន:'}
                 </p>
-                <ul className="list-disc list-inside tracking-wide text-[#2E2E2E] pl-3 space-y-1">
+                <ul className="list-disc list-inside tracking-wide text-[#2E2E2E] pl-3 space-y-1 text-[clamp(0.875rem,2vw,1.25rem)]">
                   {opportunity.career_path.map((career, index) => (
                     <li key={index}>
                       {renderTextWithFont(
@@ -1182,21 +1333,21 @@ export default function BachelorDegree() {
         {/* Learning Outcomes */}
         <section className="mb-5">
           <h2
-            className={`text-xl font-extrabold mb-4 text-[#3A3B5C] ${language === 'en' ? 'font-raleway' : 'font-preahvihear'}`}
+            className={`text-[clamp(1.125rem,2vw,1.5rem)] font-extrabold mb-4 text-[#3A3B5C] ${language === 'en' ? 'font-raleway' : 'font-preahvihear'}`}
           >
             {language === 'en'
               ? 'Learning Outcomes'
               : 'លទ្ធផលរំពឹងទុកពីការសិក្សា'}
           </h2>
           <p
-            className={`font-extrabold mb-2 text-[#2E2E2E] ${language === 'en' ? 'font-raleway' : 'font-preahvihear'}`}
+            className={`font-extrabold mb-2 text-[clamp(0.875rem,2vw,1.25rem)] text-[#2E2E2E] ${language === 'en' ? 'font-raleway' : 'font-preahvihear'}`}
           >
             {language === 'en'
               ? 'Upon completing the program, students will be able to:'
               : 'បន្ទាប់ពីបញ្ចប់កម្មវិធីនេះ និស្សិតនឹងមានសមត្ថភាព៖'}
           </p>
           {program.learningOutcomes.map((outcome, index) => (
-            <div key={index} className="py-4 text-base font-raleway">
+            <div key={index} className="py-4 text-[clamp(0.875rem,2vw,1.25rem)] font-raleway">
               <p className="text-[#3A3B5C] mb-3 font-semibold">
                 {renderTextWithFont(
                   language === 'en'
@@ -1211,7 +1362,7 @@ export default function BachelorDegree() {
                 {outcome.learning_description.map((description, index) => (
                   <li
                     key={index}
-                    className="list-disc list-inside text-base text-[#2E2E2E] pl-3"
+                    className="list-disc list-inside text-[clamp(0.875rem,2vw,1.25rem)] text-[#2E2E2E] pl-3"
                   >
                     {renderTextWithFont(
                       language === 'en'
@@ -1226,7 +1377,7 @@ export default function BachelorDegree() {
             </div>
           ))}
         </section>
-        <a href="" className="border text-[#C41E3A] font-raleway">
+        <a href="" className="border text-[#C41E3A] font-raleway text-[clamp(0.875rem,2vw,1.25rem)]">
           {renderTextWithFont(
             language === 'en'
               ? 'Learn More about the Admission Process '
@@ -1237,6 +1388,7 @@ export default function BachelorDegree() {
           <i className="fa-solid fa-arrow-right-long pl-3"></i>
         </a>
       </div>
+    </div>
     </div>
   );
 }

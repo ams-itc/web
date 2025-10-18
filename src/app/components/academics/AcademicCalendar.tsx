@@ -155,89 +155,108 @@ export default function AcademicCalendar() {
   const { language } = useLanguage();
 
   return (
-    <div className="w-full">
-      <h1 className="text-3xl font-playfair_display text-black font-semibold">
-        {renderTextWithFont(
-          language === 'en' ? 'Academic Calendar' : 'ប្រតិទិនការសិក្សា',
-          language,
-          'heading'
-        )}
-      </h1>
-      <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
-      <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
-      <div className="py-5 px-2 grid grid-cols-2 gap-10 font-reddit_sans">
-        <div className="col-span-1">
-          {/* heading */}
-          <div
-            className={`bg-[#3A3B5C] flex justify-between px-5 py-2 text-white text-xl font-semibold mb-5 
-                        ${language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'}`}
-          >
-            <h2>
-              {language === 'en' ? 'EVENTS' : 'ព្រឹត្តិការណ៍ និងបុណ្យជាតិ'}
-            </h2>
-            <h2>{language === 'en' ? 'DATE' : 'កាលបរិច្ឆេទ'}</h2>
-          </div>
-          {calendarEvents[language].map((event, i) => (
-            <div key={i} className="grid grid-cols-2 gap-y-5 py-2 space-y-5">
-              {/* Title */}
-              <div
-                className={`col-span-1 text-sm text-black ${language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'}`}
-              >
-                <p>{event.title}</p>
-              </div>
+<div className="max-w-screen">
+  <h1 className="text-[clamp(1.5rem,2vw,2rem)] font-playfair_display text-black font-semibold">
+    {renderTextWithFont(
+      language === 'en' ? 'Academic Calendar' : 'ប្រតិទិនការសិក្សា',
+      language,
+      'heading'
+    )}
+  </h1>
+  <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
+  <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
 
-              {/* Date */}
-              <div
-                className={`col-span-1 text-sm text-black text-right ${language === 'en' ? 'font-reddit_sans' : 'font-kantumruy_pro'}`}
-              >
-                <p>
-                  {event.date.startingdate.day} {event.date.startingdate.month}{' '}
-                  {event.date.startingdate.year} – {event.date.enddate.day}{' '}
-                  {event.date.enddate.month} {event.date.enddate.year}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="col-span-1">
-          <div
-            className={`bg-[#C41E3A] flex justify-between px-5 py-2 text-white text-xl font-semibold mb-5 ${language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'}`}
-          >
-            <h2>{language === 'en' ? 'HOLIDAYS' : 'ថ្ងៃឈប់សម្រាក'}</h2>
-            <h2>{language === 'en' ? 'DATE' : 'កាលបរិច្ឆេទ'}</h2>
-          </div>
-          {calendarHolidays[language].map((holiday, i) => (
-            <div key={i} className="grid grid-cols-2 gap-y-5 py-2 space-y-5">
-              {/* Title */}
-              <div
-                className={`col-span-1 text-sm text-black ${language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'}`}
-              >
-                <p>{holiday.title}</p>
-              </div>
-
-              {/* Date */}
-              <div
-                className={`col-span-1 text-sm text-black text-right ${language === 'en' ? 'font-reddit_sans' : 'font-kantumruy_pro'}`}
-              >
-                <p>{holiday.date}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+  <div className="py-5 px-2 grid grid-cols-1 md:grid-cols-2 gap-8 font-reddit_sans">
+    {/* Events */}
+    <div className="col-span-1">
+      <div
+        className={`bg-[#3A3B5C] flex justify-between px-4 py-2 text-white text-[clamp(1rem,2vw,1.25rem)] font-semibold mb-5 
+                    ${language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'}`}
+      >
+        <h2>{language === 'en' ? 'EVENTS' : 'ព្រឹត្តិការណ៍ និងបុណ្យជាតិ'}</h2>
+        <h2>{language === 'en' ? 'DATE' : 'កាលបរិច្ឆេទ'}</h2>
       </div>
-      <div className="mt-10">
-        <a
-          href={calendarURL}
-          className={`text-xl text-black font-semibold underline hover:text-[#C41E3A] hover:underline-offset-4 transition-all duration-200 inline-flex gap-x-4 ${
-            language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'
-          }`}
+      {calendarEvents[language].map((event, i) => (
+        <div
+          key={i}
+          className="flex flex-wrap justify-between items-center py-2"
         >
-          {language === 'en'
-            ? 'Calendar of Academic Year 2024-2025'
-            : 'ប្រតិទិនឆ្នាំសិក្សា ២០២៤-២០២៥'}{' '}
-          <Download />
-        </a>
-      </div>
+          {/* Title */}
+          <div
+            className={`text-[clamp(0.875rem,1.5vw,1rem)] text-black flex-1 ${
+              language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'
+            }`}
+          >
+            <p>{event.title}</p>
+          </div>
+
+          {/* Date */}
+          <div
+            className={`text-[clamp(0.875rem,1.5vw,1rem)] text-black text-right flex-1 ${
+              language === 'en' ? 'font-reddit_sans' : 'font-kantumruy_pro'
+            }`}
+          >
+            <p>
+              {event.date.startingdate.day} {event.date.startingdate.month}{' '}
+              {event.date.startingdate.year} – {event.date.enddate.day}{' '}
+              {event.date.enddate.month} {event.date.enddate.year}
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
+
+    {/* Holidays */}
+    <div className="col-span-1">
+      <div
+        className={`bg-[#C41E3A] flex justify-between px-4 py-2 text-white text-[clamp(1rem,2vw,1.25rem)] font-semibold mb-5 ${
+          language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'
+        }`}
+      >
+        <h2>{language === 'en' ? 'HOLIDAYS' : 'ថ្ងៃឈប់សម្រាក'}</h2>
+        <h2>{language === 'en' ? 'DATE' : 'កាលបរិច្ឆេទ'}</h2>
+      </div>
+      {calendarHolidays[language].map((holiday, i) => (
+        <div
+          key={i}
+          className="flex flex-wrap justify-between items-center py-2"
+        >
+          {/* Title */}
+          <div
+            className={`text-[clamp(0.875rem,1.5vw,1rem)] text-black flex-1 ${
+              language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'
+            }`}
+          >
+            <p>{holiday.title}</p>
+          </div>
+
+          {/* Date */}
+          <div
+            className={`text-[clamp(0.875rem,1.5vw,1rem)] text-black text-right flex-1 ${
+              language === 'en' ? 'font-reddit_sans' : 'font-kantumruy_pro'
+            }`}
+          >
+            <p>{holiday.date}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div className="mt-10">
+    <a
+      href={calendarURL}
+      className={`text-[clamp(1rem,2vw,1.25rem)] text-black font-semibold underline hover:text-[#C41E3A] hover:underline-offset-4 transition-all duration-200 inline-flex gap-x-4 ${
+        language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'
+      }`}
+    >
+      {language === 'en'
+        ? 'Calendar of Academic Year 2024-2025'
+        : 'ប្រតិទិនឆ្នាំសិក្សា ២០២៤-២០២៥'}{' '}
+      <Download />
+    </a>
+  </div>
+</div>
+
   );
 }

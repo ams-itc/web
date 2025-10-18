@@ -704,7 +704,7 @@ export default function HowtoApply() {
 
   return (
     <div className="w-full">
-      <h1 className="text-3xl font-playfair_display text-black font-semibold">
+      <h1 className="text-[clamp(1.5rem,2vw,2rem)] font-playfair_display text-black font-semibold">
         {renderTextWithFont(
           language === 'en' ? 'How to Apply' : 'របៀបដាក់ពាក្យ',
           language,
@@ -714,184 +714,157 @@ export default function HowtoApply() {
       <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
       <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
       {/* Application Degree Tabs */}
-      <div className="bg-white shadow-md">
-        <div className="w-full grid grid-cols-2">
-          <button
-            className={`col-span-1 py-3 text-left font-medium px-3 text-xl ${
-              selected === "Bachelor's Degree"
-                ? 'bg-[#3A3B5C]/20 text-[#3A3B5C]'
-                : 'bg-[#D9D9D9]/50 text-[#3A3B5C]'
-            }`}
-            onClick={() => setSelected("Bachelor's Degree")}
-          >
-            <span
-              className={
-                language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'
-              }
-            >
-              {language === 'en' ? (
-                <>Bachelor's Degree</>
-              ) : (
-                <>កម្រិតបរិញ្ញាបត្រ</>
-              )}
-            </span>
-          </button>
-          <button
-            className={`col-span-1 py-3 text-left font-medium px-3 text-xl ${
-              selected === "Master's Degree"
-                ? 'bg-[#3A3B5C]/20 text-[#3A3B5C]'
-                : 'bg-[#D9D9D9]/50 text-[#3A3B5C]'
-            }`}
-            onClick={() => setSelected("Master's Degree")}
-          >
-            <span
-              className={
-                language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'
-              }
-            >
-              {language === 'en' ? (
-                <>Master's Degree</>
-              ) : (
-                <>កម្រិតបរិញ្ញាបត្រជាន់ខ្ពស់</>
-              )}
-            </span>
-          </button>
-        </div>
-      </div>
+<div className="bg-white shadow-md">
+  <div className="w-full grid grid-cols-2">
+    <button
+      className={`col-span-1 py-3 text-left font-medium px-3 text-[clamp(0.875rem,2vw,1.25rem)] ${
+        selected === "Bachelor's Degree"
+          ? 'bg-[#3A3B5C]/20 text-[#3A3B5C]'
+          : 'bg-[#D9D9D9]/50 text-[#3A3B5C]'
+      }`}
+      onClick={() => setSelected("Bachelor's Degree")}
+    >
+      <span
+        className={language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'}
+      >
+        {language === 'en' ? 'Bachelor\'s Degree' : 'កម្រិតបរិញ្ញាបត្រ'}
+      </span>
+    </button>
+    <button
+      className={`col-span-1 py-3 text-left font-medium px-3 text-[clamp(0.875rem,2vw,1.25rem)] ${
+        selected === "Master's Degree"
+          ? 'bg-[#3A3B5C]/20 text-[#3A3B5C]'
+          : 'bg-[#D9D9D9]/50 text-[#3A3B5C]'
+      }`}
+      onClick={() => setSelected("Master's Degree")}
+    >
+      <span
+        className={language === 'en' ? 'font-reddit_sans' : 'font-preahvihear'}
+      >
+        {language === 'en' ? 'Master\'s Degree' : 'កម្រិតបរិញ្ញាបត្រជាន់ខ្ពស់'}
+      </span>
+    </button>
+  </div>
+</div>
+
 
       {/* Content */}
-      <div className="mt-6 max-w-full">
-        <section>
-          {application.sections.map((section, index) => (
-            <div key={index} className="mb-8">
-              <h2 className="text-xl font-extrabold mb-2 text-[#3A3B5C]">
-                {renderTextWithFont(
-                  language === 'en'
-                    ? `${section.title.en}`
-                    : `${section.title.kh}`,
-                  language,
-                  'heading'
-                )}
-              </h2>
-              {section.description &&
-                (Array.isArray(section.description) ? (
-                  section.description.map((desc, idx) => (
-                    <p key={idx} className="mb-2 text-[#2E2E2E]">
-                      {renderTextWithFont(
-                        language === 'en' ? `${desc.en}` : `${desc.kh}`,
-                        language,
-                        'body'
-                      )}
-                    </p>
-                  ))
-                ) : (
-                  <p className="mb-2 text-[#2E2E2E]">
-                    {renderTextWithFont(
-                      language === 'en'
-                        ? `${section.description.en}`
-                        : `${section.description.kh}`,
-                      language,
-                      'body'
-                    )}
-                  </p>
-                ))}
-              {section.points && (
-                <div className="">
-                  {section.points.map((point, pIndex) =>
-                    typeof point === 'string' ? (
-                      <p
-                        key={pIndex}
-                        className="mb-2 text-[#3A3B5C] font-raleway"
-                      >
-                        {point}
-                      </p>
-                    ) : (
-                      <div key={pIndex} className="mb-4">
-                        {point.title && (
-                          <h3 className="text-xl font-semibold mb-2 text-[#3A3B5C]">
-                            {renderTextWithFont(
-                              language === 'en'
-                                ? `${point.title.en}`
-                                : `${point.title.kh}`,
-                              language,
-                              'body'
-                            )}
-                          </h3>
-                        )}
-                        {point.description &&
-                          (Array.isArray(point.description) ? (
-                            point.description.map((desc, dIdx) => (
-                              <p
-                                key={dIdx}
-                                className="mb-2 text-[#2E2E2E] font-raleway"
-                              >
-                                {renderTextWithFont(
-                                  language === 'en'
-                                    ? `${desc.en}`
-                                    : `${desc.kh}`,
-                                  language,
-                                  'body'
-                                )}
-                              </p>
-                            ))
-                          ) : (
-                            <p className="mb-2 text-[#2E2E2E] font-raleway">
-                              {renderTextWithFont(
-                                language === 'en'
-                                  ? `${point.description.en}`
-                                  : `${point.description.kh}`,
-                                language,
-                                'body'
-                              )}
-                            </p>
-                          ))}
-                        {point.list_heading && (
-                          <p className="text-black font-raleway font-semibold">
-                            {renderTextWithFont(
-                              language === 'en'
-                                ? `${point.list_heading.en}`
-                                : `${point.list_heading.kh}`,
-                              language,
-                              'heading'
-                            )}{' '}
-                            :
-                          </p>
-                        )}
-                        {point.list && (
-                          <ul className="list-disc list-inside mb-2 text-[#2E2E2E] font-raleway">
-                            {point.list.map((item, lIdx) => (
-                              <li key={lIdx} className="py-2">
-                                {renderTextWithFont(
-                                  language === 'en'
-                                    ? `${item.en}`
-                                    : `${item.kh}`,
-                                  language,
-                                  'body'
-                                )}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                        {point.conclusion && (
-                          <p className="mb-2 text-[#2E2E2E] font-raleway">
-                            {renderTextWithFont(
-                              language === 'en'
-                                ? `${point.conclusion.en}`
-                                : `${point.conclusion.kh}`,
-                              language,
-                              'body'
-                            )}
-                          </p>
-                        )}
-                      </div>
-                    )
+  <div className="mt-6 max-w-full">
+    <section>
+      {application.sections.map((section, index) => (
+        <div key={index} className="mb-8">
+          <h2 className="text-[clamp(1rem,2vw,1.5rem)] font-extrabold mb-2 text-[#3A3B5C]">
+            {renderTextWithFont(
+              language === 'en' ? section.title.en : section.title.kh,
+              language,
+              'heading'
+            )}
+          </h2>
+          {section.description &&
+            (Array.isArray(section.description) ? (
+              section.description.map((desc, idx) => (
+                <p key={idx} className="mb-2 text-[#2E2E2E] text-[clamp(0.875rem,2vw,1rem)]">
+                  {renderTextWithFont(
+                    language === 'en' ? desc.en : desc.kh,
+                    language,
+                    'body'
                   )}
-                </div>
+                </p>
+              ))
+            ) : (
+              <p className="mb-2 text-[#2E2E2E] text-[clamp(0.875rem,2vw,1rem)]">
+                {renderTextWithFont(
+                  language === 'en' ? section.description.en : section.description.kh,
+                  language,
+                  'body'
+                )}
+              </p>
+            ))}
+          {section.points && (
+            <div>
+              {section.points.map((point, pIndex) =>
+                typeof point === 'string' ? (
+                  <p
+                    key={pIndex}
+                    className="mb-2 text-[#3A3B5C] font-raleway text-[clamp(0.875rem,2vw,1rem)]"
+                  >
+                    {point}
+                  </p>
+                ) : (
+                  <div key={pIndex} className="mb-4">
+                    {point.title && (
+                      <h3 className="text-[clamp(0.875rem,2.5vw,1.25rem)] font-semibold mb-2 text-[#3A3B5C]">
+                        {renderTextWithFont(
+                          language === 'en' ? point.title.en : point.title.kh,
+                          language,
+                          'body'
+                        )}
+                      </h3>
+                    )}
+                    {point.description &&
+                      (Array.isArray(point.description) ? (
+                        point.description.map((desc, dIdx) => (
+                          <p
+                            key={dIdx}
+                            className="mb-2 text-[#2E2E2E] font-raleway text-[clamp(0.875rem,2vw,1rem)]"
+                          >
+                            {renderTextWithFont(
+                              language === 'en' ? desc.en : desc.kh,
+                              language,
+                              'body'
+                            )}
+                          </p>
+                        ))
+                      ) : (
+                        <p className="mb-2 text-[#2E2E2E] font-raleway text-[clamp(0.875rem,2vw,1rem)]">
+                          {renderTextWithFont(
+                            language === 'en' ? point.description.en : point.description.kh,
+                            language,
+                            'body'
+                          )}
+                        </p>
+                      ))}
+                    {point.list_heading && (
+                      <p className="text-black font-raleway font-semibold text-[clamp(0.875rem,2vw,1rem)]">
+                        {renderTextWithFont(
+                          language === 'en' ? point.list_heading.en : point.list_heading.kh,
+                          language,
+                          'heading'
+                        )}{' '}
+                        :
+                      </p>
+                    )}
+                    {point.list && (
+                      <ul className="list-disc list-inside mb-2 text-[#2E2E2E] font-raleway text-[clamp(0.875rem,2vw,1rem)]">
+                        {point.list.map((item, lIdx) => (
+                          <li key={lIdx} className="py-2">
+                            {renderTextWithFont(
+                              language === 'en' ? item.en : item.kh,
+                              language,
+                              'body'
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {point.conclusion && (
+                      <p className="mb-2 text-[#2E2E2E] font-raleway text-[clamp(0.875rem,2vw,1rem)]">
+                        {renderTextWithFont(
+                          language === 'en' ? point.conclusion.en : point.conclusion.kh,
+                          language,
+                          'body'
+                        )}
+                      </p>
+                    )}
+                  </div>
+                )
               )}
             </div>
-          ))}
-        </section>
-      </div>
-    </div>
+          )}
+        </div>
+      ))}
+    </section>
+  </div>
+</div>
   );
 }

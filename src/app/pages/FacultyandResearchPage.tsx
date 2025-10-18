@@ -62,27 +62,29 @@ export default function FacultyandResearchPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Initial Image */}
+    <div className="min-h-screen bg-white relative">
+      {/* Header Image */}
       <InitialImage
-        imagePath="/image.png"
+        imagePath="/image.jpg"
         textEn="Faculty and Research"
         textKh="គ្រូបង្រៀន និងការស្រាវជ្រាវ"
       />
 
-      <div className="w-full grid grid-cols-5 gap-x-2">
-        {/* Sidebar */}
-        <ScrollSpySidebar
-          sections={sections.map((s) => ({
-            id: s.id,
-            label: language === 'en' ? s.labelEn : s.labelKh,
-          }))}
-          activeSection={activeSection}
-          className="hidden lg:block col-span-1 border-r border-gray-300"
-        />
+      <div className="w-full lg:flex relative">
+        {/* Desktop Sidebar */}
+        <div className="hidden lg:block w-64 border-r border-gray-300">
+          <ScrollSpySidebar
+            sections={sections.map((s) => ({
+              id: s.id,
+              label: language === 'en' ? s.labelEn : s.labelKh,
+            }))}
+            activeSection={activeSection}
+            className="p-4"
+          />
+        </div>
 
         {/* Content Sections */}
-        <section className="col-span-4 px-10 py-8 space-y-10">
+        <section className="flex-1 px-4 lg:px-10 py-8 space-y-10">
           <div id="academic-support-staff">
             <AcademicSupportStaffSection />
           </div>
