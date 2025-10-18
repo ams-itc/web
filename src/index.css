@@ -199,3 +199,7 @@ html {
 .swiper-pagination-bullet-active {
   background-color: #3A3B5C;        /* active bullet color */
 }
+
+.font-khmer {
+  font-family: 'Kantumruy Pro', 'Battambang', sans-serif;
+}

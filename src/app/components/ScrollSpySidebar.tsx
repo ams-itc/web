@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Section {
   id: string;
@@ -16,8 +17,10 @@ const ScrollSpySidebar: React.FC<ScrollSpySidebarProps> = ({
   sections,
   activeSection,
   className = '',
-  onLinkClick, // ✅ receive the callback
+  onLinkClick,
 }) => {
+  const { language } = useLanguage(); // Consume language context
+
   const handleScroll = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -29,7 +32,7 @@ const ScrollSpySidebar: React.FC<ScrollSpySidebarProps> = ({
 
   return (
     <nav
-      className={`px-10 py-3 sticky top-0 h-screen overflow-y-auto ${className}`}
+      className={`px-10 py-3 sticky top-[4rem] h-[calc(100vh-4rem)] overflow-y-auto overflow-x-hidden ${className}`}
     >
       {sections.map((section) => (
         <div
@@ -45,7 +48,7 @@ const ScrollSpySidebar: React.FC<ScrollSpySidebarProps> = ({
               activeSection === section.id
                 ? 'text-gray-700 font-bold'
                 : 'text-black'
-            }`}
+            } ${language === 'kh' ? 'font-khmer' : ''}`}
             style={{
               background: 'none',
               border: 'none',
