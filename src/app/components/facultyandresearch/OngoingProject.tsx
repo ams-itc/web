@@ -13,9 +13,7 @@ function renderTextWithFont(
   if (language === 'en') {
     return (
       <span
-        className={
-          type === 'heading' ? 'font-playfair_display' : 'font-raleway'
-        }
+        className={type === 'heading' ? 'font-playfair_display' : 'font-raleway'}
       >
         {text}
       </span>
@@ -44,22 +42,6 @@ function renderTextWithFont(
   }
 }
 
-interface DescriptionItem {
-  title: string;
-  description: string | string[];
-}
-
-interface ListItem {
-  title: string;
-  description?: string[] | DescriptionItem[];
-  sub_description?: string;
-}
-
-interface LinkItem {
-  title: string;
-  url: string;
-}
-
 interface OngoingProjectLang {
   title: string;
   duration: string;
@@ -68,8 +50,6 @@ interface OngoingProjectLang {
   funding: string;
   students: string;
   description: string;
-  lists?: ListItem[];
-  link?: LinkItem[];
 }
 
 interface OngoingProject {
@@ -79,8 +59,9 @@ interface OngoingProject {
 
 export default function OngoingProjectsSection() {
   const { language } = useLanguage();
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const ongoingproject: OngoingProject[] = [
+  const ongoingProjects: OngoingProject[] = [
     {
       en: {
         title: 'Stanford Bioinformatics Project',
@@ -111,15 +92,13 @@ export default function OngoingProjectsSection() {
     },
   ];
 
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
     <section className="w-full">
-      <h1 className="text-3xl font-playfair_display text-black font-semibold">
+      <h1 className="text-3xl font-playfair_display font-semibold text-black">
         {renderTextWithFont(
           language === 'en' ? 'Ongoing Projects' : 'គម្រោងកំពុងដំណើរ',
           language,
@@ -128,7 +107,7 @@ export default function OngoingProjectsSection() {
       </h1>
       <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
       <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
-      <p className="mt-6 text-base text-[#767676] font-raleway">
+      <p className="mt-6 text-base text-[#767676]">
         {renderTextWithFont(
           language === 'en'
             ? 'This is an introductory text for ongoing projects.'
@@ -138,7 +117,7 @@ export default function OngoingProjectsSection() {
         )}
       </p>
 
-      {ongoingproject.map((project, index) => {
+      {ongoingProjects.map((project, index) => {
         const item = language === 'en' ? project.en : project.kh;
         const bgColor = index % 2 === 0 ? '#C41E3A' : '#3A3B5C';
 
@@ -147,18 +126,12 @@ export default function OngoingProjectsSection() {
             <button
               onClick={() => toggleAccordion(index)}
               style={{ backgroundColor: bgColor }}
-              className="w-full flex items-center py-3 px-4 text-left font-semibold text-white hover:opacity-90 transition"
+              className="w-full flex items-center justify-between py-3 px-4 text-left font-semibold text-white hover:opacity-90 transition"
             >
-              <div
-                className={`flex-1 ${language === 'en' ? 'font-raleway' : 'font-preahvihear'}`}
-              >
-                {language === 'en' ? `${item.title}` : `${item.title}`}
+              <div className="flex-1">
+                {renderTextWithFont(item.title, language, 'body')}
               </div>
-              {openIndex === index ? (
-                <ChevronUp size={20} />
-              ) : (
-                <ChevronDown size={20} />
-              )}
+              {openIndex === index ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
             </button>
 
             <AnimatePresence initial={false}>
@@ -169,72 +142,28 @@ export default function OngoingProjectsSection() {
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  className="overflow-hidden"
+                  className="overflow-hidden bg-gray-50"
                 >
-                  <div className="p-4 text-gray-700 font-raleway">
-                    <div className="text-[#2E2E2E]/80">
-                      <p className="mb-2">
-                        <strong>
-                          {renderTextWithFont(
-                            language === 'en'
-                              ? 'Project Duration:'
-                              : 'រយៈពេលគម្រោង:',
-                            language,
-                            'body'
-                          )}
-                        </strong>{' '}
-                        {item.duration}
-                      </p>
-                      <p className="mb-2">
-                        <strong>
-                          {renderTextWithFont(
-                            language === 'en'
-                              ? 'Principal Investigators:'
-                              : 'អ្នកស្រាវជ្រាវសំខាន់:',
-                            language,
-                            'body'
-                          )}
-                        </strong>{' '}
-                        {item.investigators.join(', ')}
-                      </p>
-                      <p className="mb-2">
-                        <strong>
-                          {renderTextWithFont(
-                            language === 'en'
-                              ? 'Industry Partner:'
-                              : 'ដៃគូឧស្សាហកម្ម:',
-                            language,
-                            'body'
-                          )}
-                        </strong>{' '}
-                        {item.partner}
-                      </p>
-                      <p className="mb-2">
-                        <strong>
-                          {renderTextWithFont(
-                            language === 'en' ? 'Funding:' : 'ថវិកាសហការ:',
-                            language,
-                            'body'
-                          )}
-                        </strong>{' '}
-                        {item.funding}
-                      </p>
-                      <p className="mb-2">
-                        <strong>
-                          {renderTextWithFont(
-                            language === 'en'
-                              ? 'Student Team:'
-                              : 'ក្រុមនិស្សិត:',
-                            language,
-                            'body'
-                          )}
-                        </strong>{' '}
-                        {item.students}
-                      </p>
-                    </div>
-                    <p className="text-[#2E2E2E]/80">
-                      {renderTextWithFont(item.description, language, 'body')}
+                  <div className="p-4 text-gray-700 space-y-2">
+                    <p>
+                      <strong>{renderTextWithFont('Project Duration:', language, 'body')}</strong>{' '}
+                      {item.duration}
                     </p>
+                    <p>
+                      <strong>{renderTextWithFont('Principal Investigators:', language, 'body')}</strong>{' '}
+                      {item.investigators.join(', ')}
+                    </p>
+                    <p>
+                      <strong>{renderTextWithFont('Industry Partner:', language, 'body')}</strong>{' '}
+                      {item.partner}
+                    </p>
+                    <p>
+                      <strong>{renderTextWithFont('Funding:', language, 'body')}</strong> {item.funding}
+                    </p>
+                    <p>
+                      <strong>{renderTextWithFont('Student Team:', language, 'body')}</strong> {item.students}
+                    </p>
+                    <p>{renderTextWithFont(item.description, language, 'body')}</p>
                   </div>
                 </motion.div>
               )}
