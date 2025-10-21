@@ -179,6 +179,11 @@ export default function StudentActivity() {
           </div>
         ))}
       </div>
+
+      {/* Responsive Grid Layout for Student Activities */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
+        {/* Render student activity cards or content */}
+      </div>
     </div>
   );
 }

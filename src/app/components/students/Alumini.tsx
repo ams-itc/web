@@ -56,6 +56,9 @@ export default function Alumini() {
       <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
       <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
       <img src="/comingsoon.png" alt="Coming Soon Image" className="mt-1" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Render alumni profiles dynamically */}
+      </div>
     </div>
   );
 }

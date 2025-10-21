@@ -32,7 +32,7 @@ export default function Header() {
             className="h-10 sm:h-12 w-auto object-contain border-r border-gray-500 pr-2"
           />
           <img
-            src="/ams_logo.JPG"
+            src="/ams-logo.png"
             alt="AMS Logo"
             className="h-8 sm:h-12 w-auto object-contain pl-1"
           />
@@ -64,7 +64,7 @@ export default function Header() {
             className="h-8 w-auto object-contain border-r border-gray-500 pr-1"
           />
           <img
-            src="/ams_logo.JPG"
+            src="/ams-logo.png"
             alt="AMS Logo"
             className="h-6 w-auto object-contain pl-1"
           />
