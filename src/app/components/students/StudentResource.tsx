@@ -56,6 +56,16 @@ export default function StudentResource() {
       <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
       <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
       <img src="/comingsoon.png" alt="Coming Soon Image" className="mt-1" />
+      <div className="flex flex-wrap gap-4">
+        {/* Render student resources dynamically */}
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Render resource cards dynamically */}
+        {/* Example static card, replace with dynamic rendering logic */}
+        <div className="bg-white shadow-md rounded-lg p-4">
+          {/* Card content */}
+        </div>
+      </div>
     </div>
   );
 }

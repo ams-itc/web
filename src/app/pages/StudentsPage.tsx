@@ -11,9 +11,9 @@ import InitialImage from '../components/ui/InitialImage';
 import ScrollSpySidebar from '../components/ScrollSpySidebar';
 
 const sections = [
-  { id: 'achievement', labelEn: 'Student’s Achievement', labelKh: 'សមិទ្ធិផល' },
-  { id: 'activity', labelEn: 'Student’s Life', labelKh: 'សកម្មភាព' },
-  { id: 'resource', labelEn: 'Student’s Resources', labelKh: 'ធនធាន' },
+  { id: 'achievement', labelEn: "Student's Achievement", labelKh: 'សមិទ្ធិផល' },
+  { id: 'activity', labelEn: "Student's Life", labelKh: 'សកម្មភាព' },
+  { id: 'resource', labelEn: "Student's Resources", labelKh: 'ធនធាន' },
   { id: 'alumini', labelEn: 'Alumni', labelKh: 'អតីតសិស្ស' },
 ];
 
@@ -52,9 +52,14 @@ export default function StudentsPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Initial Image Section */}
-      <InitialImage imagePath="/image.png" textEn="Students" textKh="សិស្ស" />
+      <InitialImage
+        imagePath="/thesis-defense.png"
+        textEn="Students"
+        textKh="សិស្សានុសិស្ស"
+        textColor="black"
+      />
 
-      <div className="w-full grid grid-cols-5 gap-x-2">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-x-2">
         {/* Sidebar Navigation */}
         <ScrollSpySidebar
           sections={sections.map((s) => ({
@@ -66,7 +71,7 @@ export default function StudentsPage() {
         />
 
         {/* Content Sections */}
-        <section className="col-span-4 px-10 py-8 space-y-10">
+        <section className="col-span-4 px-4 sm:px-6 md:px-8 lg:px-10 py-8 space-y-10">
           <div id="achievement">
             <Studentachievements />
           </div>

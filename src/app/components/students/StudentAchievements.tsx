@@ -1,5 +1,7 @@
 'use client';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 // Utility function (same as before)
 function renderTextWithFont(
@@ -48,13 +50,73 @@ export default function StudentAchievements() {
     {
       titleen: 'Ms.',
       titlekh: 'កញ្ញា',
-      nameen: 'Luy Lyhor',
-      namekh: 'លុយ លីហួរ',
+      nameen: 'LUY Lyhor',
+      namekh: 'លុយ លីហ័រ',
       majoren: 'UX/UI Design',
       majorkh: 'អ្នកឌីហ្សាញ UX/UI',
       graduation: '2025',
       descriptionEn:
-        'Ms. Luy Lyhor specializes in distributed systems and cloud computing architecture. She has extensive industry experience and maintains active collaboration with tech companies.',
+        'Ms. LUY Lyhor specializes in distributed systems and cloud computing architecture. She has extensive industry experience and maintains active collaboration with tech companies.',
+      descriptionKh:
+        'លោកស្រី សារា ជិនឯកទេសក្នុងប្រព័ន្ធចែកចាយ និងស្ថាបត្យកម្ម cloud computing។ នាងមានបទពិសោធន៍វិស័យយ៉ាងទូលំទូលាយ និងរក្សាការសហការទំនាក់ទំនងជាមួយក្រុមហ៊ុនបច្ចេកវិទ្យា។',
+      awards: {
+        en: [
+          'Google Research Internship',
+          'Outstanding Graduation Student Award',
+          'Data Science Competition Winner',
+        ],
+        kh: [
+          'អាហារូបករណ៍ស្រាវជ្រាវ Google',
+          'រង្វាន់សិស្សបញ្ចប់លេចធ្លោ',
+          'ជើងឯកប្រកួតវិទ្យាសាស្ត្រទិន្នន័យ',
+        ],
+      },
+      researchInterests: {
+        en: ['Data Science', 'Statistics', 'Analytics'],
+        kh: ['វិទ្យាសាស្ត្រទិន្នន័យ', 'ស្ថិតិវិទ្យា', 'វិភាគទិន្នន័យ'],
+      },
+      imagepath: '/outstandingstudents/lyhor.jpg',
+    },
+    // {
+    //   titleen: 'Mr.',
+    //   titlekh: 'លោក',
+    //   nameen: 'Ly Chhaythean',
+    //   namekh: 'លី ឆាយធាន',
+    //   majoren: 'UX/UI Design',
+    //   majorkh: 'អ្នកឌីហ្សាញ UX/UI',
+    //   graduation: '2025',
+    //   descriptionEn:
+    //     'Mr. LY Chhaythean specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.',
+    //   descriptionKh:
+    //     'លោក ឆាយធាន ជិនឯកទេសក្នុងប្រព័ន្ធចែកចាយ និងស្ថាបត្យកម្ម cloud computing។ នាងមានបទពិសោធន៍វិស័យយ៉ាងទូលំទូលាយ និងរក្សាការសហការទំនាក់ទំនងជាមួយក្រុមហ៊ុនបច្ចេកវិទ្យា។',
+    //   awards: {
+    //     en: [
+    //       'Google Research Internship',
+    //       'Outstanding Graduation Student Award',
+    //       'Data Science Competition Winner',
+    //     ],
+    //     kh: [
+    //       'អាហារូបករណ៍ស្រាវជ្រាវ Google',
+    //       'រង្វាន់សិស្សបញ្ចប់លេចធ្លោ',
+    //       'ជើងឯកប្រកួតវិទ្យាសាស្ត្រទិន្នន័យ',
+    //     ],
+    //   },
+    //   researchInterests: {
+    //     en: ['Data Science', 'Statistics', 'Analytics'],
+    //     kh: ['វិទ្យាសាស្ត្រទិន្នន័យ', 'ស្ថិតិវិទ្យា', 'វិភាគទិន្នន័យ'],
+    //   },
+    //   imagepath: '/outstandingstudents/chhaythean.png',
+    // },
+    {
+      titleen: 'Ms.',
+      titlekh: 'កញ្ញា',
+      nameen: 'LUY Lyhor',
+      namekh: 'លុយ លីហ័រ',
+      majoren: 'UX/UI Design',
+      majorkh: 'អ្នកឌីហ្សាញ UX/UI',
+      graduation: '2025',
+      descriptionEn:
+        'Ms. LUY Lyhor specializes in distributed systems and cloud computing architecture. She has extensive industry experience and maintains active collaboration with tech companies.',
       descriptionKh:
         'លោកស្រី សារា ជិនឯកទេសក្នុងប្រព័ន្ធចែកចាយ និងស្ថាបត្យកម្ម cloud computing។ នាងមានបទពិសោធន៍វិស័យយ៉ាងទូលំទូលាយ និងរក្សាការសហការទំនាក់ទំនងជាមួយក្រុមហ៊ុនបច្ចេកវិទ្យា។',
       awards: {
@@ -78,73 +140,13 @@ export default function StudentAchievements() {
     {
       titleen: 'Ms.',
       titlekh: 'កញ្ញា',
-      nameen: 'Luy Lyhor',
-      namekh: 'លុយ លីហួរ',
+      nameen: 'LUY Lyhor',
+      namekh: 'លុយ លីហ័រ',
       majoren: 'UX/UI Design',
       majorkh: 'អ្នកឌីហ្សាញ UX/UI',
       graduation: '2025',
       descriptionEn:
-        'Ms. Luy Lyhor specializes in distributed systems and cloud computing architecture. She has extensive industry experience and maintains active collaboration with tech companies.',
-      descriptionKh:
-        'លោកស្រី សារា ជិនឯកទេសក្នុងប្រព័ន្ធចែកចាយ និងស្ថាបត្យកម្ម cloud computing។ នាងមានបទពិសោធន៍វិស័យយ៉ាងទូលំទូលាយ និងរក្សាការសហការទំនាក់ទំនងជាមួយក្រុមហ៊ុនបច្ចេកវិទ្យា។',
-      awards: {
-        en: [
-          'Google Research Internship',
-          'Outstanding Graduation Student Award',
-          'Data Science Competition Winner',
-        ],
-        kh: [
-          'អាហារូបករណ៍ស្រាវជ្រាវ Google',
-          'រង្វាន់សិស្សបញ្ចប់លេចធ្លោ',
-          'ជើងឯកប្រកួតវិទ្យាសាស្ត្រទិន្នន័យ',
-        ],
-      },
-      researchInterests: {
-        en: ['Data Science', 'Statistics', 'Analytics'],
-        kh: ['វិទ្យាសាស្ត្រទិន្នន័យ', 'ស្ថិតិវិទ្យា', 'វិភាគទិន្នន័យ'],
-      },
-      imagepath: '/outstandingstudents/lyhor.jpg',
-    },
-    {
-      titleen: 'Ms.',
-      titlekh: 'កញ្ញា',
-      nameen: 'Luy Lyhor',
-      namekh: 'លុយ លីហួរ',
-      majoren: 'UX/UI Design',
-      majorkh: 'អ្នកឌីហ្សាញ UX/UI',
-      graduation: '2025',
-      descriptionEn:
-        'Ms. Luy Lyhor specializes in distributed systems and cloud computing architecture. She has extensive industry experience and maintains active collaboration with tech companies.',
-      descriptionKh:
-        'លោកស្រី សារា ជិនឯកទេសក្នុងប្រព័ន្ធចែកចាយ និងស្ថាបត្យកម្ម cloud computing។ នាងមានបទពិសោធន៍វិស័យយ៉ាងទូលំទូលាយ និងរក្សាការសហការទំនាក់ទំនងជាមួយក្រុមហ៊ុនបច្ចេកវិទ្យា។',
-      awards: {
-        en: [
-          'Google Research Internship',
-          'Outstanding Graduation Student Award',
-          'Data Science Competition Winner',
-        ],
-        kh: [
-          'អាហារូបករណ៍ស្រាវជ្រាវ Google',
-          'រង្វាន់សិស្សបញ្ចប់លេចធ្លោ',
-          'ជើងឯកប្រកួតវិទ្យាសាស្ត្រទិន្នន័យ',
-        ],
-      },
-      researchInterests: {
-        en: ['Data Science', 'Statistics', 'Analytics'],
-        kh: ['វិទ្យាសាស្ត្រទិន្នន័យ', 'ស្ថិតិវិទ្យា', 'វិភាគទិន្នន័យ'],
-      },
-      imagepath: '/outstandingstudents/lyhor.jpg',
-    },
-    {
-      titleen: 'Ms.',
-      titlekh: 'កញ្ញា',
-      nameen: 'Luy Lyhor',
-      namekh: 'លុយ លីហួរ',
-      majoren: 'UX/UI Design',
-      majorkh: 'អ្នកឌីហ្សាញ UX/UI',
-      graduation: '2025',
-      descriptionEn:
-        'Ms. Luy Lyhor specializes in distributed systems and cloud computing architecture. She has extensive industry experience and maintains active collaboration with tech companies.',
+        'Ms. LUY Lyhor specializes in distributed systems and cloud computing architecture. She has extensive industry experience and maintains active collaboration with tech companies.',
       descriptionKh:
         'លោកស្រី សារា ជិនឯកទេសក្នុងប្រព័ន្ធចែកចាយ និងស្ថាបត្យកម្ម cloud computing។ នាងមានបទពិសោធន៍វិស័យយ៉ាងទូលំទូលាយ និងរក្សាការសហការទំនាក់ទំនងជាមួយក្រុមហ៊ុនបច្ចេកវិទ្យា។',
       awards: {
@@ -176,11 +178,29 @@ export default function StudentAchievements() {
       icon: <i className="fa-solid fa-medal"></i>,
       scholarshipAwardees: [
         {
-          name: { en: 'Mr. LY Chhaythean', kh: 'លោក LY Chhaythean' },
+          name: { en: 'Mr. LY Chhaythean', kh: 'លោក លី ឆាយធាន' },
           class: { en: 'Class of 2027', kh: 'ថ្នាក់ឆ្នាំ 2027' },
         },
         {
-          name: { en: 'Mr. NGEN Tina', kh: 'លោក NGEN Tina' },
+          name: { en: 'Ms. Luy Lyhor', kh: 'កញ្ញា លុយ លីហ័រ' },
+          class: { en: 'Class of 2027', kh: 'ថ្នាក់ឆ្នាំ 2027' },
+        },
+      ],
+      filepath: '/awards/ensiee.JPG',
+    },
+    {
+      title: {
+        en: 'Harvard Scholarship Awardees',
+        kh: 'អ្នកទទួលអាហារូបករណ៍ Harvard',
+      },
+      icon: <i className="fa-solid fa-medal"></i>,
+      scholarshipAwardees: [
+        {
+          name: { en: 'Mr. LY Chhaythean', kh: 'លោក លី ឆាយធាន' },
+          class: { en: 'Class of 2027', kh: 'ថ្នាក់ឆ្នាំ 2027' },
+        },
+        {
+          name: { en: 'Ms. Luy Lyhor', kh: 'កញ្ញា លុយ លីហ័រ' },
           class: { en: 'Class of 2027', kh: 'ថ្នាក់ឆ្នាំ 2027' },
         },
       ],
@@ -194,14 +214,38 @@ export default function StudentAchievements() {
       icon: <i className="fa-solid fa-trophy"></i>,
       competitionWinners: [
         {
-          team: { en: 'Team AAA', kh: 'ក្រុម AAA' },
+          team: { en: 'Team A', kh: 'ក្រុម AAA' },
           members: {
             en: ['Member 1', 'Member 2'],
             kh: ['សមាជិក 1', 'សមាជិក 2'],
           },
         },
         {
-          team: { en: 'Team BBB', kh: 'ក្រុម BBB' },
+          team: { en: 'Team B', kh: 'ក្រុម BBB' },
+          members: {
+            en: ['Member 1', 'Member 2'],
+            kh: ['សមាជិក 1', 'សមាជិក 2'],
+          },
+        },
+      ],
+      filepath: '/awards/ensiee.JPG',
+    },
+    {
+      title: {
+        en: 'One-sided Love Winners',
+        kh: 'អ្នកឈ្នះការប្រកួត ស្រឡាញ់គេម្នាក់ឯង',
+      },
+      icon: <i className="fa-solid fa-trophy"></i>,
+      competitionWinners: [
+        {
+          team: { en: 'Team A', kh: 'ក្រុម AAA' },
+          members: {
+            en: ['Member 1', 'Member 2'],
+            kh: ['សមាជិក 1', 'សមាជិក 2'],
+          },
+        },
+        {
+          team: { en: 'Team B', kh: 'ក្រុម BBB' },
           members: {
             en: ['Member 1', 'Member 2'],
             kh: ['សមាជិក 1', 'សមាជិក 2'],
@@ -229,7 +273,7 @@ export default function StudentAchievements() {
 
       {/* Description */}
       <div className="space-y-3">
-        <p className="mt-8 text-base text-black">
+        <p className="mt-8 text-[clamp(1rem,2vw,1.25rem)] text-gray-600 leading-relaxed">
           {renderTextWithFont(
             language === 'en' ? descriptionEn : descriptionKh,
             language,
@@ -239,7 +283,7 @@ export default function StudentAchievements() {
       </div>
 
       {/* Outstanding Student Spotlight */}
-      <h1 className="text-2xl text-black font-medium mt-8">
+      <h1 className="text-2xl text-black font-medium my-4">
         {renderTextWithFont(
           language === 'en' ? 'Outstanding Student Spotlight' : 'សិស្សលេចធ្លោ',
           language,
@@ -247,12 +291,98 @@ export default function StudentAchievements() {
         )}
       </h1>
 
-      {/* Students */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-y-5 gap-x-3 my-5">
+      {/* Outstanding Students - Swiper for mobile, Grid for desktop */}
+      <div className="block md:hidden">
+        <Swiper
+          spaceBetween={16}
+          slidesPerView={1.2}
+          centeredSlides={true}
+          style={{ paddingBottom: '1rem' }}
+        >
+          {OutstandingStudent.map((student, index) => (
+            <SwiperSlide key={index}>
+              <div className="bg-white shadow-md rounded-lg">
+                <img
+                  src={student.imagepath}
+                  alt={student.nameen + ' image'}
+                  className="rounded-t-xl"
+                />
+                <div className="relative px-4 py-3">
+                  {/* <div className="flex justify-between items-center mb-3"> */}
+                  <h2 className="font-semibold text-base text-black mb-2">
+                    {renderTextWithFont(
+                      language === 'en'
+                        ? `${student.titleen} ${student.nameen}`
+                        : `${student.titlekh} ${student.namekh}`,
+                      language,
+                      'heading'
+                    )}
+                  </h2>
+                  <p className="text-black text-sm mb-4 italic">
+                    {renderTextWithFont(
+                      language === 'en'
+                        ? `${student.majoren}, Class of ${student.graduation}`
+                        : `${student.majorkh}, ឆ្នាំសិក្សា​​ ${student.graduation}`,
+                      language,
+                      'body'
+                    )}
+                  </p>
+                  {/* </div> */}
+                  <h2 className="font-semibold text-base mb-2 text-black">
+                    {renderTextWithFont(
+                      language === 'en'
+                        ? 'AWARDS & ACHIEVEMENTS'
+                        : 'រង្វាន់ និងសមិទ្ធិផល',
+                      language,
+                      'heading'
+                    )}
+                  </h2>
+                  {/* Awards */}
+                  <ul className="list-disc list-inside mb-4 text-gray-700 text-sm">
+                    {student.awards[language].map((award, i) => (
+                      <li key={i}>
+                        {renderTextWithFont(award, language, 'body')}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <h3 className="font-semibold text-base text-black mb-2">
+                    {renderTextWithFont(
+                      language === 'en'
+                        ? 'RESEARCH INTEREST'
+                        : 'ចំណង់ចំណូលចិត្តស្រាវជ្រាវ',
+                      language,
+                      'heading'
+                    )}
+                  </h3>
+                  {/* Research Interests */}
+                  <div className="flex gap-2 flex-wrap">
+                    {student.researchInterests[language].map((interest, i) => (
+                      <span
+                        key={i}
+                        className="bg-pink-100 text-pink-600 text-xs font-medium px-2 py-1 rounded-full"
+                      >
+                        {renderTextWithFont(
+                          interest.toUpperCase(),
+                          language,
+                          'body'
+                        )}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      {/* Outstanding Students - Desktop */}
+      <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {OutstandingStudent.map((student, index) => (
           <div
             key={index}
-            className="border rounded-xl shadow bg-white mx-auto min-w-[500px]"
+            className="border rounded-xl shadow bg-white mx-auto w-full"
           >
             <img
               src={student.imagepath}
@@ -260,7 +390,7 @@ export default function StudentAchievements() {
               className="rounded-t-xl"
             />
             <div className="relative px-6 py-3">
-              <div className="flex justify-between items-center mb-3">
+              <div className="[@media(min-width:1450px)]:flex justify-between items-center mb-3">
                 <h2 className="font-semibold text-lg text-black">
                   {renderTextWithFont(
                     language === 'en'
@@ -270,7 +400,7 @@ export default function StudentAchievements() {
                     'heading'
                   )}
                 </h2>
-                <p className="text-gray-500 text-sm">
+                <p className="text-black text-sm italic">
                   {renderTextWithFont(
                     language === 'en'
                       ? `${student.majoren}, Class of ${student.graduation}`
@@ -335,7 +465,7 @@ export default function StudentAchievements() {
       </div>
 
       {/* Recent Awards */}
-      <h1 className="text-2xl text-black font-medium mt-10">
+      <h1 className="text-2xl text-black font-medium mt-6">
         {renderTextWithFont(
           language === 'en'
             ? 'Recent Awards and Recognitions'
@@ -345,7 +475,9 @@ export default function StudentAchievements() {
         )}
       </h1>
 
+      {/* Recent Awards - Desktop */}
       <div className="space-y-5 py-5">
+        {/* Awards */}
         {Awards.map((award, index) => (
           <div
             key={index}
