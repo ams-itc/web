@@ -41,7 +41,7 @@ const innovationSections: InnovationSection[] = [
       '/innovations/image3.png',
     ],
     description: {
-      en: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
+      en: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit... ',
       kh: 'គម្រូកឋាខណ្ឌ',
     },
   },
@@ -129,7 +129,7 @@ export default function StudentActivity() {
       <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
       <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
 
-      <div className="max-w-5xl mt-10 space-y-12">
+      <div className="max-w-5xl mx-auto mt-10 space-y-12 px-4 sm:px-0">
         {innovationSections.map((section, idx) => (
           <div key={idx} className="space-y-6">
             {/* Title */}
@@ -143,39 +143,32 @@ export default function StudentActivity() {
 
             {/* Swiper Carousel */}
             <Swiper
-              modules={[Autoplay, Navigation, Pagination]}
-              spaceBetween={30}
-              slidesPerView={1}
-              navigation
+              modules={[Pagination, Navigation, Autoplay]}
               pagination={{ clickable: true }}
-              autoplay={{ delay: 4000, disableOnInteraction: false }}
-              className="mx-auto mt-5"
+              autoplay={{ delay: 3000 }}
+              className="w-full max-w-3xl mx-auto"
             >
-              {section.images.map((img, index) => (
+              {section.images.map((image, index) => (
                 <SwiperSlide key={index}>
-                  <div className="flex justify-center rounded-2xl border h-100">
-                    <img
-                      src={img}
-                      alt={`slide-${index}`}
-                      className="rounded-2xl"
-                    />
-                  </div>
+                  <img
+                    src={image}
+                    alt="Innovation"
+                    className="rounded-2xl mx-auto"
+                  />
                 </SwiperSlide>
               ))}
             </Swiper>
 
             {/* Description */}
-            <div className="space-y-3">
-              <p className="text-black font-raleway text-base mt-5">
-                {renderTextWithFont(
-                  language === 'en'
-                    ? section.description.en
-                    : section.description.kh,
-                  language,
-                  'body'
-                )}
-              </p>
-            </div>
+            <p className="text-black font-raleway text-base mt-5">
+              {renderTextWithFont(
+                language === 'en'
+                  ? section.description.en
+                  : section.description.kh,
+                language,
+                'body'
+              )}
+            </p>
           </div>
         ))}
       </div>
