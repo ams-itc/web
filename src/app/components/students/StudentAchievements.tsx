@@ -77,36 +77,6 @@ export default function StudentAchievements() {
       },
       imagepath: '/outstandingstudents/lyhor.jpg',
     },
-    // {
-    //   titleen: 'Mr.',
-    //   titlekh: 'លោក',
-    //   nameen: 'Ly Chhaythean',
-    //   namekh: 'លី ឆាយធាន',
-    //   majoren: 'UX/UI Design',
-    //   majorkh: 'អ្នកឌីហ្សាញ UX/UI',
-    //   graduation: '2025',
-    //   descriptionEn:
-    //     'Mr. LY Chhaythean specializes in distributed systems and cloud computing architecture. He has extensive industry experience and maintains active collaboration with tech companies.',
-    //   descriptionKh:
-    //     'លោក ឆាយធាន ជិនឯកទេសក្នុងប្រព័ន្ធចែកចាយ និងស្ថាបត្យកម្ម cloud computing។ នាងមានបទពិសោធន៍វិស័យយ៉ាងទូលំទូលាយ និងរក្សាការសហការទំនាក់ទំនងជាមួយក្រុមហ៊ុនបច្ចេកវិទ្យា។',
-    //   awards: {
-    //     en: [
-    //       'Google Research Internship',
-    //       'Outstanding Graduation Student Award',
-    //       'Data Science Competition Winner',
-    //     ],
-    //     kh: [
-    //       'អាហារូបករណ៍ស្រាវជ្រាវ Google',
-    //       'រង្វាន់សិស្សបញ្ចប់លេចធ្លោ',
-    //       'ជើងឯកប្រកួតវិទ្យាសាស្ត្រទិន្នន័យ',
-    //     ],
-    //   },
-    //   researchInterests: {
-    //     en: ['Data Science', 'Statistics', 'Analytics'],
-    //     kh: ['វិទ្យាសាស្ត្រទិន្នន័យ', 'ស្ថិតិវិទ្យា', 'វិភាគទិន្នន័យ'],
-    //   },
-    //   imagepath: '/outstandingstudents/chhaythean.png',
-    // },
     {
       titleen: 'Ms.',
       titlekh: 'កញ្ញា',
@@ -294,7 +264,7 @@ export default function StudentAchievements() {
       {/* Outstanding Students - Swiper for mobile, Grid for desktop */}
       <div className="block md:hidden">
         <Swiper
-          spaceBetween={16}
+          spaceBetween={20}
           slidesPerView={1.2}
           centeredSlides={true}
           style={{ paddingBottom: '1rem' }}
@@ -307,7 +277,7 @@ export default function StudentAchievements() {
                   alt={student.nameen + ' image'}
                   className="rounded-t-xl"
                 />
-                <div className="relative px-4 py-3">
+                <div className="relative px-5 py-3">
                   {/* <div className="flex justify-between items-center mb-3"> */}
                   <h2 className="font-semibold text-base text-black mb-2">
                     {renderTextWithFont(
@@ -318,7 +288,7 @@ export default function StudentAchievements() {
                       'heading'
                     )}
                   </h2>
-                  <p className="text-black text-sm mb-4 italic">
+                  <p className="text-black text-sm mb-2 italic">
                     {renderTextWithFont(
                       language === 'en'
                         ? `${student.majoren}, Class of ${student.graduation}`
@@ -327,7 +297,15 @@ export default function StudentAchievements() {
                       'body'
                     )}
                   </p>
-                  {/* </div> */}
+                  <p className="[@media(max-width:450px)]:hidden text-gray-700 mb-4 text-sm">
+                    {renderTextWithFont(
+                      language === 'en'
+                        ? student.descriptionEn
+                        : student.descriptionKh,
+                      language,
+                      'body'
+                    )}
+                  </p>
                   <h2 className="font-semibold text-base mb-2 text-black">
                     {renderTextWithFont(
                       language === 'en'
@@ -378,7 +356,7 @@ export default function StudentAchievements() {
       </div>
 
       {/* Outstanding Students - Desktop */}
-      <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
         {OutstandingStudent.map((student, index) => (
           <div
             key={index}
@@ -476,7 +454,7 @@ export default function StudentAchievements() {
       </h1>
 
       {/* Recent Awards - Desktop */}
-      <div className="space-y-5 py-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 py-5">
         {/* Awards */}
         {Awards.map((award, index) => (
           <div
@@ -518,7 +496,7 @@ export default function StudentAchievements() {
                         )}
                       </p>
                     </div>
-                    <div className="col-span-1 text-right">
+                    <div className="[@media(max-width:1700px)]:hidden col-span-1 text-right">
                       <p className="text-gray-500 text-xs">
                         {renderTextWithFont(
                           language === 'en'
