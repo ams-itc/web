@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import InitialImage from '../components/ui/InitialImage';
+import ScrollSpySidebar from '../components/ScrollSpySidebar';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useEffect, useRef } from 'react';
 import {
   Calendar,
   Clock,
@@ -50,7 +53,7 @@ const NewsCard: React.FC<NewsOneProps> = ({
           <span className="inline-block bg-gray-800 text-white text-xs px-2 py-1 rounded">
             {category}
           </span>
-          <span className="text-gray-400 text-xs ml-2 flex items-center">
+          <span className="text-gray-400 text-xs ml-auto flex items-center">
             <svg
               className="w-3 h-3 mr-1"
               fill="currentColor"
@@ -117,14 +120,14 @@ const EventCard: React.FC<EventCardProps> = ({
       </div>
 
       {/* Time and Location */}
-      <div className="mb-4 space-y-2">
-        <div className="flex items-center text-sm text-gray-600">
+      <div className="mb-4 flex items-center justify-between text-sm text-gray-600">
+        <div className="flex items-center">
           <Clock className="w-4 h-4 mr-2" />
-          {time}
+          <span>{time}</span>
         </div>
-        <div className="flex items-center text-sm text-gray-600">
+        <div className="flex items-center">
           <MapPin className="w-4 h-4 mr-2" />
-          {location}
+          <span>{location}</span>
         </div>
       </div>
 
@@ -142,112 +145,6 @@ const EventCard: React.FC<EventCardProps> = ({
           {saveSpotText}
           <ArrowRight className="w-4 h-4 ml-1" />
         </button>
-      </div>
-    </div>
-  );
-};
-
-// Main Recent News Component
-interface ListNewsCardProps {
-  newsItems: NewsOneProps[];
-  showCount?: 4 | 8;
-  title?: string;
-}
-
-// list card of type one: for news
-const ListNewsCard: React.FC<ListNewsCardProps> = ({
-  newsItems,
-  showCount = 4,
-  title = 'Recent News',
-}) => {
-  const displayedItems = newsItems.slice(0, showCount);
-
-  return (
-    <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Header */}
-      <div className="mb-8">
-        <h2 className="text-2xl md:text-3xl font-light text-gray-900 font-playfair_display">
-          {title}
-        </h2>
-        <div className="mt-2 h-px bg-gray-300"></div>
-      </div>
-
-      {/* News Grid */}
-      <div
-        className={`grid gap-6 ${
-          showCount === 8
-            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-            : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
-        }`}
-      >
-        {displayedItems.map((item, index) => (
-          <NewsCard key={index} {...item} />
-        ))}
-      </div>
-    </section>
-  );
-};
-
-// list card of type two: for event
-const ListEventCard: React.FC = () => {
-  const events: EventCardProps[] = [
-    {
-      type: 'Sharing Sessions',
-      date: 'August 17, 2025',
-      time: '9:00 AM',
-      location: 'S1, Building F',
-      title: 'AMS Alumni',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.',
-      saveSpotText: 'Save your spot',
-    },
-    {
-      type: 'Sharing Sessions',
-      date: 'August 22, 2025',
-      time: '6:00 AM',
-      location: 'S1, Building C',
-      title: 'AMS Alumni',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.',
-      saveSpotText: 'Save your spot',
-    },
-    {
-      type: 'Sharing Sessions',
-      date: 'August 25, 2025',
-      time: '9:00 AM',
-      location: 'S1, Building A',
-      title: 'AMS Alumni',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.',
-      saveSpotText: 'Save your spot',
-    },
-    {
-      type: 'Sharing Sessions',
-      date: 'August 31, 2025',
-      time: '8:00 AM',
-      location: 'S1, Building F',
-      title: 'AMS Alumni',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.',
-      saveSpotText: 'Save your spot',
-    },
-  ];
-
-  return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Header */}
-      <div className="mb-8">
-        <h2 className="text-3xl text-gray-900 font-playfair_display">
-          Upcoming Events
-        </h2>
-        <div className="w-20 h-1 bg-red-500 mt-2"></div>
-      </div>
-
-      {/* Events Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {events.map((event, index) => (
-          <EventCard key={index} {...event} />
-        ))}
       </div>
     </div>
   );
@@ -417,8 +314,100 @@ export default function NewsAndEventsPage() {
     },
   ];
 
+  const events: EventCardProps[] = [
+    {
+      type: 'Sharing Sessions',
+      date: 'August 17, 2025',
+      time: '9:00 AM',
+      location: 'S1, Building F',
+      title: 'AMS Alumni',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.',
+      saveSpotText: 'Save your spot',
+    },
+    {
+      type: 'Sharing Sessions',
+      date: 'August 22, 2025',
+      time: '6:00 AM',
+      location: 'S1, Building C',
+      title: 'AMS Alumni',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.',
+      saveSpotText: 'Save your spot',
+    },
+    {
+      type: 'Sharing Sessions',
+      date: 'August 25, 2025',
+      time: '9:00 AM',
+      location: 'S1, Building A',
+      title: 'AMS Alumni',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.',
+      saveSpotText: 'Save your spot',
+    },
+    {
+      type: 'Sharing Sessions',
+      date: 'August 31, 2025',
+      time: '8:00 AM',
+      location: 'S1, Building F',
+      title: 'AMS Alumni',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.',
+      saveSpotText: 'Save your spot',
+    },
+  ];
+
+  const sections = [
+    {
+      id: 'upComingEvents',
+      labelEn: 'Upcoming Events',
+      labelKh: 'ព្រឹត្តិការណ៍កំពុងមកដល់',
+    },
+    {
+      id: 'featuredNews',
+      labelEn: 'Featured News',
+      labelKh: 'ព័ត៌មានដែលមានលក្ខណៈពិសេស',
+    },
+    {
+      id: 'recentNews',
+      labelEn: 'Recent News',
+      labelKh: 'ព័ត៌មានថ្មីៗ',
+    },
+  ];
+
+  const [activeSection, setActiveSection] = useState('upComingEvents');
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
+  const { language } = useLanguage();
+
+  // ScrollSpy observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { root: null, rootMargin: '0px 0px -60% 0px', threshold: 0.1 }
+    );
+
+    sections.forEach((s) => {
+      const el = document.getElementById(s.id);
+      if (el) {
+        sectionRefs.current[s.id] = el;
+        observer.observe(el);
+      }
+    });
+
+    return () => {
+      sections.forEach((s) => {
+        const el = sectionRefs.current[s.id];
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 relative">
       {/* Initial Image Section */}
       <InitialImage
         imagePath="./src/assets/image.png"
@@ -426,30 +415,74 @@ export default function NewsAndEventsPage() {
         textKh="ព័ត៌មាន"
       />
 
-      {/* Spacer */}
-      <div className="py-8"></div>
+      <div className="w-full lg:flex relative">
+        {/* Desktop sidebar */}
+        <div className="hidden lg:block w-64 border-r border-gray-300">
+          <ScrollSpySidebar
+            sections={sections.map((s) => ({
+              id: s.id,
+              label: language === 'en' ? s.labelEn : s.labelKh,
+            }))}
+            activeSection={activeSection}
+            className="p-4"
+          />
+        </div>
 
-      {/* Search Component */}
-      <SearchComponent />
+        {/* Main content */}
+        <div className="flex-1 px-4 lg:px-10 py-8 space-y-10">
+          {/* Search Component */}
+          <SearchComponent />
+          {/* Upcoming Events */}
+          <section id="upComingEvents" className="py-8">
+            <div className="mb-8">
+              <h2 className="text-3xl text-gray-900 font-playfair_display">
+                Upcoming Events
+              </h2>
+              <div className="w-20 h-1 bg-red-500 mt-2"></div>
+            </div>
 
-      {/* 4 cards */}
-      <ListNewsCard
-        newsItems={sampleNews}
-        showCount={4}
-        title="Featured News"
-      />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {events.map((event, idx) => (
+                <EventCard key={idx} {...event} />
+              ))}
+            </div>
+          </section>
 
-      {/* Spacer */}
-      <div className="py-4"></div>
+          {/* Featured News */}
+          <section id="featuredNews" className="py-8">
+            <div className="mb-8">
+              <h2 className="text-2xl md:text-3xl font-light text-gray-900 font-playfair_display">
+                Featured News
+              </h2>
+              <div className="mt-2 h-px bg-gray-300"></div>
+            </div>
 
-      {/* Upcoming Events */}
-      <ListEventCard />
+            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+              {sampleNews.slice(0, 4).map((item, index) => (
+                <NewsCard key={index} {...item} />
+              ))}
+            </div>
+          </section>
 
-      {/* Spacer */}
-      <div className="py-4"></div>
+          <div className="py-4" />
 
-      {/* 8 cards */}
-      <ListNewsCard newsItems={sampleNews} showCount={8} />
+          {/* Recent News */}
+          <section id="recentNews" className="py-8">
+            <div className="mb-8">
+              <h2 className="text-2xl md:text-3xl font-light text-gray-900 font-playfair_display">
+                Recent News
+              </h2>
+              <div className="mt-2 h-px bg-gray-300"></div>
+            </div>
+
+            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {sampleNews.slice(0, 8).map((item, index) => (
+                <NewsCard key={index} {...item} />
+              ))}
+            </div>
+          </section>
+        </div>
+      </div>
     </div>
   );
 }
