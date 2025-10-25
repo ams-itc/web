@@ -187,7 +187,9 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="border-t border-gray-600 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <hr className="border-[1.5px] border-white w-full mt-8" />
+        <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
+        <div className="pt-8 flex flex-col md:flex-row justify-between items-center">
           <p
             className={`text-[clamp(0.875rem,1vw,1rem)] font-normal mb-4 md:mb-0 ${bodyFont}`}
           >

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, type ReactNode } from 'react';
 import InitialImage from '../components/ui/InitialImage';
 import ScrollSpySidebar from '../components/ScrollSpySidebar';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -15,32 +15,64 @@ import {
 
 // News Card Component
 interface NewsOneProps {
-  title: string;
-  date: string;
-  description: string;
+  titleEn: string;
+  titleKh: string;
+  dateEn: string;
+  dateKh: string;
+  descriptionEn: string;
+  descriptionKh: string;
   category: string;
   readMoreLink?: string;
 }
 
 // for event
 interface EventCardProps {
-  type: string;
-  date: string;
-  time: string;
-  location: string;
-  title: string;
-  description: string;
-  saveSpotText: string;
+  typeEn: string;
+  typeKh: string;
+  dateEn: string;
+  dateKh: string;
+  timeEn: string;
+  timeKh: string;
+  locationEn: string;
+  locationKh: string;
+  titleEn: string;
+  titleKh: string;
+  descriptionEn: string;
+  descriptionKh: string;
+  additionalFieldEn: string;
+  additionalFieldKh: string;
+}
+
+function renderTextWithFont(
+  text: ReactNode, // <-- change from string to ReactNode
+  language: 'en' | 'kh',
+  type: 'heading' | 'body'
+) {
+  const fontClass =
+    language === 'en'
+      ? type === 'heading'
+        ? 'font-playfair_display'
+        : 'font-reddit_sans'
+      : type === 'heading'
+        ? 'font-preahvihear'
+        : 'font-kantumruy_pro';
+
+  return <span className={fontClass}>{text}</span>;
 }
 
 // card type one: for news
 const NewsCard: React.FC<NewsOneProps> = ({
-  title,
-  date,
-  description,
+  titleEn,
+  titleKh,
+  dateEn,
+  dateKh,
+  descriptionEn,
+  descriptionKh,
   category,
   readMoreLink = '#',
 }) => {
+  const { language } = useLanguage();
+
   return (
     <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
       {/* Image placeholder */}
@@ -51,7 +83,7 @@ const NewsCard: React.FC<NewsOneProps> = ({
         {/* Category badge */}
         <div className="flex items-center mb-3">
           <span className="inline-block bg-gray-800 text-white text-xs px-2 py-1 rounded">
-            {category}
+            {renderTextWithFont(category, language, 'body')}
           </span>
           <span className="text-gray-400 text-xs ml-auto flex items-center">
             <svg
@@ -65,18 +97,22 @@ const NewsCard: React.FC<NewsOneProps> = ({
                 clipRule="evenodd"
               />
             </svg>
-            {date}
+            {renderTextWithFont(
+              language === 'en' ? dateEn : dateKh,
+              language,
+              'body'
+            )}
           </span>
         </div>
 
         {/* Title */}
         <h3 className="font-semibold text-gray-900 text-sm mb-2 line-clamp-2 leading-tight">
-          {title}
+          {renderTextWithFont(language === 'en' ? titleEn : titleKh, language, 'body')}
         </h3>
 
         {/* Description */}
         <p className="text-gray-600 text-xs leading-relaxed mb-3 line-clamp-3">
-          {description}
+          {renderTextWithFont(language === 'en' ? descriptionEn : descriptionKh, language, 'body')}
         </p>
 
         {/* Read more link */}
@@ -84,7 +120,7 @@ const NewsCard: React.FC<NewsOneProps> = ({
           href={readMoreLink}
           className="text-red-600 text-xs font-medium hover:text-red-700 transition-colors duration-200 inline-flex items-center"
         >
-          Read Full Article
+          {renderTextWithFont(language === 'en' ? 'Read Full Article' : 'អានអត្ថបទពេញ', language, 'body')}
           <svg className="w-3 h-3 ml-1" fill="currentColor" viewBox="0 0 20 20">
             <path
               fillRule="evenodd"
@@ -100,22 +136,31 @@ const NewsCard: React.FC<NewsOneProps> = ({
 
 // card type two: for event
 const EventCard: React.FC<EventCardProps> = ({
-  type,
-  date,
-  time,
-  location,
-  title,
-  description,
-  saveSpotText,
+  typeEn,
+  typeKh,
+  dateEn,
+  dateKh,
+  timeEn,
+  timeKh,
+  locationEn,
+  locationKh,
+  titleEn,
+  titleKh,
+  descriptionEn,
+  descriptionKh,
+  additionalFieldEn,
+  additionalFieldKh
 }) => {
+  const { language } = useLanguage();
+
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <span className="text-sm text-gray-600 font-medium">{type}</span>
+        <span className="text-sm text-gray-600 font-medium">{renderTextWithFont(language === 'en' ? typeEn : typeKh, language, 'body')}</span>
         <div className="flex items-center text-sm text-gray-500">
           <Calendar className="w-4 h-4 mr-1" />
-          {date}
+          {renderTextWithFont(language === 'en' ? dateEn : dateKh, language, 'body')}
         </div>
       </div>
 
@@ -123,26 +168,28 @@ const EventCard: React.FC<EventCardProps> = ({
       <div className="mb-4 flex items-center justify-between text-sm text-gray-600">
         <div className="flex items-center">
           <Clock className="w-4 h-4 mr-2" />
-          <span>{time}</span>
+          <span>{renderTextWithFont(language === 'en' ? timeEn : timeKh, language, 'body')}</span>
         </div>
         <div className="flex items-center">
           <MapPin className="w-4 h-4 mr-2" />
-          <span>{location}</span>
+          <span>{renderTextWithFont(language === 'en' ? locationEn : locationKh, language, 'body')}</span>
         </div>
       </div>
 
       {/* Title */}
-      <h3 className="text-lg font-semibold text-gray-900 mb-3">{title}</h3>
+      <h3 className="text-lg font-semibold text-gray-900 mb-3">
+        {renderTextWithFont(language === 'en' ? titleEn : titleKh, language, 'body')}
+      </h3>
 
       {/* Description */}
       <p className="text-gray-600 text-sm leading-relaxed mb-6">
-        {description}
+        {renderTextWithFont(language === 'en' ? descriptionEn : descriptionKh, language, 'body')}
       </p>
 
       {/* Save Spot Link */}
       <div className="flex items-center">
         <button className="text-red-500 hover:text-red-600 font-medium text-sm flex items-center transition-colors duration-200">
-          {saveSpotText}
+          {renderTextWithFont(language === 'en' ? additionalFieldEn : additionalFieldKh, language, 'body')}
           <ArrowRight className="w-4 h-4 ml-1" />
         </button>
       </div>
@@ -249,111 +296,100 @@ const SearchComponent: React.FC = () => {
 export default function NewsAndEventsPage() {
   const sampleNews: NewsOneProps[] = [
     {
-      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
-      date: 'July 15, 2024',
-      description:
+      titleEn: 'AMS 1st Generation Thesis Defense - A Historic Milestone',
+      titleKh:
+        'ការពិភាក្សាថ្នាក់បរិញ្ញាបត្រជំនាន់ទី ១ របស់ AMS - ជាចំណុចប្រទាក់ប្រវត្តិសាស្ត្រ',
+      dateEn: 'July 15, 2024',
+      dateKh: 'កក្កដា ១៥, ២០២៤',
+      descriptionEn:
         'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
+      descriptionKh:
+        'កាលពីថ្ងៃទី ១៦ កក្កដា ២០២៤ យើងបានសម្គាល់ឱកាសដ៏មានន័យក្នុងផ្នែកគណិតវិទ្យាកម្មវិធី និងវិភាគស៊ុតតិចក្នុងសាកលវិទ្យាល័យ បច្ចេកវិទ្យាកម្ពុជា ក្នុងការប្រារព្ធថ្ងៃការពិភាក្សាបរិញ្ញាបត្រ របស់ជំនាន់ទី១ នៃសិស្សសាស្ត្រ ទិន្នន័យ។',
       category: 'Academic',
       readMoreLink: '#',
     },
     {
-      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
-      date: 'July 15, 2024',
-      description:
+      titleEn: 'AMS 1st Generation Thesis Defense - A Historic Milestone',
+      titleKh:
+        'ការពិភាក្សាថ្នាក់បរិញ្ញាបត្រជំនាន់ទី ១ របស់ AMS - ជាចំណុចប្រទាក់ប្រវត្តិសាស្ត្រ',
+      dateEn: 'July 15, 2024',
+      dateKh: 'កក្កដា ១៥, ២០២៤',
+      descriptionEn:
         'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
+      descriptionKh:
+        'កាលពីថ្ងៃទី ១៦ កក្កដា ២០២៤ យើងបានសម្គាល់ឱកាសដ៏មានន័យក្នុងផ្នែកគណិតវិទ្យាកម្មវិធី និងវិភាគស៊ុតតិចក្នុងសាកលវិទ្យាល័យ បច្ចេកវិទ្យាកម្ពុជា ក្នុងការប្រារព្ធថ្ងៃការពិភាក្សាបរិញ្ញាបត្រ របស់ជំនាន់ទី១ នៃសិស្សសាស្ត្រ ទិន្នន័យ។',
       category: 'Academic',
       readMoreLink: '#',
     },
     {
-      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
-      date: 'July 15, 2024',
-      description:
+      titleEn: 'AMS 1st Generation Thesis Defense - A Historic Milestone',
+      titleKh:
+        'ការពិភាក្សាថ្នាក់បរិញ្ញាបត្រជំនាន់ទី ១ របស់ AMS - ជាចំណុចប្រទាក់ប្រវត្តិសាស្ត្រ',
+      dateEn: 'July 15, 2024',
+      dateKh: 'កក្កដា ១៥, ២០២៤',
+      descriptionEn:
         'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
+      descriptionKh:
+        'កាលពីថ្ងៃទី ១៦ កក្កដា ២០២៤ យើងបានសម្គាល់ឱកាសដ៏មានន័យក្នុងផ្នែកគណិតវិទ្យាកម្មវិធី និងវិភាគស៊ុតតិចក្នុងសាកលវិទ្យាល័យ បច្ចេកវិទ្យាកម្ពុជា ក្នុងការប្រារព្ធថ្ងៃការពិភាក្សាបរិញ្ញាបត្រ របស់ជំនាន់ទី១ នៃសិស្សសាស្ត្រ ទិន្នន័យ។',
       category: 'Academic',
-      readMoreLink: '#',
-    },
-    {
-      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
-      date: 'Aug 12, 2024',
-      description:
-        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
-      category: 'Academic',
-      readMoreLink: '#',
-    },
-    {
-      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
-      date: 'July 19, 2024',
-      description:
-        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
-      category: 'Research',
-      readMoreLink: '#',
-    },
-    {
-      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
-      date: 'July 18, 2024',
-      description:
-        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
-      category: 'Research',
-      readMoreLink: '#',
-    },
-    {
-      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
-      date: 'July 17, 2024',
-      description:
-        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
-      category: 'Academic',
-      readMoreLink: '#',
-    },
-    {
-      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
-      date: 'Aug 10, 2024',
-      description:
-        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
-      category: 'Research',
       readMoreLink: '#',
     },
   ];
 
   const events: EventCardProps[] = [
     {
-      type: 'Sharing Sessions',
-      date: 'August 17, 2025',
-      time: '9:00 AM',
-      location: 'S1, Building F',
-      title: 'AMS Alumni',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.',
-      saveSpotText: 'Save your spot',
+      typeEn: 'Sharing Sessions',
+      typeKh: 'សម័យចែករំលែក',
+      dateEn: 'August 17, 2025',
+      dateKh: 'កក្កដា ១៧, ២០២៥',
+      timeEn: '9:00 AM',
+      timeKh: '៩:០០ ព្រឹក',
+      locationEn: 'S1, Building F',
+      locationKh: 'សាល S1, អគារ F',
+      titleEn: 'AMS Alumni',
+      titleKh: 'សិស្សអាលុយមីនី',
+      descriptionEn:
+        'Mr. Yeang Kheang has become a prominent figure in the AMS community known for his immense contributions in One-sided Love.',
+      descriptionKh:
+        'លោកយេងឃាងបានក្លាយជាតួអង្គសំខាន់មួយក្នុងសហគមន៍ AMS ដែលមានការប្រមូលផ្តុំយ៉ាងខ្លាំងក្នុងការចូលរួមក្នុងការចែករំលែកស្នាដៃនៅក្នុងស្នាដៃនៃការស្រឡាញ់គេម្នាក់ឯង។',
+      additionalFieldEn: 'Save Spot',
+      additionalFieldKh: 'រក្សាទុកកន្លែងសម្រាប់អ្នក',
     },
     {
-      type: 'Sharing Sessions',
-      date: 'August 22, 2025',
-      time: '6:00 AM',
-      location: 'S1, Building C',
-      title: 'AMS Alumni',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.',
-      saveSpotText: 'Save your spot',
+      typeEn: 'Sharing Sessions',
+      typeKh: 'សម័យចែករំលែក',
+      dateEn: 'August 17, 2025',
+      dateKh: 'កក្កដា ១៧, ២០២៥',
+      timeEn: '9:00 AM',
+      timeKh: '៩:០០ ព្រឹក',
+      locationEn: 'S1, Building F',
+      locationKh: 'សាល S1, អគារ F',
+      titleEn: 'AMS Alumni',
+      titleKh: 'សិស្សអាលុយមីនី',
+      descriptionEn:
+        'Mr. Yeang Kheang has become a prominent figure in the AMS community known for his immense contributions in One-sided Love.',
+      descriptionKh:
+        'លោកយេងឃាងបានក្លាយជាតួអង្គសំខាន់មួយក្នុងសហគមន៍ AMS ដែលមានការប្រមូលផ្តុំយ៉ាងខ្លាំងក្នុងការចូលរួមក្នុងការចែករំលែកស្នាដៃនៅក្នុងស្នាដៃនៃការស្រឡាញ់គេម្នាក់ឯង។',
+      additionalFieldEn: 'Save Spot',
+      additionalFieldKh: 'រក្សាទុកកន្លែងសម្រាប់អ្នក',
     },
     {
-      type: 'Sharing Sessions',
-      date: 'August 25, 2025',
-      time: '9:00 AM',
-      location: 'S1, Building A',
-      title: 'AMS Alumni',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.',
-      saveSpotText: 'Save your spot',
-    },
-    {
-      type: 'Sharing Sessions',
-      date: 'August 31, 2025',
-      time: '8:00 AM',
-      location: 'S1, Building F',
-      title: 'AMS Alumni',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.',
-      saveSpotText: 'Save your spot',
+      typeEn: 'Sharing Sessions',
+      typeKh: 'សម័យចែករំលែក',
+      dateEn: 'August 17, 2025',
+      dateKh: 'កក្កដា ១៧, ២០២៥',
+      timeEn: '9:00 AM',
+      timeKh: '៩:០០ ព្រឹក',
+      locationEn: 'S1, Building F',
+      locationKh: 'សាល S1, អគារ F',
+      titleEn: 'AMS Alumni',
+      titleKh: 'សិស្សអាលុយមីនី',
+      descriptionEn:
+        'Mr. Yeang Kheang has become a prominent figure in the AMS community known for his immense contributions in One-sided Love.',
+      descriptionKh:
+        'លោកយេងឃាងបានក្លាយជាតួអង្គសំខាន់មួយក្នុងសហគមន៍ AMS ដែលមានការប្រមូលផ្តុំយ៉ាងខ្លាំងក្នុងការចូលរួមក្នុងការចែករំលែកស្នាដៃនៅក្នុងស្នាដៃនៃការស្រឡាញ់គេម្នាក់ឯង។',
+      additionalFieldEn: 'Save Spot',
+      additionalFieldKh: 'រក្សាទុកកន្លែងសម្រាប់អ្នក',
     },
   ];
 
@@ -435,13 +471,20 @@ export default function NewsAndEventsPage() {
           {/* Upcoming Events */}
           <section id="upComingEvents" className="py-8">
             <div className="mb-8">
-              <h2 className="text-3xl text-gray-900 font-playfair_display">
-                Upcoming Events
+              <h2 className="text-[clamp(1.5rem,2vw,2rem)] text-black font-semibold font-playfair_display">
+                {renderTextWithFont(
+                  language === 'en'
+                    ? 'Upcoming Events'
+                    : 'ព្រឹត្តិការណ៍កំពុងមកដល់',
+                  language,
+                  'heading'
+                )}
               </h2>
-              <div className="w-20 h-1 bg-red-500 mt-2"></div>
+              <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
+              <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {events.map((event, idx) => (
                 <EventCard key={idx} {...event} />
               ))}
@@ -452,13 +495,21 @@ export default function NewsAndEventsPage() {
           <section id="featuredNews" className="py-8">
             <div className="mb-8">
               <h2 className="text-2xl md:text-3xl font-light text-gray-900 font-playfair_display">
-                Featured News
+                {renderTextWithFont(
+                  language === 'en'
+                    ? 'Featured News'
+                    : 'ព័ត៌មានដែលមានលក្ខណៈពិសេស',
+                  language,
+                  'heading'
+                )}
               </h2>
-              <div className="mt-2 h-px bg-gray-300"></div>
+
+              <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
+              <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
             </div>
 
-            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-              {sampleNews.slice(0, 4).map((item, index) => (
+            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+              {sampleNews.slice(0, 6).map((item, index) => (
                 <NewsCard key={index} {...item} />
               ))}
             </div>
@@ -470,9 +521,14 @@ export default function NewsAndEventsPage() {
           <section id="recentNews" className="py-8">
             <div className="mb-8">
               <h2 className="text-2xl md:text-3xl font-light text-gray-900 font-playfair_display">
-                Recent News
+                {renderTextWithFont(
+                  language === 'en' ? 'Recent News' : 'ព័ត៌មានថ្មីៗ',
+                  language,
+                  'heading'
+                )}
               </h2>
-              <div className="mt-2 h-px bg-gray-300"></div>
+              <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
+              <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
             </div>
 
             <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
