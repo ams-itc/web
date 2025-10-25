@@ -824,7 +824,7 @@ const programs: Record<ProgramKey, Program> = {
 
 const yearLabels: Record<string, { en: string; kh: string }> = {
   year1: { en: 'Year 1 (Foundation Year)', kh: 'ឆ្នាំទី ១ (ឆ្នាំមូលដ្ឋាន)' },
-  year2: { en: 'Year 2 (Foundation Year)', kh: 'ឆ្នាំទី ២ ​(ឆ្នាំមូលដ្ឋាន)' },
+  year2: { en: 'Year 2 (Foundation Year)', kh: 'ឆ្នាំទី ២ (ឆ្នាំមូលដ្ឋាន)' },
   year3: { en: 'Year 3', kh: 'ឆ្នាំទី ៣' },
   year4: { en: 'Year 4', kh: 'ឆ្នាំទី ៤' },
   year5: { en: 'Year 5', kh: 'ឆ្នាំទី ៥' },
