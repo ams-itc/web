@@ -29,7 +29,7 @@ const sections = [
   {
     id: 'industrialpartners',
     labelEn: 'Industrial Partners',
-    labelKh: 'ដៃគូឧស្សាហកម្ម',
+    labelKh: 'ដៃគូក្នុងវិស័យ',
   },
 ];
 
