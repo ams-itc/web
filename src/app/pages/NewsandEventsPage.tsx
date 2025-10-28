@@ -294,7 +294,7 @@ const SearchComponent: React.FC = () => {
 };
 
 export default function NewsAndEventsPage() {
-  const sampleNews: NewsOneProps[] = [
+  const FeaturedNews: NewsOneProps[] = [
     {
       titleEn: 'AMS 1st Generation Thesis Defense - A Historic Milestone',
       titleKh:
@@ -393,6 +393,61 @@ export default function NewsAndEventsPage() {
     },
   ];
 
+  const recentNews: NewsOneProps[] = [
+    {
+      titleEn: 'AMS 1st Generation Thesis Defense - A Historic Milestone',
+      titleKh:
+        'ការពិភាក្សាថ្នាក់បរិញ្ញាបត្រជំនាន់ទី ១ របស់ AMS - ជាចំណុចប្រទាក់ប្រវត្តិសាស្ត្រ',
+      dateEn: 'July 15, 2024',
+      dateKh: 'កក្កដា ១៥, ២០២៤',
+      descriptionEn:
+        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
+      descriptionKh:
+        'កាលពីថ្ងៃទី ១៦ កក្កដា ២០២៤ យើងបានសម្គាល់ឱកាសដ៏មានន័យក្នុងផ្នែកគណិតវិទ្យាកម្មវិធី និងវិភាគស៊ុតតិចក្នុងសាកលវិទ្យាល័យ បច្ចេកវិទ្យាកម្ពុជា ក្នុងការប្រារព្ធថ្ងៃការពិភាក្សាបរិញ្ញាបត្រ របស់ជំនាន់ទី១ នៃសិស្សសាស្ត្រ ទិន្នន័យ។',
+      category: 'Academic',
+      readMoreLink: '#',
+    },
+    {
+      titleEn: 'AMS 1st Generation Thesis Defense - A Historic Milestone',
+      titleKh:
+        'ការពិភាក្សាថ្នាក់បរិញ្ញាបត្រជំនាន់ទី ១ របស់ AMS - ជាចំណុចប្រទាក់ប្រវត្តិសាស្ត្រ',
+      dateEn: 'July 15, 2024',
+      dateKh: 'កក្កដា ១៥, ២០២៤',
+      descriptionEn:
+        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
+      descriptionKh:
+        'កាលពីថ្ងៃទី ១៦ កក្កដា ២០២៤ យើងបានសម្គាល់ឱកាសដ៏មានន័យក្នុងផ្នែកគណិតវិទ្យាកម្មវិធី និងវិភាគស៊ុតតិចក្នុងសាកលវិទ្យាល័យ បច្ចេកវិទ្យាកម្ពុជា ក្នុងការប្រារព្ធថ្ងៃការពិភាក្សាបរិញ្ញាបត្រ របស់ជំនាន់ទី១ នៃសិស្សសាស្ត្រ ទិន្នន័យ។',
+      category: 'Academic',
+      readMoreLink: '#',
+    },
+    {
+      titleEn: 'AMS 1st Generation Thesis Defense - A Historic Milestone',
+      titleKh:
+        'ការពិភាក្សាថ្នាក់បរិញ្ញាបត្រជំនាន់ទី ១ របស់ AMS - ជាចំណុចប្រទាក់ប្រវត្តិសាស្ត្រ',
+      dateEn: 'July 15, 2024',
+      dateKh: 'កក្កដា ១៥, ២០២៤',
+      descriptionEn:
+        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
+      descriptionKh:
+        'កាលពីថ្ងៃទី ១៦ កក្កដា ២០២៤ យើងបានសម្គាល់ឱកាសដ៏មានន័យក្នុងផ្នែកគណិតវិទ្យាកម្មវិធី និងវិភាគស៊ុតតិចក្នុងសាកលវិទ្យាល័យ បច្ចេកវិទ្យាកម្ពុជា ក្នុងការប្រារព្ធថ្ងៃការពិភាក្សាបរិញ្ញាបត្រ របស់ជំនាន់ទី១ នៃសិស្សសាស្ត្រ ទិន្នន័យ។',
+      category: 'Academic',
+      readMoreLink: '#',
+    },
+    {
+      titleEn: 'AMS 1st Generation Thesis Defense - A Historic Milestone',
+      titleKh:
+        'ការពិភាក្សាថ្នាក់បរិញ្ញាបត្រជំនាន់ទី ១ របស់ AMS - ជាចំណុចប្រទាក់ប្រវត្តិសាស្ត្រ',
+      dateEn: 'July 15, 2024',
+      dateKh: 'កក្កដា ១៥, ២០២៤',
+      descriptionEn:
+        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
+      descriptionKh:
+        'កាលពីថ្ងៃទី ១៦ កក្កដា ២០២៤ យើងបានសម្គាល់ឱកាសដ៏មានន័យក្នុងផ្នែកគណិតវិទ្យាកម្មវិធី និងវិភាគស៊ុតតិចក្នុងសាកលវិទ្យាល័យ បច្ចេកវិទ្យាកម្ពុជា ក្នុងការប្រារព្ធថ្ងៃការពិភាក្សាបរិញ្ញាបត្រ របស់ជំនាន់ទី១ នៃសិស្សសាស្ត្រ ទិន្នន័យ។',
+      category: 'Academic',
+      readMoreLink: '#',
+    },
+  ];
+
   const sections = [
     {
       id: 'upComingEvents',
@@ -410,6 +465,8 @@ export default function NewsAndEventsPage() {
       labelKh: 'ព័ត៌មានថ្មីៗ',
     },
   ];
+
+  
 
   const [activeSection, setActiveSection] = useState('upComingEvents');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
@@ -509,7 +566,7 @@ export default function NewsAndEventsPage() {
             </div>
 
             <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-              {sampleNews.slice(0, 6).map((item, index) => (
+              {FeaturedNews.slice(0, 6).map((item, index) => (
                 <NewsCard key={index} {...item} />
               ))}
             </div>
@@ -532,7 +589,7 @@ export default function NewsAndEventsPage() {
             </div>
 
             <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {sampleNews.slice(0, 8).map((item, index) => (
+              {recentNews.slice(0, 8).map((item, index) => (
                 <NewsCard key={index} {...item} />
               ))}
             </div>
