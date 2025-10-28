@@ -15,12 +15,12 @@ const sections = [
   {
     id: 'bachelor-degree',
     labelEn: "Bachelor's Degree",
-    labelKh: 'បរិញ្ញាបត្រ',
+    labelKh: 'កម្រិតបរិញ្ញាបត្រ',
   },
   {
     id: 'master-degree',
     labelEn: 'Master’s Degree',
-    labelKh: 'អនុបណ្ឌិត',
+    labelKh: 'កម្រិតអនុបណ្ឌិត',
   },
   {
     id: 'how-to-apply',
