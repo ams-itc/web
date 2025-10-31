@@ -1,13 +1,28 @@
 'use client';
 
-import Navbar from "./Navbar";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useEffect, useState } from 'react';
+import Navbar from './Navbar';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Header() {
   const { language } = useLanguage();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="relative w-full bg-white min-h-[70px] sm:min-h-[80px] border-b border-gray-300 shadow-sm top-0 z-50">
+    <header
+      className={`relative w-full min-h-fit border-b border-gray-300 shadow-sm top-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'sticky bg-white/80 backdrop-blur-md' : 'bg-white'
+      }`}
+    >
       <div className="flex items-center justify-between w-full px-3 sm:px-6 py-2">
         {/* Left side: Laptop / Tablet / iPad */}
         <div className="hidden sm:flex items-center space-x-2 w-2/3 sm:w-auto">
@@ -17,16 +32,18 @@ export default function Header() {
             className="h-10 sm:h-12 w-auto object-contain border-r border-gray-500 pr-2"
           />
           <img
-            src="/ams_logo.JPG"
+            src="/ams-logo.png"
             alt="AMS Logo"
             className="h-8 sm:h-12 w-auto object-contain pl-1"
           />
           {/* Department Name */}
           <div className="ml-2">
-            {language === "en" ? (
-              <h2 className="text-xs sm:text-base font-bold text-black font-playfair_display leading-tight">
-                Department of<br />
-                Applied Mathematics<br />
+            {language === 'en' ? (
+              <h2 className="text-[clamp(0.625rem,1.4vw,1.125rem)] font-bold text-black font-playfair_display leading-tight">
+                Department of
+                <br />
+                Applied Mathematics
+                <br />
                 and Statistics
               </h2>
             ) : (
@@ -47,12 +64,12 @@ export default function Header() {
             className="h-8 w-auto object-contain border-r border-gray-500 pr-1"
           />
           <img
-            src="/ams_logo.JPG"
+            src="/ams-logo.png"
             alt="AMS Logo"
             className="h-6 w-auto object-contain pl-1"
           />
           <div className="ml-1">
-            {language === "en" ? (
+            {language === 'en' ? (
               <h2 className="text-xs font-bold text-black font-playfair_display leading-tight">
                 Department of <br />
                 Applied Mathematics <br />

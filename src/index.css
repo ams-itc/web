@@ -181,8 +181,25 @@ html {
 }
 
 .swiper-pagination {
-  position: relative !important;  
-  bottom: 0 !important;           /* stick under the swiper */
-  margin-top: 1rem;               /* spacing below cards */
-  text-align: center !important;  /* keep centered */
+  position: relative !important;    /* ensure it’s not absolute */
+  bottom: 0 !important;             /* stick under the swiper */
+  margin-top: 1rem;                 /* spacing below cards */
+  text-align: center !important;    /* center the bullets */
+  z-index: 10;                       /* keep above background if needed */
+}
+
+.swiper-pagination-bullet {
+  width: 0.75rem;                   /* slightly bigger for mobile */
+  height: 0.75rem;
+  background-color: #C41E3A;        /* red bullets */
+  opacity: 1;
+  margin: 0 0.25rem;                /* spacing between bullets */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #3A3B5C;        /* active bullet color */
+}
+
+.font-khmer {
+  font-family: 'Kantumruy Pro', 'Battambang', sans-serif;
 }

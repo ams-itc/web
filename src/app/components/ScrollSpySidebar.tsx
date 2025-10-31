@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Section {
   id: string;
@@ -9,29 +10,35 @@ interface ScrollSpySidebarProps {
   sections: Section[];
   activeSection: string;
   className?: string;
+  onLinkClick?: () => void; // optional callback
 }
 
 const ScrollSpySidebar: React.FC<ScrollSpySidebarProps> = ({
   sections,
   activeSection,
-  className = "",
+  className = '',
+  onLinkClick,
 }) => {
+  const { language } = useLanguage(); // Consume language context
+
   const handleScroll = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
+
+    if (onLinkClick) onLinkClick(); // ✅ call it after scrolling
   };
 
   return (
     <nav
-      className={`px-10 py-3 sticky top-0 h-screen overflow-y-auto ${className}`}
+      className={`px-10 py-3 sticky top-[4rem] h-[calc(100vh-4rem)] overflow-y-auto overflow-x-hidden ${className}`}
     >
       {sections.map((section) => (
         <div
           key={section.id}
           className={`py-8 border-b border-gray-300 ${
-            section.id === "faqs" ? "border-b-0" : ""
+            section.id === 'faqs' ? 'border-b-0' : ''
           }`}
         >
           <button
@@ -39,14 +46,14 @@ const ScrollSpySidebar: React.FC<ScrollSpySidebarProps> = ({
             onClick={() => handleScroll(section.id)}
             className={`text-sm font-raleway text-left w-full ${
               activeSection === section.id
-                ? "text-gray-700 font-bold"
-                : "text-black"
-            }`}
+                ? 'text-gray-700 font-bold'
+                : 'text-black'
+            } ${language === 'kh' ? 'font-khmer' : ''}`}
             style={{
-              background: "none",
-              border: "none",
+              background: 'none',
+              border: 'none',
               padding: 0,
-              cursor: "pointer",
+              cursor: 'pointer',
             }}
           >
             {section.label}

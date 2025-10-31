@@ -1,23 +1,17 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useState } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 function renderTextWithFont(
   text: string,
-  language: "en" | "kh",
-  type: "heading" | "body"
+  language: 'en' | 'kh',
+  type: 'heading' | 'body'
 ) {
-  if (language === "en") {
-    return (
-      <span
-        className={type === "heading" ? "font-playfair_display" : "font-raleway"}
-      >
-        {text}
-      </span>
-    );
+  if (language === 'en') {
+    return <span className={type === 'heading' ? 'font-playfair_display' : 'font-raleway'}>{text}</span>;
   } else {
     const parts = text.split(/([^\u1780-\u17FF]+)/).filter(Boolean);
     return (
@@ -25,12 +19,12 @@ function renderTextWithFont(
         {parts.map((part, i) => {
           const isKhmer = /[\u1780-\u17FF]/.test(part);
           const fontClass = isKhmer
-            ? type === "heading"
-              ? "font-preahvihear"
-              : "font-kantumruy_pro"
-            : type === "heading"
-            ? "font-playfair_display"
-            : "font-raleway";
+            ? type === 'heading'
+              ? 'font-preahvihear'
+              : 'font-kantumruy_pro'
+            : type === 'heading'
+              ? 'font-playfair_display'
+              : 'font-raleway';
           return (
             <span key={i} className={fontClass}>
               {part}
@@ -42,22 +36,6 @@ function renderTextWithFont(
   }
 }
 
-interface DescriptionItem {
-  title: string;
-  description: string | string[];
-}
-
-interface ListItem {
-  title: string;
-  description?: string[] | DescriptionItem[];
-  sub_description?: string;
-}
-
-interface LinkItem {
-  title: string;
-  url: string;
-}
-
 interface OngoingProjectLang {
   title: string;
   duration: string;
@@ -66,8 +44,6 @@ interface OngoingProjectLang {
   funding: string;
   students: string;
   description: string;
-  lists?: ListItem[];
-  link?: LinkItem[];
 }
 
 interface OngoingProject {
@@ -77,83 +53,64 @@ interface OngoingProject {
 
 export default function OPreviousCollaboration() {
   const { language } = useLanguage();
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const ongoingproject: OngoingProject[] = [
+  const projects: OngoingProject[] = [
     {
       en: {
-        title: "Stanford Bioinformatics Project",
-        duration: "March 2023 – February 2024",
+        title: 'Stanford Bioinformatics Project',
+        duration: 'March 2023 – February 2024',
         investigators: [
-          "Dr. Sarah Chen (Stanford Medicine)",
-          "Dr. Michael Rodriguez (Stanford Computer Science)",
+          'Dr. Sarah Chen (Stanford Medicine)',
+          'Dr. Michael Rodriguez (Stanford Computer Science)',
         ],
-        partner: "Intelligent Analytics Solutions Consortium",
-        funding: "$3.5M joint project",
-        students: "12 graduate students, 8 undergraduates",
+        partner: 'Intelligent Analytics Solutions Consortium',
+        funding: '$3.5M joint project',
+        students: '12 graduate students, 8 undergraduates',
         description:
-          "Our bioinformatics and statistical data science division successfully collaborated with Stanford’s bioinformatics program...",
+          'Our bioinformatics and statistical data science division successfully collaborated with Stanford’s bioinformatics program...',
       },
       kh: {
-        title: "មុខវិជ្ជាវិទ្យាសាស្ត្រទិន្នន័យជីវវិទ្យា Stanford",
-        duration: "មីនា 2023 – កុម្ភៈ 2024",
+        title: 'មុខវិជ្ជាវិទ្យាសាស្ត្រទិន្នន័យជីវវិទ្យា Stanford',
+        duration: 'មីនា 2023 – កុម្ភៈ 2024',
         investigators: [
-          "ឌ្រី សារ៉ា ចិន (មេដិក Stanford)",
-          "ឌ្រី មីខែល រ៉ូដ្រីហ្គេស (វិទ្យាសាស្ត្រកុំព្យូទ័រ Stanford)",
+          'ឌ្រី សារ៉ា ចិន (មេដិក Stanford)',
+          'ឌ្រី មីខែល រ៉ូដ្រីហ្គេស (វិទ្យាសាស្ត្រកុំព្យូទ័រ Stanford)',
         ],
-        partner: "សហគមន៍ដំណោះស្រាយវិភាគឆ្លាតវៃ",
-        funding: "$3.5M នៃគម្រោងរួម",
-        students: "និស្សិតបរិញ្ញាបត្រ 12 នាក់, និស្សិតក្រោមបរិញ្ញាបត្រ 8 នាក់",
+        partner: 'សហគមន៍ដំណោះស្រាយវិភាគឆ្លាតវៃ',
+        funding: '$3.5M នៃគម្រោងរួម',
+        students: 'និស្សិតបរិញ្ញាបត្រ 12 នាក់, និស្សិតក្រោមបរិញ្ញាបត្រ 8 នាក់',
         description:
-          "ផ្នែកវិទ្យាសាស្ត្រជីវវិទ្យាស្ថិតិ និងទិន្នន័យរបស់យើងបានសហការជោគជ័យជាមួយមុខវិជ្ជាវិទ្យាសាស្ត្រទិន្នន័យជីវវិទ្យា Stanford ...",
+          'ផ្នែកវិទ្យាសាស្ត្រជីវវិទ្យាស្ថិតិ និងទិន្នន័យរបស់យើងបានសហការជោគជ័យជាមួយមុខវិជ្ជាវិទ្យាសាស្ត្រទិន្នន័យជីវវិទ្យា Stanford ...',
       },
     },
   ];
 
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggleAccordion = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const toggleAccordion = (index: number) => setOpenIndex(openIndex === index ? null : index);
 
   return (
     <section className="w-full">
-      <h1 className="text-3xl font-playfair_display text-black font-semibold">
-        {renderTextWithFont(
-          language === "en" ? "Ongoing Projects" : "គម្រោងកំពុងដំណើរ",
-          language,
-          "heading"
-        )}
+      <h1 className="text-3xl font-playfair_display font-semibold text-black">
+        {renderTextWithFont(language === 'en' ? 'Previous Collaborations' : 'កិច្ចសហប្រតិបត្តិការមុន', language, 'heading')}
       </h1>
       <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
       <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
-      <p className="mt-6 text-base text-[#767676] font-raleway">
-        {renderTextWithFont(
-          language === "en"
-            ? "This is an introductory text for ongoing projects."
-            : "អត្ថបទណែនាំនេះអាចប្រើ Lorem ipsum ជា placeholder.",
-          language,
-          "body"
-        )}
+      <p className="mt-6 text-base text-[#767676]">
+        {renderTextWithFont(language === 'en' ? 'This section introduces our past collaborations.' : 'ផ្នែកនេះបង្ហាញពីកិច្ចសហប្រតិបត្តិការមុនរបស់យើង។', language, 'body')}
       </p>
 
-      {ongoingproject.map((project, index) => {
-        const item = language === "en" ? project.en : project.kh;
-        const bgColor = index % 2 === 0 ? "#C41E3A" : "#3A3B5C";
+      {projects.map((project, index) => {
+        const item = language === 'en' ? project.en : project.kh;
+        const bgColor = index % 2 === 0 ? '#C41E3A' : '#3A3B5C';
 
         return (
           <div key={index} className="my-3 border rounded-lg overflow-hidden">
             <button
               onClick={() => toggleAccordion(index)}
               style={{ backgroundColor: bgColor }}
-              className="w-full flex items-center py-3 px-4 text-left font-semibold text-white hover:opacity-90 transition"
+              className="w-full flex items-center justify-between py-3 px-4 text-left font-semibold text-white hover:opacity-90 transition"
             >
-              <div className={`flex-1 ${language === "en" ? "font-raleway" : "font-preahvihear"}`}>
-                {
-                  language === "en"
-                  ? `${item.title}`
-                  : `${item.title}`
-                }
-              </div>
+              <div className="flex-1">{renderTextWithFont(item.title, language, 'body')}</div>
               {openIndex === index ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
             </button>
 
@@ -162,75 +119,28 @@ export default function OPreviousCollaboration() {
                 <motion.div
                   key="content"
                   initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
+                  animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="overflow-hidden"
+                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  className="overflow-hidden bg-gray-50"
                 >
-                  <div className="p-4 text-gray-700 font-raleway">
-                    <div className="text-[#2E2E2E]/80">
-                      <p className="mb-2">
-                        <strong>
-                          {renderTextWithFont(
-                            language === "en"
-                              ? "Project Duration:"
-                              : "រយៈពេលគម្រោង:",
-                            language,
-                            "body"
-                          )}
-                        </strong>{" "}
-                        {item.duration}
-                      </p>
-                      <p className="mb-2">
-                        <strong>
-                          {renderTextWithFont(
-                            language === "en"
-                              ? "Principal Investigators:"
-                              : "អ្នកស្រាវជ្រាវសំខាន់:",
-                            language,
-                            "body"
-                          )}
-                        </strong>{" "}
-                        {item.investigators.join(", ")}
-                      </p>
-                      <p className="mb-2">
-                        <strong>
-                          {renderTextWithFont(
-                            language === "en"
-                              ? "Industry Partner:"
-                              : "ដៃគូឧស្សាហកម្ម:",
-                            language,
-                            "body"
-                          )}
-                        </strong>{" "}
-                        {item.partner}
-                      </p>
-                      <p className="mb-2">
-                        <strong>
-                          {renderTextWithFont(
-                            language === "en" ? "Funding:" : "ថវិកាសហការ:",
-                            language,
-                            "body"
-                          )}
-                        </strong>{" "}
-                        {item.funding}
-                      </p>
-                      <p className="mb-2">
-                        <strong>
-                          {renderTextWithFont(
-                            language === "en"
-                              ? "Student Team:"
-                              : "ក្រុមនិស្សិត:",
-                            language,
-                            "body"
-                          )}
-                        </strong>{" "}
-                        {item.students}
-                      </p>
-                    </div>
-                    <p className="text-[#2E2E2E]/80">
-                      {renderTextWithFont(item.description, language, "body")}
+                  <div className="p-4 text-gray-700 space-y-2">
+                    <p>
+                      <strong>{renderTextWithFont('Project Duration:', language, 'body')}</strong> {item.duration}
                     </p>
+                    <p>
+                      <strong>{renderTextWithFont('Principal Investigators:', language, 'body')}</strong> {item.investigators.join(', ')}
+                    </p>
+                    <p>
+                      <strong>{renderTextWithFont('Industry Partner:', language, 'body')}</strong> {item.partner}
+                    </p>
+                    <p>
+                      <strong>{renderTextWithFont('Funding:', language, 'body')}</strong> {item.funding}
+                    </p>
+                    <p>
+                      <strong>{renderTextWithFont('Student Team:', language, 'body')}</strong> {item.students}
+                    </p>
+                    <p>{renderTextWithFont(item.description, language, 'body')}</p>
                   </div>
                 </motion.div>
               )}

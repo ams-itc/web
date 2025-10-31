@@ -1,11 +1,11 @@
-import { useLanguage } from "@/contexts/LanguageContext";
-import { Button } from "@/components/ui/button";
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Button } from '@/components/ui/button';
 
 export function LanguageSwitcher() {
   const { language, setLanguage } = useLanguage();
 
   const toggleLanguage = () => {
-    setLanguage(language === "en" ? "kh" : "en");
+    setLanguage(language === 'en' ? 'kh' : 'en');
   };
 
   return (
@@ -15,7 +15,7 @@ export function LanguageSwitcher() {
       onClick={toggleLanguage}
       className="font-medium hover:bg-gray-100"
     >
-      {language === "en" ? "ភាសាខ្មែរ" : "English"}
+      {language === 'en' ? 'ភាសាខ្មែរ' : 'English'}
     </Button>
   );
 }

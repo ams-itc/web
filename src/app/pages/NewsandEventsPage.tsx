@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import InitialImage from "../components/ui/InitialImage";
+import React, { useState } from 'react';
+import InitialImage from '../components/ui/InitialImage';
 import {
   Calendar,
   Clock,
@@ -8,7 +8,7 @@ import {
   Search,
   ChevronDown,
   Filter,
-} from "lucide-react";
+} from 'lucide-react';
 
 // News Card Component
 interface NewsOneProps {
@@ -36,7 +36,7 @@ const NewsCard: React.FC<NewsOneProps> = ({
   date,
   description,
   category,
-  readMoreLink = "#",
+  readMoreLink = '#',
 }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
@@ -158,7 +158,7 @@ interface ListNewsCardProps {
 const ListNewsCard: React.FC<ListNewsCardProps> = ({
   newsItems,
   showCount = 4,
-  title = "Recent News",
+  title = 'Recent News',
 }) => {
   const displayedItems = newsItems.slice(0, showCount);
 
@@ -176,8 +176,8 @@ const ListNewsCard: React.FC<ListNewsCardProps> = ({
       <div
         className={`grid gap-6 ${
           showCount === 8
-            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-            : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+            : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
         }`}
       >
         {displayedItems.map((item, index) => (
@@ -192,44 +192,44 @@ const ListNewsCard: React.FC<ListNewsCardProps> = ({
 const ListEventCard: React.FC = () => {
   const events: EventCardProps[] = [
     {
-      type: "Sharing Sessions",
-      date: "August 17, 2025",
-      time: "9:00 AM",
-      location: "S1, Building F",
-      title: "AMS Alumni",
+      type: 'Sharing Sessions',
+      date: 'August 17, 2025',
+      time: '9:00 AM',
+      location: 'S1, Building F',
+      title: 'AMS Alumni',
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
-      saveSpotText: "Save your spot",
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.',
+      saveSpotText: 'Save your spot',
     },
     {
-      type: "Sharing Sessions",
-      date: "August 22, 2025",
-      time: "6:00 AM",
-      location: "S1, Building C",
-      title: "AMS Alumni",
+      type: 'Sharing Sessions',
+      date: 'August 22, 2025',
+      time: '6:00 AM',
+      location: 'S1, Building C',
+      title: 'AMS Alumni',
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.",
-      saveSpotText: "Save your spot",
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.',
+      saveSpotText: 'Save your spot',
     },
     {
-      type: "Sharing Sessions",
-      date: "August 25, 2025",
-      time: "9:00 AM",
-      location: "S1, Building A",
-      title: "AMS Alumni",
+      type: 'Sharing Sessions',
+      date: 'August 25, 2025',
+      time: '9:00 AM',
+      location: 'S1, Building A',
+      title: 'AMS Alumni',
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.",
-      saveSpotText: "Save your spot",
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.',
+      saveSpotText: 'Save your spot',
     },
     {
-      type: "Sharing Sessions",
-      date: "August 31, 2025",
-      time: "8:00 AM",
-      location: "S1, Building F",
-      title: "AMS Alumni",
+      type: 'Sharing Sessions',
+      date: 'August 31, 2025',
+      time: '8:00 AM',
+      location: 'S1, Building F',
+      title: 'AMS Alumni',
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.",
-      saveSpotText: "Save your spot",
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.',
+      saveSpotText: 'Save your spot',
     },
   ];
 
@@ -254,21 +254,21 @@ const ListEventCard: React.FC = () => {
 };
 
 const SearchComponent: React.FC = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All Categories');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const categories = [
-    "All Categories",
-    "News",
-    "Events",
-    "Scholarship",
-    "Research",
-    "Academic",
-    "Technology",
-    "Science",
-    "Business",
-    "Health",
+    'All Categories',
+    'News',
+    'Events',
+    'Scholarship',
+    'Research',
+    'Academic',
+    'Technology',
+    'Science',
+    'Business',
+    'Health',
   ];
 
   const handleCategorySelect = (category: string) => {
@@ -305,7 +305,7 @@ const SearchComponent: React.FC = () => {
             </div>
             <ChevronDown
               className={`h-4 w-4 transition-transform duration-200 ${
-                isDropdownOpen ? "rotate-180" : ""
+                isDropdownOpen ? 'rotate-180' : ''
               }`}
             />
           </button>
@@ -319,8 +319,8 @@ const SearchComponent: React.FC = () => {
                   onClick={() => handleCategorySelect(category)}
                   className={`w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg ${
                     selectedCategory === category
-                      ? "bg-blue-50 text-blue-700 font-medium"
-                      : "text-gray-700"
+                      ? 'bg-blue-50 text-blue-700 font-medium'
+                      : 'text-gray-700'
                   }`}
                 >
                   {category}
@@ -352,79 +352,83 @@ const SearchComponent: React.FC = () => {
 export default function NewsAndEventsPage() {
   const sampleNews: NewsOneProps[] = [
     {
-      title: "AMS 1st Generation Thesis Defense – A Historic Milestone",
-      date: "July 15, 2024",
+      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
+      date: 'July 15, 2024',
       description:
-        "On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.",
-      category: "Academic",
-      readMoreLink: "#",
+        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
+      category: 'Academic',
+      readMoreLink: '#',
     },
     {
-      title: "AMS 1st Generation Thesis Defense – A Historic Milestone",
-      date: "July 15, 2024",
+      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
+      date: 'July 15, 2024',
       description:
-        "On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.",
-      category: "Academic",
-      readMoreLink: "#",
+        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
+      category: 'Academic',
+      readMoreLink: '#',
     },
     {
-      title: "AMS 1st Generation Thesis Defense – A Historic Milestone",
-      date: "July 15, 2024",
+      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
+      date: 'July 15, 2024',
       description:
-        "On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.",
-      category: "Academic",
-      readMoreLink: "#",
+        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
+      category: 'Academic',
+      readMoreLink: '#',
     },
     {
-      title: "AMS 1st Generation Thesis Defense – A Historic Milestone",
-      date: "Aug 12, 2024",
+      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
+      date: 'Aug 12, 2024',
       description:
-        "On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.",
-      category: "Academic",
-      readMoreLink: "#",
+        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
+      category: 'Academic',
+      readMoreLink: '#',
     },
     {
-      title: "AMS 1st Generation Thesis Defense – A Historic Milestone",
-      date: "July 19, 2024",
+      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
+      date: 'July 19, 2024',
       description:
-        "On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.",
-      category: "Research",
-      readMoreLink: "#",
+        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
+      category: 'Research',
+      readMoreLink: '#',
     },
     {
-      title: "AMS 1st Generation Thesis Defense – A Historic Milestone",
-      date: "July 18, 2024",
+      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
+      date: 'July 18, 2024',
       description:
-        "On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.",
-      category: "Research",
-      readMoreLink: "#",
+        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
+      category: 'Research',
+      readMoreLink: '#',
     },
     {
-      title: "AMS 1st Generation Thesis Defense – A Historic Milestone",
-      date: "July 17, 2024",
+      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
+      date: 'July 17, 2024',
       description:
-        "On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.",
-      category: "Academic",
-      readMoreLink: "#",
+        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
+      category: 'Academic',
+      readMoreLink: '#',
     },
     {
-      title: "AMS 1st Generation Thesis Defense – A Historic Milestone",
-      date: "Aug 10, 2024",
+      title: 'AMS 1st Generation Thesis Defense – A Historic Milestone',
+      date: 'Aug 10, 2024',
       description:
-        "On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.",
-      category: "Research",
-      readMoreLink: "#",
+        'On July 16, 2024, we mark a pivotal and unprecedented moment in the Department of Applied Mathematics and Stochastic Analysis at the Faculty of Technology of Cambodia as we celebrate the Thesis Defense Day of our 1st Generation of Data Science Students.',
+      category: 'Research',
+      readMoreLink: '#',
     },
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Initial Image Section */}
-      <InitialImage imagePath="./src/assets/image.png" textEn="News & Events" textKh="ព័ត៌មាន"/>
+      <InitialImage
+        imagePath="./src/assets/image.png"
+        textEn="News & Events"
+        textKh="ព័ត៌មាន"
+      />
 
       {/* Spacer */}
       <div className="py-8"></div>
-      
+
       {/* Search Component */}
       <SearchComponent />
 
