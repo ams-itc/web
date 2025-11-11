@@ -33,7 +33,7 @@ export default function DepartmentLanding() {
   const seconds = Math.floor((diff / 1000) % 60);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white text-slate-800 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-white text-slate-800 relative overflow-hidden py-10 px-10">
       {/* Animated background */}
       <motion.div
         initial={{ opacity: 0 }}
