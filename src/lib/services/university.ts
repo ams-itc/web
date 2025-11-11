@@ -48,40 +48,32 @@ function normalizeEntity<T extends Record<string, any>>(item: T, fallbackSlug: s
 }
 
 export const universityService = {
-  async getAll(slug: UnviersitySlug, params?: Record<string, any>): Promise<Entity[]> {
-    if (!slug) throw new Error("Slug is required");
-    const endpoint = `${BASE}/${slug}`;
-    try {
-      console.log(`[universityService] Fetching from: ${endpoint}`, { params });
-      const response = await api.get(endpoint, { params });
-      const data = response.data;
-      
-      console.log(`[universityService] Raw response for ${slug}:`, data);
-      
-      let entities: any[] = [];
-      if (Array.isArray(data)) {
-        entities = data;
-      } else if (data && typeof data === 'object' && Array.isArray(data.data)) {
-        entities = data.data;
-      } else if (data && typeof data === 'object' && data.items) {
-        entities = Array.isArray(data.items) ? data.items : [data.items];
-      }
-      
-      const normalized = entities.map((item) => normalizeEntity(item, slug));
-      console.log(`[universityService] Normalized entities for ${slug}:`, normalized);
-      
-      return normalized;
-    } catch (error: any) {
-      console.error(`[universityService.getAll] Failed to fetch ${slug}:`, error);
-      console.error(`[universityService.getAll] Error details:`, {
-        message: error?.message,
-        response: error?.response?.data,
-        status: error?.response?.status
-      });
-      
-      return [];
+async getAll(slug: UnviersitySlug, params?: Record<string, any>): Promise<Entity[]> {
+  if (!slug) throw new Error("Slug is required");
+  const endpoint = `${BASE}/${slug}`;
+  
+  try {
+    const response = await api.get(endpoint, { params });
+    const data = response.data;
+
+    let entities: any[] = [];
+    if (Array.isArray(data)) {
+      entities = data;
+    } else if (data && typeof data === 'object' && Array.isArray(data.data)) {
+      entities = data.data;
+    } else if (data && typeof data === 'object' && data.items) {
+      entities = Array.isArray(data.items) ? data.items : [data.items];
     }
-  },
+
+    const normalized = entities.map((item) => normalizeEntity(item, slug));
+    return normalized;
+  } catch (error: any) {
+    // optional: keep minimal error info in production
+    console.error(`Failed to fetch ${slug}:`, error?.message);
+    return [];
+  }
+},
+
 
   async getOne(slug: UnviersitySlug, id: number): Promise<Entity> {
     if (!slug) throw new Error("Slug is required");
