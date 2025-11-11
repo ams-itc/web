@@ -172,7 +172,7 @@ export default function DepartmentLanding() {
                   </motion.div>
                 </div>
 
-                <div className="mt-4 text-center md:text-left">
+                <div className="mt-10 text-center">
                   <div className="text-sm text-slate-500">Explore</div>
                   <div className="text-lg font-semibold text-indigo-600">
                     Machine Learning • Predictive Analytics • Smart Dashboards
