@@ -6,7 +6,7 @@ import { useState } from "react";
 import { SettingsDialog } from "./settings-dialog";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { useAuth } from "@/hooks/use-auth";
+// import { useAuth } from "@/hooks/use-auth";
 
 export function NavUser({
   user,
@@ -23,12 +23,12 @@ export function NavUser({
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const { logout } = useAuth();
+  // const { logout } = useAuth();
 
   const handleLogout = async () => {
     setLoading(true);
     try {
-      await logout();
+      // await logout();
       toast.success("Logged out successfully!");
       navigate("/auth/login");
     } catch (error) {

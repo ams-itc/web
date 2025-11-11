@@ -18,18 +18,18 @@ import {
 import { NavMain } from "@/components/nav-main"
 import { NavProjects } from "@/components/nav-projects"
 import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
+// import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
+  // SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { useAuth } from "@/hooks/use-auth"
-import { getImageUrl } from "@/helpers/image"
+// import { useAuth } from "@/hooks/use-auth"
+// import { getImageUrl } from "@/helpers/image"
 import { contentTypeService, type ContentType } from "@/lib/services/content-type"
 
 type NavItem = {
@@ -132,7 +132,7 @@ export const data: { user: any; navMain: NavItem[]; navSecondary: NavItem[]; pro
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const [contentTypes, setContentTypes] = React.useState<ContentType[]>([]);
 
   React.useEffect(() => {
@@ -179,13 +179,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavProjects projects={data.projects} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter>
+      {/* <SidebarFooter>
         {user ? <NavUser user={{
           name: user.name,
           email: user.email,
           avatar: getImageUrl(user.avatar)
         }} /> : <div className="p-2 text-sm text-muted-foreground">Loading...</div>}
-      </SidebarFooter>
+      </SidebarFooter> */}
     </Sidebar>
   )
 }
