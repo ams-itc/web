@@ -13,33 +13,39 @@ import StudentResource from './components/students/StudentResource';
 import Studentachievements from './components/students/StudentAchievements';
 import Studentactivity from './components/students/StudentActivity';
 import Alumini from './components/students/Alumini';
+import ComingSoon from './pages/ComingSoon';
 
 const AppRouter: React.FC = () => {
+  const isMainSiteReady = false; // toggle this to show full site or coming soon
   return (
     <Router>
       <LanguageProvider>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="*" element={<NotFoundPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/academics" element={<AcademicPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route
-              path="/faculty-and-research"
-              element={<FacultyandResearchPage />}
-            />
-            <Route path="/news-and-events" element={<NewsAndEventsPage />} />
+        {isMainSiteReady ? (
+          <Layout>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="*" element={<NotFoundPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/academics" element={<AcademicPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route
+                path="/faculty-and-research"
+                element={<FacultyandResearchPage />}
+              />
+              <Route path="/news-and-events" element={<NewsAndEventsPage />} />
 
-            {/* Parent route for Students */}
-            <Route path="/students" element={<StudentsPage />}>
-              <Route path="achievement" element={<Studentachievements />} />
-              <Route path="activity" element={<Studentactivity />} />
-              <Route path="resource" element={<StudentResource />} />
-              <Route path="alumni" element={<Alumini />} />
-            </Route>
-          </Routes>
-        </Layout>
+              {/* Parent route for Students */}
+              <Route path="/students" element={<StudentsPage />}>
+                <Route path="achievement" element={<Studentachievements />} />
+                <Route path="activity" element={<Studentactivity />} />
+                <Route path="resource" element={<StudentResource />} />
+                <Route path="alumni" element={<Alumini />} />
+              </Route>
+            </Routes>
+          </Layout>
+        ) : (
+          <ComingSoon /> // Full-page coming soon when the site isn’t ready
+        )}
       </LanguageProvider>
     </Router>
   );

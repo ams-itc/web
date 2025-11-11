@@ -1,7 +1,11 @@
-'use clients';
+'use client';
 
+// import { useEffect, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+// import { universityService, type Entity } from '@/lib/services/university';
+import ComingSoon from '@/components/SectionComingSoon';
 
+/* -------------------- FONT HELPER -------------------- */
 function renderTextWithFont(
   text: string,
   language: 'en' | 'kh',
@@ -9,11 +13,7 @@ function renderTextWithFont(
 ) {
   if (language === 'en') {
     return (
-      <span
-        className={
-          type === 'heading' ? 'font-playfair_display' : 'font-raleway'
-        }
-      >
+      <span className={type === 'heading' ? 'font-playfair_display' : 'font-raleway'}>
         {text}
       </span>
     );
@@ -28,8 +28,8 @@ function renderTextWithFont(
               ? 'font-preahvihear'
               : 'font-kantumruy_pro'
             : type === 'heading'
-              ? 'font-playfair_display'
-              : 'font-raleway';
+            ? 'font-playfair_display'
+            : 'font-raleway';
           return (
             <span key={i} className={fontClass}>
               {part}
@@ -41,24 +41,22 @@ function renderTextWithFont(
   }
 }
 
-export default function Alumini() {
+/* -------------------- COMPONENT -------------------- */
+export default function Alumni() {
   const { language } = useLanguage();
 
+  /* -------------------- RENDER -------------------- */
   return (
     <div className="w-full mt-10">
+      {/* Title */}
       <h1 className="text-3xl font-playfair_display text-black font-semibold">
-        {renderTextWithFont(
-          language === 'en' ? 'Alumni' : 'អតីតសិស្ស',
-          language,
-          'heading'
-        )}
+        {renderTextWithFont(language === 'en' ? 'Alumni' : 'អតីតសិស្ស', language, 'heading')}
       </h1>
+
       <hr className="border-[1.5px] border-[#3A3B5C] mt-1.5 w-full" />
       <hr className="border-[1.5px] border-[#C41E3A] mt-1 w-2/3" />
-      <img src="/comingsoon.png" alt="Coming Soon Image" className="mt-1" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Render alumni profiles dynamically */}
-      </div>
+
+      <ComingSoon/>
     </div>
   );
 }
