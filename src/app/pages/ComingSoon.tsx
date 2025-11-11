@@ -74,20 +74,28 @@ export default function DepartmentLanding() {
       </motion.div>
 
       <div className="relative z-10 container mx-auto px-6 lg:px-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left side: Department info */}
-          <div className="flex flex-col gap-6 items-center lg:items-start">
+          <div className="flex flex-col gap-6 items-center md:items-start">
             {/* Logos */}
             <div className="flex items-center gap-6 mb-4">
-              <img src="/Institute_of_Technology_of_Cambodia_logo-removebg-preview.png" alt="ITC Logo" className="h-20 w-auto" />
-              <img src="/ams_logo.JPG" alt="AMS Logo" className="h-16 w-auto" />
+              <img
+                src="/Institute_of_Technology_of_Cambodia_logo-removebg-preview.png"
+                alt="ITC Logo"
+                className="h-16 sm:h-20 w-auto"
+              />
+              <img
+                src="/ams_logo.JPG"
+                alt="AMS Logo"
+                className="h-12 sm:h-16 w-auto"
+              />
             </div>
 
             <motion.h1
               initial={{ y: -10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl sm:text-5xl font-extrabold tracking-tight text-indigo-600 text-center lg:text-left"
+              className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-indigo-600 text-center md:text-left"
             >
               Welcome to the AMS Department
             </motion.h1>
@@ -96,7 +104,7 @@ export default function DepartmentLanding() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-lg text-slate-600 max-w-xl text-center lg:text-left"
+              className="text-base sm:text-lg text-slate-600 max-w-xl text-center md:text-left"
             >
               We train the next generation of data scientists and AI specialists.  
               Explore the world of predictive analytics, machine learning, 
@@ -108,10 +116,10 @@ export default function DepartmentLanding() {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="flex items-center gap-4 mt-4"
+              className="flex items-center gap-4 mt-4 w-full sm:w-auto"
             >
               <div className="bg-white border border-indigo-100 rounded-xl p-4 shadow-sm w-full">
-                <div className="grid grid-cols-4 gap-2 text-center">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
                   {[
                     ['Days', days],
                     ['Hours', hours],
@@ -134,12 +142,12 @@ export default function DepartmentLanding() {
           </div>
 
           {/* Right side: Animation */}
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center md:justify-end mt-8 md:mt-0">
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="w-full max-w-lg"
+              className="w-full max-w-md md:max-w-lg"
             >
               <div className="bg-white border border-indigo-100 rounded-3xl p-6 shadow-md">
                 <div className="relative w-full h-80 flex items-center justify-center">
@@ -164,7 +172,7 @@ export default function DepartmentLanding() {
                   </motion.div>
                 </div>
 
-                <div className="mt-4 text-center">
+                <div className="mt-4 text-center md:text-left">
                   <div className="text-sm text-slate-500">Explore</div>
                   <div className="text-lg font-semibold text-indigo-600">
                     Machine Learning • Predictive Analytics • Smart Dashboards
