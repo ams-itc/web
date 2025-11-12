@@ -14,7 +14,7 @@ export default function App() {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <SpeedInsights />
+      <SpeedInsights /> {/* ✅ Vite-compatible */}
       <AppRouter />
       <Toaster richColors />
     </ThemeProvider>

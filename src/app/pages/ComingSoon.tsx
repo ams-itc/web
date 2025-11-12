@@ -1,16 +1,21 @@
+'use client';
+
 import { useEffect, useState, useMemo } from 'react';
 import Lottie from 'lottie-react';
 import { motion } from 'framer-motion';
+import { Facebook, Mail, Globe } from 'lucide-react';
 
 export default function DepartmentLanding() {
-  const targetDate = useMemo<Date>(() => {
+  const [language, setLanguage] = useState<'en' | 'kh'>('en');
+
+  const targetDate = useMemo(() => {
     const d = new Date();
     d.setFullYear(2025, 11, 31);
     d.setHours(23, 59, 59, 0);
     return d;
   }, []);
 
-  const [now, setNow] = useState<Date>(new Date());
+  const [now, setNow] = useState(new Date());
   const [animationData, setAnimationData] = useState<any>(null);
 
   useEffect(() => {
@@ -32,9 +37,31 @@ export default function DepartmentLanding() {
   const minutes = Math.floor((diff / (1000 * 60)) % 60);
   const seconds = Math.floor((diff / 1000) % 60);
 
+  const text = {
+    en: {
+      title: 'AMS Department Website Coming Soon!',
+      desc: "We're building something exciting for the world of Data Science and AI. Our new website will go live soon — stay tuned for updates!",
+      launching: 'Launching on',
+      launchingSoon: 'Launching Soon',
+      footer: 'Built with ❤️ and coffee',
+      stayTuned: 'Stay tuned for the AMS Department official site launch',
+    },
+    kh: {
+      title: 'គេហទំព័ររបស់ដេប៉ាតឺម៉ង់ AMS នឹងដំណើរការឆាប់ៗនេះ!',
+      desc: 'យើងកំពុងបង្កើតអ្វីមួយគួរឱ្យរំភើបសម្រាប់ពិភពវិទ្យាសាស្ត្រទិន្នន័យ និង AI។ គេហទំព័រថ្មីរបស់យើងនឹងដំណើរការឆាប់ៗនេះ — សូមរង់ចាំព័ត៌មានបន្ថែម!',
+      launching: 'ចាប់ផ្ដើមនៅថ្ងៃ',
+      launchingSoon: 'នឹងដំណើរការឆាប់ៗនេះ',
+      footer: 'កើតឡើងដោយ ❤️ និងកាហ្វេ',
+      stayTuned: 'សូមរង់ចាំការចេញផ្សាយគេហទំព័រផ្លូវការរបស់ដេប៉ាតឺម៉ង់ AMS',
+    },
+  };
+
+  const primaryColor = '#0066cc';
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white text-slate-800 relative overflow-hidden py-10 px-10">
-      {/* Animated background */}
+    <div className="min-h-screen flex items-center justify-center font-kantumruy_pro bg-gradient-to-br from-indigo-50 via-white to-cyan-50 text-slate-800 relative overflow-hidden py-10 px-6 sm:px-10">
+      
+      {/* Floating background particles */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.25 }}
@@ -57,15 +84,15 @@ export default function DepartmentLanding() {
           <g>
             <motion.circle
               animate={{ cx: [50, 750, 50], cy: [100, 400, 100] }}
-              transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-              r="200"
+              transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+              r="220"
               fill="#6366f1"
               opacity="0.05"
             />
             <motion.circle
               animate={{ cx: [750, 50, 750], cy: [50, 300, 50] }}
-              transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-              r="300"
+              transition={{ duration: 55, repeat: Infinity, ease: 'linear' }}
+              r="280"
               fill="#22d3ee"
               opacity="0.05"
             />
@@ -73,61 +100,68 @@ export default function DepartmentLanding() {
         </svg>
       </motion.div>
 
-      <div className="relative z-10 container mx-auto px-6 lg:px-20">
+      {/* Main Content */}
+      <div className="relative z-10 container mx-auto">
+        {/* Language toggle */}
+        <div className="flex justify-end mb-6">
+          <motion.button
+            onClick={() => setLanguage(language === 'en' ? 'kh' : 'en')}
+            whileTap={{ scale: 0.9 }}
+            className="flex items-center gap-2 bg-white/70 backdrop-blur-sm hover:bg-indigo-100 text-[#0066cc] px-4 py-1.5 rounded-full text-sm font-medium shadow-sm transition"
+          >
+            <Globe className="w-4 h-4" />
+            {language === 'en' ? 'ភាសាខ្មែរ' : 'English'}
+          </motion.button>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* Left side: Department info */}
+          {/* Left side */}
           <div className="flex flex-col gap-6 items-center md:items-start">
-            {/* Logos */}
             <div className="flex items-center gap-6 mb-4">
               <img
                 src="/Institute_of_Technology_of_Cambodia_logo-removebg-preview.png"
                 alt="ITC Logo"
                 className="h-16 sm:h-20 w-auto"
               />
-              <img
-                src="/ams_logo.JPG"
-                alt="AMS Logo"
-                className="h-12 sm:h-16 w-auto"
-              />
+              <img src="/ams_logo.JPG" alt="AMS Logo" className="h-12 sm:h-16 w-auto rounded-lg" />
             </div>
 
             <motion.h1
               initial={{ y: -10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-indigo-600 text-center md:text-left"
+              style={{ color: primaryColor }}
+              className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-center md:text-left leading-snug"
             >
-              Welcome to the AMS Department
+              {text[language].title}
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-base sm:text-lg text-slate-600 max-w-xl text-center md:text-left"
+              className="text-base sm:text-lg text-slate-600 max-w-xl text-center md:text-left leading-relaxed"
             >
-              We train the next generation of data scientists and AI specialists.  
-              Explore the world of predictive analytics, machine learning, 
-              and intelligent systems with hands-on projects and innovative research.
+              {text[language].desc}
             </motion.p>
 
-            {/* Countdown until New Year */}
+            {/* Countdown */}
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.3 }}
               className="flex items-center gap-4 mt-4 w-full sm:w-auto"
             >
-              <div className="bg-white border border-indigo-100 rounded-xl p-4 shadow-sm w-full">
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+              <div className="bg-white/80 border border-indigo-100 rounded-xl p-4 shadow-sm w-full backdrop-blur-sm">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
                   {[
-                    ['Days', days],
-                    ['Hours', hours],
-                    ['Minutes', minutes],
-                    ['Seconds', seconds],
+                    [language === 'en' ? 'Days' : 'ថ្ងៃ', days],
+                    [language === 'en' ? 'Hours' : 'ម៉ោង', hours],
+                    [language === 'en' ? 'Minutes' : 'នាទី', minutes],
+                    [language === 'en' ? 'Seconds' : 'វិនាទី', seconds],
                   ].map(([label, value]) => (
                     <div key={label}>
-                      <div className="text-2xl font-bold text-indigo-600">
+                      <div className="text-2xl font-bold" style={{ color: primaryColor }}>
                         {String(value).padStart(2, '0')}
                       </div>
                       <div className="text-xs text-slate-500">{label}</div>
@@ -135,13 +169,31 @@ export default function DepartmentLanding() {
                   ))}
                 </div>
                 <div className="text-xs text-slate-400 mt-1">
-                  Countdown to New Year 2026 (Cambodia Time)
+                  {text[language].launching} {targetDate.toDateString()}
                 </div>
               </div>
             </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="mt-6 flex gap-5 text-slate-500 text-lg"
+            >
+              <a
+                href="https://www.facebook.com/ams.itc.edu.kh"
+                className="hover:text-indigo-600 transition"
+              >
+                <Facebook />
+              </a>
+              <a href="mailto:info@ams.edu.kh" className="hover:text-indigo-600 transition">
+                <Mail />
+              </a>
+            </motion.div>
           </div>
 
-          {/* Right side: Animation */}
+          {/* Right side */}
           <div className="flex justify-center md:justify-end mt-8 md:mt-0">
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
@@ -149,7 +201,7 @@ export default function DepartmentLanding() {
               transition={{ delay: 0.2 }}
               className="w-full max-w-md md:max-w-lg"
             >
-              <div className="bg-white border border-indigo-100 rounded-3xl p-6 shadow-md">
+              <div className="bg-white/80 border border-indigo-100 rounded-3xl p-6 shadow-md backdrop-blur-md">
                 <div className="relative w-full h-80 flex items-center justify-center">
                   {animationData ? (
                     <Lottie
@@ -166,16 +218,17 @@ export default function DepartmentLanding() {
                     initial={{ y: 10, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.6 }}
-                    className="absolute -bottom-6 left-6 bg-indigo-500 text-white rounded-full px-4 py-2 text-xs font-semibold shadow"
+                    style={{ backgroundColor: primaryColor }}
+                    className="absolute -bottom-6 left-6 text-white rounded-full px-4 py-2 text-xs font-semibold shadow"
                   >
                     AI • Data Science
                   </motion.div>
                 </div>
 
                 <div className="mt-10 text-center">
-                  <div className="text-sm text-slate-500">Explore</div>
-                  <div className="text-lg font-semibold text-indigo-600">
-                    Machine Learning • Predictive Analytics • Smart Dashboards
+                  <div className="text-sm text-slate-500">{text[language].launchingSoon}</div>
+                  <div className="text-lg font-semibold mt-1" style={{ color: primaryColor }}>
+                    {text[language].stayTuned}
                   </div>
                 </div>
               </div>
@@ -184,7 +237,7 @@ export default function DepartmentLanding() {
         </div>
 
         <footer className="mt-12 text-center text-xs text-slate-500">
-          © {new Date().getFullYear()} AMS Web DevNev — Built with ❤️ and coffee
+          © {new Date().getFullYear()} AMS Web DevNev — {text[language].footer}
         </footer>
       </div>
     </div>

@@ -9,22 +9,23 @@ import FacultyandResearchPage from './pages/FacultyandResearchPage';
 import NewsAndEventsPage from './pages/NewsandEventsPage';
 import StudentsPage from './pages/StudentsPage';
 import NotFoundPage from './pages/NotFoundPage';
-import StudentResource from './components/students/StudentResource';
-import Studentachievements from './components/students/StudentAchievements';
-import Studentactivity from './components/students/StudentActivity';
-import Alumini from './components/students/Alumini';
 import ComingSoon from './pages/ComingSoon';
+import StudentResource from './components/students/StudentResource';
+import StudentAchievements from './components/students/StudentAchievements';
+import StudentActivity from './components/students/StudentActivity';
+import Alumni from './components/students/Alumini';
 
 const AppRouter: React.FC = () => {
-  const isMainSiteReady = false; // toggle this to show full site or coming soon
+  const isMainSiteReady = false;
+
   return (
     <Router>
       <LanguageProvider>
         {isMainSiteReady ? (
-          <Layout>
-            <Routes>
+          <Routes>
+            {/* Layout wraps all main pages */}
+            <Route element={<Layout />}>
               <Route path="/" element={<HomePage />} />
-              <Route path="*" element={<NotFoundPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/academics" element={<AcademicPage />} />
               <Route path="/contact" element={<ContactPage />} />
@@ -34,17 +35,20 @@ const AppRouter: React.FC = () => {
               />
               <Route path="/news-and-events" element={<NewsAndEventsPage />} />
 
-              {/* Parent route for Students */}
+              {/* Nested Student routes */}
               <Route path="/students" element={<StudentsPage />}>
-                <Route path="achievement" element={<Studentachievements />} />
-                <Route path="activity" element={<Studentactivity />} />
+                <Route path="achievement" element={<StudentAchievements />} />
+                <Route path="activity" element={<StudentActivity />} />
                 <Route path="resource" element={<StudentResource />} />
-                <Route path="alumni" element={<Alumini />} />
+                <Route path="alumni" element={<Alumni />} />
               </Route>
-            </Routes>
-          </Layout>
+
+              {/* Catch-all */}
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
+          </Routes>
         ) : (
-          <ComingSoon /> // Full-page coming soon when the site isn’t ready
+          <ComingSoon />
         )}
       </LanguageProvider>
     </Router>
